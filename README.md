@@ -2,7 +2,7 @@
 ### written by Dakyung Seo from 2022-07-15 to ~
 ----
 ## :purple_heart: Git
-* [(22071) Markdown 기초](https://github.com/seoda0000/TIL/blob/master/Markdown.md)
+* [(220714) Markdown 기초](https://github.com/seoda0000/TIL/blob/master/Markdown.md)
 * [(220715) Git 기초](https://github.com/seoda0000/TIL/blob/master/Git_Basic.md)
 
 

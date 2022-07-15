@@ -35,7 +35,7 @@ print("hellllllllllllllllllllllo")
 - ` 한 개 : 인라인 코드블럭
 문장 안에 코드가 `print("hello")` 들어갈 때
 
-### [string](url) : 링크
+### [string] (url) : 링크
 
 - [보여지는 문구](링크)
 
@@ -45,7 +45,7 @@ print("hellllllllllllllllllllllo")
 
 ### ! [string] (img_url) : 이미지
 
-링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
+* 링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
 
 ### 텍스트 강조
 
