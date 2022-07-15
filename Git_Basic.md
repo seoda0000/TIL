@@ -27,7 +27,7 @@
 
 font : D2Coding
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/45f9ed36-e476-42da-9758-1c127811308b/Untitled.png)
+![Untitled](https://www.notion.so/hphk-edu/Git-2-a9bbc331bbba454799b297ffa291a2b1#bacf753cd23d4ea5b6f2d1599cb902c6)
 
 메뉴 터미널 클릭시 Git bash 이용 가능
 
