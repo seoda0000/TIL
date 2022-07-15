@@ -43,7 +43,7 @@ print("hellllllllllllllllllllllo")
 
 [구글로이동하기](https://google.com/)
 
-## ![string](img_url) : 이미지
+## ! [string] (img_url) : 이미지
 
 링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
 
@@ -51,11 +51,8 @@ print("hellllllllllllllllllllllo")
 
 **bold** *italic* ~~strikeout~~
 
-~~~hey~~~
-
-hey~~~~~~~~~~~~~~~~~~~~
 
 ## 수평선
 
--세개이상
-----------
+-세 개 이상
+---
