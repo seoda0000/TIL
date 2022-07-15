@@ -1,7 +1,7 @@
-# Today I Learned
-### from 2022-07-15 to ~
+# :space_invader: Today I Learned :space_invader:
+### written by Dakyung Seo from 2022-07-15 to ~
 ----
-## Git
+## :purple_heart: Git
 [(220715) Git 기초](https://github.com/seoda0000/TIL/blob/master/Git_Basic.md)
 
-## Python
+## :blue_heart: Python
