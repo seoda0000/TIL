@@ -1,4 +1,4 @@
-# :space_invader: Today I Learned :space_invader:
+# Today I Learned :vulcan_salute:
 ### written by Dakyung Seo from 2022-07-15 to ~
 ----
 ## :purple_heart: Git
