@@ -7,8 +7,9 @@
 - 개발문서의 시작과 끝
 - Typora : 실시간 마크다운 변환(미리보기) 제공
 
+- [Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
 
-[Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
+---
 
 ### # : 헤딩 (Heading)
 
@@ -21,6 +22,8 @@
 1. 숫자 리스트
 - 목록 표시하기
 - 엔터엔터 혹은 Shift + tabㅇ로 수준 삭제
+
+###
 
 ### ` : 코드 블럭
 
@@ -45,14 +48,14 @@ print("hellllllllllllllllllllllo")
 
 ### ! [string] (img_url) : 이미지
 
-* 링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
+링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
 
 ### 텍스트 강조
 
 **bold** *italic* ~~strikeout~~
 
-
 ### 수평선
 
 -세 개 이상
+
 ---
