@@ -31,15 +31,15 @@ font : D2Coding
 
 메뉴 터미널 클릭시 Git bash 이용 가능
 
-## `ctrl + k → f`
+### `ctrl + k → f`
 
 - vsc에서 폴더 닫기
 
-## `ctrl + shift + ``
+### `ctrl + shift + ``
 
 - VS에서 터미널 열기
 
-## `ctrl + ,`
+### `ctrl + ,`
 
 - 설정 열기
 
@@ -47,7 +47,7 @@ font : D2Coding
 
 # Git Bash 이용하기
 
-## `git status`
+### `git status`
 
 - 현재 Git으로 관리되고 있는 파일들의 상태를 알 수 있음
 
@@ -55,23 +55,23 @@ font : D2Coding
 
 - 코딩 전에 이 화면이 보여야 함. 모든 커밋이 완료됨.
 
-## `git add .`
+### `git add .`
 
 - 디렉토리의 모든 파일을 **Staging Area에** 올리기
 
-## `git add 파일명`
+### `git add 파일명`
 
 - 파일을 **Staging Area**에 올리기
 
-## `:q`
+### `:q`
 
 - 창 나가기
 
-## `git commit -m "한줄 커밋 메세지"`
+### `git commit -m "한줄 커밋 메세지"`
 
 - 커밋 메세지 : 영어가 좋긴 하지만 알아볼 수 있어야 함!
 
-## `git log`
+### `git log`
 
 - 깃 로그 확인하기
 
@@ -80,44 +80,44 @@ font : D2Coding
 - commit 커밋 아이디
 - 보통 앞 네 자리만으로 구분 가능
 
-## ⬆️
+### ⬆️
 
 - 여태 썼던 명령어 로그 확인 가능
 
-## `git diff 커밋아이디A 커밋아이디B`
+### `git diff {커밋아이디A} {커밋아이디B}`
 
 - A에서 B로 어떻게 변경되었는지
 
 ---
 
-## Local Repository
+### Local Repository
 
 - 컴퓨터에 있는 레퍼지토리
 
-## Remote Repository
+### Remote Repository
 
 - 어딘가(ex. Github)에 있는 레퍼지토리
 
-## `git remote add origin {remote_repo 주소}`
+### `git remote add origin {remote_repo 주소}`
 
 - origin : repo name 별명. 관례상 origin이라고 적음.
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/26ab368f-06d2-4729-9565-872723bdc511/Untitled.png)
 
-## `git clone {remote_repo}`
+### `git clone {remote_repo}`
 
 remote에서 local로 가져오기
 
-## `git push {어디로 push} {push할 branch이름}`
+### `git push {어디로 push} {push할 branch이름}`
 
 - branch 기본 이름 : master
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d3420a0f-7e59-4fdb-8f4e-36d9723e2620/Untitled.png)
 
-## `git push --set-upstream origin master`
+### `git push --set-upstream origin master`
 
 - git push의 기본 경로 설정
 
-## `code .`
+### `code .`
 
 - 해당 폴더의 코드 열기

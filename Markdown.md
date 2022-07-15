@@ -10,19 +10,19 @@
 
 [Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
 
-## # : 헤딩 (Heading)
+### # : 헤딩 (Heading)
 
 - 제목, 소제목 h1~h6
 - 문서구조의 기본
 - 글자 크기를 키울 때 쓰면 안됨
 
-## 1.2.3.* : 리스트 (List)
+### 1.2.3.* : 리스트 (List)
 
 1. 숫자 리스트
 - 목록 표시하기
 - 엔터엔터 혹은 Shift + tabㅇ로 수준 삭제
 
-## ` : 코드 블럭
+### ` : 코드 블럭
 
 - 일반 텍스트와 다르게 코드를 예쁘게 출력
 - ` 세 개 : 코드블럭
@@ -35,7 +35,7 @@ print("hellllllllllllllllllllllo")
 - ` 한 개 : 인라인 코드블럭
 문장 안에 코드가 `print("hello")` 들어갈 때
 
-## [string](url) : 링크
+### [string](url) : 링크
 
 - [보여지는 문구](링크)
 
@@ -43,16 +43,16 @@ print("hellllllllllllllllllllllo")
 
 [구글로이동하기](https://google.com/)
 
-## ! [string] (img_url) : 이미지
+### ! [string] (img_url) : 이미지
 
 링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
 
-## 텍스트 강조
+### 텍스트 강조
 
 **bold** *italic* ~~strikeout~~
 
 
-## 수평선
+### 수평선
 
 -세 개 이상
 ---
