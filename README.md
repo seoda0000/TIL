@@ -1,4 +1,4 @@
-![header](https://capsule-render.vercel.app/api?type=wave&color=ffffff&height=300&section=header&text=Today%20I%20Learned&fontSize=50&desc=@%20s%20e%20o%20d%20a%200%200%200%200&descSize=10&descAlign=76.5&descAlignY=57)
+![header](https://capsule-render.vercel.app/api?type=wave&color=ffffff&height=300&section=header&text=Today%20I%20Learned&fontSize=50&height:30)
 
 
 
