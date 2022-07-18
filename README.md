@@ -8,9 +8,11 @@
 ## <img src="https://img.shields.io/badge/-Basic Manual-lightgrey"/>
 * [(220714) Markdown 사용법](https://github.com/seoda0000/TIL/blob/master/Basic/Markdown.md)
 
-* [(220714) CLI 기초 및 VScode 단축키](https://github.com/seoda0000/TIL/blob/master/Basic/CLI_Basic_and_VScode.md)
+* [(220714) CLI 기초](https://github.com/seoda0000/TIL/blob/master/Basic/CLI_Basic.md)
 
 * [(220715) API 기초](https://github.com/seoda0000/TIL/blob/master/Basic/API_Basic.md)
+
+* [(220718) VScode 단축키](https://github.com/seoda0000/TIL/blob/master/Basic/VScode_shortcut.md)
 
 ## <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=Github&logoColor=white"/>
 
