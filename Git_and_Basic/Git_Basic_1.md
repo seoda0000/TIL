@@ -1,9 +1,9 @@
-# Git : **분산 버전 관리 프로그램**
+# Git 기초 : 소개와 commit
+## Git : **분산 버전 관리 프로그램**
 
 - 버전 : 컴퓨터 소프트웨어의 특정 상태
 - 관리 : 어떤 이의 사무, 시설이나 물건의 유지
-- 코드를 서로 비교/ 확인
-- 
+    -  코드를 서로 비교/ 확인
 
 ↔ **중앙집중** : 버전 관리 히스토리only one
 
@@ -16,25 +16,26 @@
 
 ---
 
-# Git 기본기
+## Git 기본
 
-## README.md
+### README.md
+* 특정 레포지토리나 폴더를 소개하는 기본적인 문서
 
-## Repository
+### Repository
 
-특정 디렉토리를 버전 관리하는 저장소
+* 특정 디렉토리를 버전 관리하는 저장소
 
-`git init` 로컬 저장소 생성
+* `git init` 로컬 저장소 생성
 
-![Untitled](C:\Users\multicampus\Desktop\TIL\images\Git1_1.png)
+![Untitled](../images/Git1_1.png)
 
-**master** 표시되는 곳은 **깃으로 버전 관리가 되는 곳**
+* **master** 표시되는 곳은 **깃으로 버전 관리가 되는 곳**
 
 ---
 
-## → 특정 버전으로 남긴다 = “커밋(Commit)한다”
+### → 특정 버전으로 남긴다 = “커밋(Commit)한다”
 
-## 커밋은
+### 커밋은
 
 - 파일이 아닌 **수정사항**만을 저장!
 - 세 가지 영역을 바탕으로 동작!
@@ -54,41 +55,38 @@
 
 ---
 
-# Git Bash 이용하여 Commit하기
+## Git Bash 이용하여 Commit하기
 
-## `git status`
+### `git status`
 
 - 현재 Git으로 관리되고 있는 파일들의 상태를 알 수 있음
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/27505b08-b4fe-4d95-ba7d-d136c15a23db/Untitled.png)
+![Untitled](../images/Git1_2.png)
 
 - 코딩 전에 이 화면이 보여야 함. 모든 커밋이 완료됨.
 
-## `git add .`
+### `git add .`
 
 - 디렉토리의 모든 파일을 **Staging Area에** 올리기
 
-## `git add 파일명`
+### `git add 파일명`
 
-- 파일을 **Staging Area**에 올리기
+- 특정 파일을 **Staging Area**에 올리기
 
-## `git commit -m "한줄 커밋 메세지"`
+### `git commit -m "한줄 커밋 메세지"`
 
 - 커밋 메세지 : 영어가 좋긴 하지만 알아볼 수 있어야 함!
 
-## `git log`
+### `git log`
 
 - 깃 로그 확인하기
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/500ff121-3384-40e6-892f-33adc480756a/Untitled.png)
+![Untitled](../images/Git1_3.png)
 
-- commit 커밋 아이디
+- commit {커밋 아이디}
 - 보통 앞 네 자리만으로 구분 가능
 
-## ⬆️
 
-- 여태 썼던 명령어 로그 확인 가능
+### `git diff {커밋아이디A} {커밋아이디B}`
 
-## `git diff {커밋아이디A} {커밋아이디B}`
-
-- A에서 B로 어떻게 변경되었는지
+- A에서 B로 어떻게 변경되었는지 확인

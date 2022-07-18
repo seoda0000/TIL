@@ -7,7 +7,7 @@
 - 개발문서의 시작과 끝
 - Typora : 실시간 마크다운 변환(미리보기) 제공
 
-- [Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
+* [Markdown Cheat Sheet | Markdown Guide](https://www.markdownguide.org/cheat-sheet/)
 
 ---
 
@@ -35,24 +35,26 @@ print("hellllllllllllllllllllllo")
 print("hellllllllllllllllllllllo")
 ```
 
-- ` 한 개 : 인라인 코드블럭
+- 한 개 : 인라인 코드블럭
 문장 안에 코드가 `print("hello")` 들어갈 때
 
-### [string] (url) : 링크
+### [string보여지는 문구] (url링크) : 링크
 
-- [보여지는 문구](링크)
+* [구글로 이동하기](https://google.com)
 
-[구글로 이동하기](https://google.com)
 
-[구글로이동하기](https://google.com/)
 
 ### ! [string] (img_url) : 이미지
+
+![penguin](../images/penguin.png)
 
 링크는 상대주소로 나타남. 설정에서 바꾸면 폴더에 복사되게 할 수도 있음.
 
 ### 텍스트 강조
 
-**bold** *italic* ~~strikeout~~
+* **bold**    ** b ** 
+* *italic*    * i * 
+* ~~strikeout~~    ~~ s ~~
 
 ### 수평선
 
