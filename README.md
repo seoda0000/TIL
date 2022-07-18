@@ -21,6 +21,7 @@
 
 
 ## <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
-* 
+
+* [(220718) Python 기초](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
 
 
