@@ -5,7 +5,7 @@
   <img src="https://img.shields.io/badge/seoda🖖-ffffff?style=flat-square&logo=Star Trek&logoColor=black"/>
 </p>
 
-## <img src="https://img.shields.io/badge/Basic-000000?style=flat-square&logo=Github&logoColor=white"/>
+## <img src="https://img.shields.io/badge/-Basic Manual-lightgrey"/>
 * [(220714) Markdown 사용법](https://github.com/seoda0000/TIL/blob/master/Basic/Markdown.md)
 
 * [(220714) CLI 기초 및 VScode 단축키](https://github.com/seoda0000/TIL/blob/master/Basic/CLI_Basic_and_VScode.md)
