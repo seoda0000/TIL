@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 ![header](https://capsule-render.vercel.app/api?type=wave&color=ffffff&height=300&section=header&text=Today%20I%20Learned&fontSize=50&height:30)
 
 
@@ -30,4 +30,4 @@
 * [(220718) Python 기초](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
 
 
-=======
+
