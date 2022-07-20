@@ -90,3 +90,13 @@
 ### `git diff {커밋아이디A} {커밋아이디B}`
 
 - A에서 B로 어떻게 변경되었는지 확인
+
+### `git config --global user.name “seoda0000”`
+
+### `git config --global user.email “seoda0000@gmail.com”`
+
+- user 기본 설정
+
+### `git config --local user.name “seoda0000”`
+
+- local : 이 폴더는 이것을 사용해
