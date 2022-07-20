@@ -19,6 +19,8 @@
 
 * [(220718) VScode 단축키](https://github.com/seoda0000/TIL/blob/master/Basic/VScode_shortcut.md)
 
+* [(220720) 유니코드와 비트 연산](https://github.com/seoda0000/TIL/blob/master/Basic/unicode_bit.md)
+
 ## <img src="https://img.shields.io/badge/Github-000000?style=flat-square&logo=Github&logoColor=white"/>
 
 * [(220714) Git 기초 : 소개와 commit](https://github.com/seoda0000/TIL/blob/master/Git/Git_Basic_1.md)
@@ -28,6 +30,7 @@
 ## <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
 
 * [(220718) 파이썬 기초 : 자료형과 자료구조](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
+* [(220720) 파이썬 기초 : 제어문 · 함수 · 모듈](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic_2.md)
 
 
 
