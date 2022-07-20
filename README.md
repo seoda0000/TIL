@@ -27,7 +27,7 @@
 
 ## <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
 
-* [(220718) Python 기초](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
+* [(220718) 파이썬 기초 : 자료형과 자료구조](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
 
 
 
