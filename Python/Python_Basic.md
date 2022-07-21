@@ -429,6 +429,14 @@ print(f"{a:.3}")
 | ^ | 대칭차집합 |
 - key는 변경 불가능한 데이터만 활용 가능
     - string, int, float, bool, tuple, range
+- key는 숫자만으로는 이루어질 수가 없다
+
+```python
+# Key가 숫자인 딕셔너리를 만들고 싶다면, 아래와 같이 사용
+print(dict([(1, 1), (2, 2)])) # {1: 1, 2: 2}
+print(dict(((1,1), (2,2)))) # {1: 1, 2: 2}
+```
+
 - value는 어떤 값이든 가능
 
 ```python
