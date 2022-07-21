@@ -507,6 +507,13 @@ print(x) # 0
 - `map(function, iterable)` : map object
 - **iterable에 function 적용한 값**을 map object로 반환
 - 리스트 형변환으로 확인
+```python
+def odd(n):
+    return n % 2
+numbers = [1, 2, 3]
+result = filter(odd, numbers)
+print(kust(result)) # [1, 3]
+```
 
 ### filter
 
@@ -557,6 +564,21 @@ print(factorial(4)) #24
 
 - 메모리 스택이 넘치게 되면(stack overflow) 프로그램이 동작하지 않게 됨
 - 최대 재귀 깊이 : 1000번. 이를 넘어가면 Recursion Error 발생
+- 재귀 호출은 입력 값이 커질 수록 연산 속도가 오래 걸린다.
+
+```python
+import time
+
+t0 = time.time()
+fib_loop(1000)
+t1 = time.time()
+
+total = t1 - t0
+print(total)
+
+#fib_loop 값이 커질수록 오래 걸림
+```
+
 
 ---
 
@@ -573,11 +595,13 @@ print(factorial(4)) #24
 - **pip** : 이것을 관리하는 관리자
 - **가상환경** : 패키지의 활용 공간
 
-- `import module`
+- `import module` module.var(), module.function()
+- `import module as md` md.var(), md.function()
 - `from module import var, function, class`
-- `from module import *` : 전부 다
+- `from module import *` : 전부 다. var(), function()
 - `from package import module`
 - `from package.module import var, function, class`
+
 
 ### 파이썬 표준 라이브러리
 
