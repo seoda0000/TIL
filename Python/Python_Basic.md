@@ -137,6 +137,12 @@ a = 'apple'
     - 코드 수정에 용이
 - `type()` : 데이터 타입 확인
 - `id()` : 메모리 주소 확인
+
+- 식별자
+```
+import keyword
+print(keyword.kwlist)
+```
 - 변수의 값 바꿔서 저장하기
 1. 임시변수 활용
 
