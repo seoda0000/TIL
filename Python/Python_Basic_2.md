@@ -483,7 +483,7 @@ x = 0
 def func1():
     x = 1
     def func2():
-        nonlocal a
+        nonlocal x
         x = 2
     func2()
     print(x) # 2
@@ -512,7 +512,11 @@ def odd(n):
     return n % 2
 numbers = [1, 2, 3]
 result = filter(odd, numbers)
+<<<<<<< HEAD
 print(kust(result)) # [1, 3]
+=======
+print(list(result)) # [1, 3]
+>>>>>>> f450bc8ef01387475c2ba2296e1a334cf3fb6de8
 ```
 
 ### filter
@@ -645,7 +649,7 @@ print(total)
 > > > __init__.py
 > > > 
 > > > 
-> > > tools.pt
+> > > tools.py
 > > > 
 - tools에서 작성한 함수를 check에서 불러와서 쓸 수 있음.
 
