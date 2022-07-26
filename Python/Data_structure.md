@@ -23,6 +23,10 @@
     - `str.replace(old, new[, count])`
     - `(필수[, 선택적 인자])`
 
+- **문자열 메서드 모두 확인하기**
+    - 파이썬 내장함수 dir을 통해 컨테이너가 가지고 있는 메서드를 확인할 수 있다.
+    - ex) `dir(str)`
+
 ---
 
 ---
@@ -41,18 +45,20 @@
 | --- | --- |
 | `s.find(x)` | x의 첫번째 위치를 반환, 없으면 **-1 반환** |
 | `s.index(x)` | x의 첫번째 위치를 반환, 없으면 **오류 발생** |
+| `s.startswith(x)` | 접두문자가 x인지 확인 |
 
 - **문자열 검증 메서드**
 
 | 문법 | 설명 |
 | --- | --- |
 | `s.isalpha()` | 알파벳 문자 여부 (단순 알파벳이 아닌 유니코드 상 Letter. 한국어 포함) |
+| `s.isspace` | 공백 여부 (\n, \t 포함)|
 | `s.isupper()` | 대문자 여부 |
 | `s.islower()` | 소문자 여부 |
 | `s.istitle()` | 타이틀 형식 여부 (모든 단어가 첫 글자만 대문자) |
 | `s.isnumeric()` | 수랑 비슷한 거까지 (로마자, 특수기호, 분수표현 등) |
-| `s.isdigit()` | 수 (원형숫자기호)sdecimal() |
-| `s.isdecimal()` | 숫자 |
+| `s.isdigit()` | 숫자 (원형숫자기호)sdecimal() |
+| `s.isdecimal()` | 숫자 0~9 |
 
 - **문자열 변경 메서드**
 
@@ -151,6 +157,7 @@
 | 문법 | 설명 |
 | --- | --- |
 | `d.get(key[, default])` | key를 통해 value를 가져옴. **KeyError가 발생하지 않으며**, default 값은 **None**이 기본 |
+| `d.setdefault(key[, default])` | key를 통해 value를 가져옴. key가 딕셔너리에 없을 경우, default 값을 갖는 key를 삽입한 후 default를 반환. **KeyError가 발생하지 않으며**, default 값은 **None**이 기본.  |
 - **추가 및 삭제**
 
 | 문법 | 설명 |
@@ -193,6 +200,15 @@ copy_lst[0] = 'hello'
 print(original, copy_lst)  # ['hello', 2, 3] ['hello', 2, 3]
 ```
 
+```
+a = 3
+b = 4
+b = a
+a = 5
+print(a, b) # 5, 3
+
+# 복사 문제는 데이터를 모아놓은 곳만 해당됨.
+```
 ### 얕은 복사 Shallow copy
 
 - **연산된 결과만 복사** ⭐⭐⭐ (다른 주소)
