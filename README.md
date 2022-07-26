@@ -25,6 +25,7 @@
 
 * [(220714) Git 기초 : 소개와 commit](https://github.com/seoda0000/TIL/blob/master/Git/Git_Basic_1.md)
 * [(220715) Git 기초 : remote-repo와 연결](https://github.com/seoda0000/TIL/blob/master/Git/Git_Basic_2.md)
+* [(220726) Git 기초 : gitignore와 gitkeep](https://github.com/seoda0000/TIL/blob/master/Git/Git_Basic_3.md)
 
 
 ## <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
