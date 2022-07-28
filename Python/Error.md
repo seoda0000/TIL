@@ -1,11 +1,11 @@
-- [에러/예외 처리](#에러/예외-처리)
-  * [디버깅](#디버깅)
-  * [에러와 예외](#에러와-예외)
+- [**에러/예외 처리**](#에러/예외-처리)
+  * [**디버깅**](#디버깅)
+  * [**에러와 예외**](#에러와-예외)
     + [문법 에러 Syntax Error](#문법-에러-Syntax-Error)
     + [예외 Exception](#예외-Exception)
     + [파이썬 내장 예외 built-in-exceptions](#파이썬-내장-예외-built-in-exceptions)
-  * [예외 처리](#예외-처리)
-  * [예외 발생 시키기 Exception Raising](#예외-발생-시키기-Exception-Raising)
+  * [**예외 처리**](#예외-처리)
+  * [**예외 발생 시키기 Exception Raising**](#예외-발생-시키기-Exception-Raising)
 
 # 에러/예외 처리
 
