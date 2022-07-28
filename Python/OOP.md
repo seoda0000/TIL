@@ -183,6 +183,19 @@ class Person:
         self.name = name
         Person.count += 1
 ```
+```python
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    @classmethod
+    def details(cls, name, year):
+        return cls(name, 2022-year)
+
+    def check_age(self):
+        return self.age < 19
+```
 
 ---
 
