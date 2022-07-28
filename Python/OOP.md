@@ -10,22 +10,13 @@
     + [클래스 변수](#클래스-변수)
 - [**메서드 Method**](#메서드-Method)
   * [인스턴스 메서드](#**인스턴스-메서드**)
-    + [생성자 메서드 Constructor](#**생성자-메서드-Constructor**)
-    + [매직 메서드 (스페셜 메서드)](#**매직-메서드**-(스페셜-메서드))
   * [클래스 메서드](#**클래스-메서드**)
-    + [데코레이터](#데코레이터)
   * [스태틱(정적) 메서드](#스태틱(**정적)-메서드**)
 - [**객체지향의 핵심 개념**](#객체지향의-핵심-개념)
   * [추상화](#추상화)
   * [상속 Inheritance](#상속-Inheritance)
-    + [다중 상속](#다중-상속)
-    + [상속 관련 함수와 메서드](#상속-관련-함수와-메서드)
   * [다형성 Polymorphism](#다형성-Polymorphism)
   * [캡슐화 Encapsulation](#캡슐화-Encapsulation)
-    + [Public Member](#Public-Member)
-    + [Protected Member](#Protected-Member)
-    + [Private Member](#Private-Member)
-    + [getter 매서드와 setter 매서드](#getter-매서드와-setter-매서드)
 
 
 
