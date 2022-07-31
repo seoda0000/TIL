@@ -33,6 +33,8 @@
 * [(220718) 파이썬 기초 : 자료형과 자료구조](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
 * [(220720) 파이썬 기초 : 제어문 · 함수 · 모듈](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic_2.md)
 * [(220725) 파이썬 기초 : 데이터 구조](https://github.com/seoda0000/TIL/blob/master/Python/Data_structure.md)
+* [(220727) 파이썬 기초 : 객체 지향 프로그래밍](https://github.com/seoda0000/TIL/blob/master/Python/OOP.md)
+* [(220728) 파이썬 기초 : 에러와 예외 처리](https://github.com/seoda0000/TIL/blob/master/Python/Error.md)
 
 
 
