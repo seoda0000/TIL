@@ -37,4 +37,6 @@
 * [(220728) 파이썬 기초 : 에러와 예외 처리](https://github.com/seoda0000/TIL/blob/master/Python/Error.md)
 
 
+## <img src="https://img.shields.io/badge/Web-E34F26?style=flat-square&logo=html5&logoColor=white"/>
 
+* [(220801) HTML & CSS 기초](https://github.com/seoda0000/TIL/blob/master/Web/HTML_CSS.md)
