@@ -1,0 +1,34 @@
+# 쉽게 푸는 문제
+백준 브론즈1 1292
+https://www.acmicpc.net/problem/1292
+
+1을 한 번, 2를 두 번, 3을 세 번, 이런 식으로 1 2 2 3 3 3 4 4 4 4 5 .. 이러한 수열을 만들고 어느 일정한 구간을 주면 그 구간의 합을 구하는 것이다.
+
+---
+
+```
+# 수열 리스트 만들기
+lst =[]
+for i in range(46):
+    lst += [i] * i
+A, B = map(int, input().split())
+
+# A번째에서 B번째까지 수 더하기
+ans = 0
+for i in range(A-1, B):
+    ans += lst[i]
+
+print(ans)
+```
+* sum을 잊고 있었다.
+* sum에 변수를 할당해서 자꾸 오류가 났다. callable은 변수 오류!
+
+```
+lst =[]
+for i in range(46):
+    lst += [i] * i
+A, B = map(int, input().split())
+
+# A번째에서 B번째까지 수 더하기
+ans = sum(lst[A-1:B])
+print(ans)

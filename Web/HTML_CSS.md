@@ -17,7 +17,7 @@
     + [form ⭐](#form-⭐)
     + [input](#input)
 - [**CSS**](#CSS)
-    + [**CSS 정의 방법**](#**CSS-정의-방법**)
+    + [CSS 정의 방법](#**CSS-정의-방법**)
   * [CSS 선택자Selectors](#CSS-선택자Selectors)
     + [유형](#유형)
     + [css 적용 우선순위 cascading order ⭐⭐⭐](#css-적용-우선순위-cascading-order-⭐⭐⭐)
