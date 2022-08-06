@@ -28,6 +28,8 @@
 * [(220726) Git 기초 : gitignore와 gitkeep](https://github.com/seoda0000/TIL/blob/master/Git/Git_Basic_3.md)
 * [(220726) Git Tip : 잔디밭 복구하기](https://github.com/seoda0000/TIL/blob/master/Git/Git_green_edit.md)
 
+<br>
+
 ## <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=Python&logoColor=white"/>
 
 * [(220718) 파이썬 기초 : 자료형과 자료구조](https://github.com/seoda0000/TIL/blob/master/Python/Python_Basic.md)
@@ -36,6 +38,12 @@
 * [(220727) 파이썬 기초 : 객체 지향 프로그래밍](https://github.com/seoda0000/TIL/blob/master/Python/OOP.md)
 * [(220728) 파이썬 기초 : 에러와 예외 처리](https://github.com/seoda0000/TIL/blob/master/Python/Error.md)
 
+
+## <img src="https://img.shields.io/badge/Java-F80000?style=flat-square&logo=Oracle&logoColor=white"/>
+
+* [(220806) Java 기본 문법](https://github.com/seoda0000/TIL/blob/master/Java/Java_basic.md)
+
+<br>
 
 ## <img src="https://img.shields.io/badge/Web-E34F26?style=flat-square&logo=html5&logoColor=white"/>
 
