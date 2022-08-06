@@ -67,4 +67,6 @@ public class intro01_Hello {
 		System.out.printf("%c\n", '와'); //문자는 따옴표 사용
 		
 		System.out.printf("안녕하세요. 저는 %s입니다. 혈액형은 %c일 걸요?\n", "리자", 'A');
+	}
+}
 ```
