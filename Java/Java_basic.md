@@ -1,3 +1,36 @@
+- [**Java 기본**](#Java-기본)
+    + [컴퓨터의 자료표현](#컴퓨터의-자료표현)
+    + [자바 가상머신 (JVM, Java virtual machine)](#자바-가상머신-(JVM,-Java-virtual-machine))
+    + [main method](#main-method)
+    + [주석 Coment](#주석-Coment)
+    + [출력문](#출력문)
+- [**변수와 자료형**](#변수와-자료형)
+    + [변수](#변수)
+    + [메모리의 단위](#메모리의-단위)
+    + [Data Type-기본 자료형](#Data-Type-기본-자료형)
+    + [선언](#선언)
+    + [저장](#저장)
+    + [초기화](#초기화)
+    + [자료형의 크기 비교](#자료형의-크기-비교)
+    + [데이터 형변환](#데이터-형변환)
+- [**연산자**](#연산자)
+    + [단항 연산자](#단항-연산자)
+    + [산술 연산자](#산술-연산자)
+    + [비교 연산자](#비교-연산자)
+    + [논리 연산자](#논리-연산자)
+    + [삼항 연산자](#삼항-연산자)
+    + [복합 대입 연산자](#복합-대입-연산자)
+- [**제어문 (조건문 & 반복문)**](#제어문-(조건문-&-반복문))
+  * [조건문 Conditional Statement](#조건문-Conditional-Statement)
+    + [if문](#if문)
+    + [if-else문](#if-else문)
+    + [중첩 if문](#중첩-if문)
+    + [if - else if - else문](#if---else-if---else문)
+    + [do ~ while문](#do-~-while문)
+
+
+---
+
 # Java 기본
 
 ### 컴퓨터의 자료표현
@@ -184,6 +217,15 @@ public class intro01_Hello {
 - 대소 비교 연산 : < > <= >= → boolean
 - 동등 비교 연산 : == != → boolean
     - **string 변수 비교 : equals() 사용**
+	```python
+	String c = "Hi";
+	String d = "Hi";
+	String e = new String("Hi"); # 다른 메모리 공간에 생성
+
+	System.out.println(c == d); # true
+	System.out.println(c == e); # false
+	System.out.println(c.equals(e)); # true
+	```
 - 객체 타입 비교 연산 : instanceof
 
 ### 논리 연산자
@@ -322,3 +364,251 @@ default:
 ```
 
 ---
+
+## 반복문 Loop
+
+### for문
+
+```java
+for(1초기화식; 2조건식; 4증감식){
+		3반복 수행할 문장
+}
+
+for(int i = 0; i<10; i++){
+		System.out.println(i);
+}
+```
+
+- 초기화는 반복문이 시작될 때 한번 실행됨
+- 조건식이 false이면, 반복문 종료
+- 증감식은 반복문의 반복이 끝나면 실행
+- 초기화식, 증감식은 (,)를 이용하여 둘 이상을 작성할 수 있음. `int i=0, j=0;`
+- 필요하지 않은 부분은 생략할 수 있음. `for(;;)` 조건식을 비우면 무한루프
+- 반복횟수를 알고 있을 때 유용
+
+### 중첩 for문
+
+```java
+for(초기화식; 조건식; 증감식){
+		for(초기화식; 조건식; 증감식){
+				반복 수행할 문장
+		}
+}
+
+// 구구단
+for(int i = 2; i <= 9; i++){
+		System.out.printf("%d단\n", i)
+		for(int j = 1; j <= 9; j++){
+				System.out.printf("%d * %d = %d\n", i, j, i * j)
+		}
+}
+```
+
+### while문
+
+```java
+while(1조건식) {
+		2반복 수행할 문장;
+}
+```
+
+- 조건식 생략 불가능
+
+### do ~ while문
+
+```java
+do{
+		1반복 수행할 문장;
+}while(2조건식);
+```
+
+- 블록 내용을 먼저 수행 후 조건식 판단 (최소 한번은 수행)
+- 조건식이 true인 경우 계속 반복
+- 조건식 생략 불가능
+
+### break
+
+### continue
+
+---
+
+# 배열 Array
+
+- 같은 종류의 데이터를 저장하기 위한 자료구조
+- 크기가 고정되어 있음 (한번 생성된 후 크기 변경 불가)
+- 배열을 객체로 취급
+- 배열의 요소를 참조하려면 배열 이름과 색인을 조합하여 사용
+- `[stack 영역]` array 이름  → 주소로 참조 → `[heap 영역]` array 내용 : String 주소 → 주소로 참조 → String 내용
+
+<br>
+
+### 배열의 선언
+
+- 타입[] 변수 `int[] arr` ⭐
+- 타입 변수[] `int arr[]`
+    
+    
+    | 타입 | 배열이름 | 선언 |
+    | --- | --- | --- |
+    | int | iArr | int[] iArr; |
+    | char | cArr | char[] cArr; |
+    | boolean | bArr | boolean[] bArr; |
+    | String | strArr | String[] strArr; |
+    | Date | dateArr | Date[] dateArr; |
+
+<br>
+
+### 배열의 생성과 초기화
+
+- `자료형[] 배열이름 = {값1, 값2, 값3, 값4};` // 선언과 동시에 초기화
+- `배열이름 = new 자료형[] {값1, 값2, 값3, 값4};` // 배열 생성 및 값 초기화
+- `배열이름 = new 자료형[길이];` // 배열 생성
+    
+    
+    | 자료형 | 기본값 | 비고 |
+    | --- | --- | --- |
+    | boolean | false |  |
+    | char | ‘\u0000’ | 공백문자 |
+    | byte, short, int | 0 |  |
+    | long | 0L |  |
+    | float | 0.0f |  |
+    | double | 0.0 |  |
+    | 참조형 변수 (String, Date…) | null | 아무것도 참조하지 않음 |
+- 배열의 사용
+- index는 0부터
+- `배열이름.length` : 배열 길이 조회
+- 배열의 길이는 임의로 변경 불가
+- 길이 변경 필요시 새로운 배열 생성 후 내용을 옮긴다
+
+<br>
+
+### for-each
+
+- 가독성이 개선된 반복문. 배열 및 Collections에서 사용
+- index 대신 직접 요소 (elements)에 접근하는 변수 제공
+- natually ready only (copied value)
+
+```java
+int[] arr = {77, 50, 10, 12, 64, 15};
+
+for(int i = 0 ; i<arr.length; i++) {
+		arr[i] *= 2;
+}
+
+System.out.println(Arrays.toString(arr)); // 빠르게 배열 내용 확인
+```
+
+<br>
+
+### 배열의 복사
+
+- `System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length)`
+- `src` : 원본 배열
+- `srcPos` : 원본 배열 복사 시작 위치
+- `dest` : 복사할 배열
+- `destPos` : 복사 받을 시작 위치
+- `length` : 복사할 크기
+
+```java
+package array00;
+
+import java.util.Arrays;
+
+public class arrayfirst {
+	public static void main(String[] args) {
+		
+		int[] arr = {77, 50, 10, 12, 64, 15};
+
+		int[] tmp = new int[arr.length*2]; // 반복문을 이용하여 복사
+		for(int i = 0; i < arr.length; i++) {
+			tmp[i] = arr[i];
+		}
+		System.out.println(Arrays.toString(tmp)); // [77, 50, 10, 12, 64, 15, 0, 0, 0, 0, 0, 0]
+		
+		int[] tmp2 = new int[arr.length*2];
+
+		System.arraycopy(arr, 0, tmp2, 0, arr.length);
+
+		System.out.println(Arrays.toString(tmp2)); // [77, 50, 10, 12, 64, 15, 0, 0, 0, 0, 0, 0]
+	}
+}
+```
+
+```java
+// 최대값, 최소값 찾기
+
+int[] intArray = {3, 27, 13, 8, 235, 7, 22, 9, 435, 31, 54};
+
+int min = 1000;
+int max = 0;
+for(int num: intArray) {
+		if(num>max) {
+				max = num;
+		}
+		if(num<min) {
+				min = num;
+		}
+}
+System.out.printf("min: %d, max: %d\n", min, max);
+// 빈도수 구하기
+
+int[] intArray = {3, 7, 2, 5, 7, 7, 9, 2, 8, 1, 1, 5, 3}
+
+int[] used = new int[10];
+
+for(int num:intArray) {
+		used[num]++;
+}
+
+System.out.println(Arrays.toString(used));
+```
+
+---
+
+# 다차원 배열 Multidimensional Array
+
+- 2차원 이상의 배열
+- 배열 요소로 또 다른 배열을 가지는 배열
+
+<br>
+
+### 2차원 배열 선언
+
+- `int[][] iArr`
+- `int iArr[][]`
+- `int[] iArr[]`
+
+<br>
+
+### 2차원 배열 생성
+
+- `배열의 이름 = new 배열유형[1차원 배열개수][1차원 배열의 크기];` 1차원 크기 고정
+- `배열의 이름 = new 배열유형[1차원 배열개수][];` 1차원 크기 고정 x 기본값 null
+- 2차원 배열의 요소인 **1차원 배열의 크기가 모두 같을 필요는 없다.**
+
+<br>
+
+### 2차원 배열 탐색
+
+- 모든 2차원 배열의 원소 중 3의 배수의 개수와 그들의 합을 출력
+
+```java
+public static void main(String[] args) {
+		int[][] grid = {
+				{2, 3, 1, 4, 7}, {8, 13, 3, 33, 1},
+				{7, 4, 5, 80, 12}, {17, 9, 11, 5, 4},
+				{4, 5, 91, 27, 7}
+		};
+		int count = 0;
+		int sum = 0;
+		for(int[] row: grid) {
+				for(int num: row) {
+						if(num%3==0) {
+								count++;
+								sum+=num;
+						}
+				}
+		}
+		System.out.printf("개수: %d, 총합: %d%n", count, sum);
+}
+```
