@@ -30,9 +30,9 @@
 
 <br>
 
-## <img src="https://img.shields.io/badge/-Algorithm-pink"/>
+## <a href="https://github.com/seoda0000/TIL/tree/master/AlgorithmProblemSolving"><img src="https://img.shields.io/badge/-♡Algorithm-FF6384"/></a>
 
-* [(220808) 배열 1](https://github.com/seoda0000/TIL/blob/master/Algorithm-Problem-Solving/array1.md)
+* [(220808) 배열 1](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/array1.md)
 
 <br>
 
