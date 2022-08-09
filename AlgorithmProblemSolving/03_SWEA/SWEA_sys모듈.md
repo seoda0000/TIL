@@ -2,7 +2,7 @@
 https://swexpertacademy.com/main/main.do
 ----------------------------
 ### sys 모듈
-```
+```python
 import sys
 sys.stdin = open("input.txt", "r")
 ```
