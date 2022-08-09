@@ -202,7 +202,7 @@ def BubbleSort(a, N):
     	for i in range(0, len(A):  # n
     		C[A[i]] += 1
     
-    	for i in range(0, len(C):  # k
+    	for i in range(1, len(C):  # k
     		C[i] += C[i-1]
     
     	for i in range(len(B)-1, -1, -1):  # n
