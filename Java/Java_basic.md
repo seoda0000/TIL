@@ -62,6 +62,7 @@ cf) `.`:참조 연산자 “가지고 있는”
 - Application 시작 → 특정 클래스의 main() 실행
     - 만약, Application에서 main() 메소드가 없다면 절대로 실행 XXX
 - `public static void matin(String [] args){ }`
+- main + Ctrl + Space + Enter
 
 <br>
 
