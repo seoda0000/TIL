@@ -33,6 +33,7 @@
 ## <a href="https://github.com/seoda0000/TIL/tree/master/AlgorithmProblemSolving"><img src="https://img.shields.io/badge/-♡Algorithm-FF6384"/></a>
 
 * [(220808) 배열 1](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n01_array_1.md)
+* [(220810) 배열 2](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n01_array_2.md)
 
 <br>
 
