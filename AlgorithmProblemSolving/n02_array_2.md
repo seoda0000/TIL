@@ -156,6 +156,26 @@ for i in range(1<<n):  # 1<<n : 부분 집합의 개수
 		print()
 print()
 ```
+* 부분집합의 길이가 N이고 합이 K인 경우의 수 구하기
+
+```python
+T = int(input())
+for tc in range(1, T+1):
+    N, K = map(int, input().split())
+
+    ans = 0
+    for i in range(1, 1<<12): # 1부터 2^12-1까지의 부분집한 경우
+        tmp = 0 # 부분집합 길이
+        sm = 0 # 부분집합 합
+        for j in range(12):
+            if i & 1<<j: # 1을 첫번째 칸에서 j번 옮기기  (0이면 2^0으로 1. 첫번째 칸이다)
+                tmp += 1
+                sm += j+1 # 옮긴 자리 번호 (0부터 시작이니까 1 더해줘야 함)
+
+        if tmp == N and sm == K:
+            ans += 1
+    print(f'#{tc} {ans}')
+```
 
 ---
 

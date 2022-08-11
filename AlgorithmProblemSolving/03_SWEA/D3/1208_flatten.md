@@ -26,7 +26,7 @@ for tcase in range(1, 11):
 	# 최대 dump 횟수만큼 dump하기
     for _ in range(dump):
         lst.sort()
-        if lst[0] == lst[-1]: break # 빠른 종료조건
+        if lst[-1]-lst[0] <= 1: break # 빠른 종료조건
         lst[0] += 1
         lst[-1] -= 1
 
@@ -55,7 +55,7 @@ for tcase in range(1, 11):
 	# 최대 dump 횟수만큼 dump하기
     for _ in range(dump):
         mysort(lst)
-		if lst[0] == lst[-1]: break # 빠른 종료조건
+		if lst[-1]-lst[0] <= 1: break # 빠른 종료조건
         lst[0] += 1
         lst[-1] -= 1
     mysort(lst)
@@ -93,11 +93,42 @@ for tcase in range(1, 11):
     # 최대 dump 횟수만큼 dump하기
     for _ in range(dump):
         lst = mysort(lst)
-        if lst[0] == lst[-1]: break # 빠른 종료조건
+        if lst[-1]-lst[0] <= 1: break # 빠른 종료조건
         lst[0] += 1
         lst[-1] -= 1
     lst = mysort(lst)
     ans = lst[-1] - lst[0]
 
     print(f"#{tcase} {ans}")
+```
 
+* 참고 답안
+* sort 하지 않고 min과 max만 찾는다.
+
+```python
+def min_max(lst):
+    i_min = i_max = 0
+    for i in range(1, len(lst)):
+        if lst[i_max] < lst[i]:
+            i_max = i
+        if lst[i_min] > lst[i]:
+            i_min = i
+    return i_min, i_max
+
+T = 10
+
+for test_case in range(1,T+1):
+    N = 100
+    C = int(input())
+    lst = list(map(int, input().split()))
+ 
+    for _ in range(C): # 이동 회수만큼 반복
+        i_min, i_max = min_max(lst)
+        if lst[-1]-lst[0] <= 1: break # 빠른 종료조건
+        lst[i_min] += 1
+        lst[i_max] -= 1
+ 
+    i_min, i_max = min_max(lst)
+    print(f"#{test_case} {lst[i_max]-lst[i_min]}")
+        
+```
