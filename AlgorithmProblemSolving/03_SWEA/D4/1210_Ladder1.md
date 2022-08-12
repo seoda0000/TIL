@@ -15,9 +15,6 @@ https://swexpertacademy.com/main/code/problem/problemDetail.do
 
 ```python
 
-import sys
-sys.stdin = open('input.txt', 'r')
-
 for _ in range(10):
     tc = int(input())
     ary = [list(map(int, input().split())) for _ in range(100)]
@@ -42,8 +39,6 @@ for _ in range(10):
 * 왔던 길을 표시하지 않고 탐색을 최소화 하도록 방향 전환시 길 끝까지 이동하는 방법으로 돌렸다. (while 사용)
 
 ```python
-import sys
-sys.stdin = open('input.txt', 'r')
 
 for _ in range(10):
     tc = int(input())
