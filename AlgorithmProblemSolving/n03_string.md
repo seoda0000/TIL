@@ -194,7 +194,7 @@ def itoa(n):
 - 불일치할 경우 미리 정해둔 skip배열을 참고하여 jump
 - 패턴의 오른쪽 끝에 있는 문자가 불일치하고 이 문자가 패턴 내에 존재하지 않는 경우, 이동거리는 패턴의 길이만큼이 된다.
     
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8f82ebc6-66bf-43dc-9f4f-26ed37fa43f0/Untitled.png)
+    ![Untitled](../images/str.png)
     
 - 시간 복잡도 : O(n)~O(mn)
 
