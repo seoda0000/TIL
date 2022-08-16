@@ -19,22 +19,22 @@ for _ in range(1, T+1):
     tc, N = ipt[0], int(ipt[1])
     print(tc)
     lst = input().split()
-    dic = ["ZRO", "ONE", "TWO", "THR", "FOR", "FIV", "SIX", "SVN", "EGT", "NIN"]
+    dic = ["ZRO", "ONE", "TWO", "THR", "FOR", "FIV", "SIX", "SVN", "EGT", "NIN"] # 사전
 
-    tmp = 0
+    tmp = 0 # 초기값
 
-    for n in range(10):
-        s = tmp
-        a = True
+    for n in range(10): # 사전 값 순회
+        s = tmp # 변경할 후보 인덱스
+        a = True # 변경할 필요가 없다.
         for i in range(s, N):
             if lst[i] == dic[n]:
-                if a:
+                if a: # 변경할 필요가 없는 경우 후보가 다음 인덱스로 넘어감
                     tmp = i+1
-                else:
+                else: # 변경할 필요가 있는 경우 변경 후 다음 인덱스로 넘어감
                     lst[i], lst[tmp] = lst[tmp], lst[i]
                     tmp += 1
             else:
-                a = False
+                a = False # 변경할 필요가 있다.
     print(*lst)
 
 
