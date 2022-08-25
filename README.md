@@ -35,6 +35,7 @@
 * [(220808) 배열 1](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n01_array_1.md)
 * [(220810) 배열 2](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n02_array_2.md)
 * [(220816) 문자열](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n03_string.md)
+* [(220817) 스택 1](https://github.com/seoda0000/TIL/blob/master/AlgorithmProblemSolving/n04_stack_1.md)
 
 <br>
 
