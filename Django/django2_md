@@ -1,0 +1,209 @@
+# Namespace
+
+- 이름공간 : 개체를 구분할 수 있는 범위를 나타냄
+
+## URL namespace
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56b61a01-d8ee-4b64-b108-2c9525a219d5/Untitled.png)
+
+- `app_name` attribute을 작성해서 설정 가능
+- 서로 다른 앱에서 동일한 URL이름을 사용하는 경우에도 지정된 URL을 고유하게 사용 가능
+- `{% url 'articles:index' %}` URL 참조 tag 필요
+
+## Template namespace
+
+- 기본적으로 setting.py의 INSTALLED_APPS에 작성한 app 순서로 template 검색 후 렌더링
+- 디렉토리 생성으로 물리적인 이름공간 구분 `app_name/templates/app_name`
+- `‘articles/index.html’` 템플릿 경로 재설정 필요
+
+---
+
+# Database
+
+- 체계화된 데이터의 모임
+- 검색 및 구조화 같은 작업을 보다 쉽게 하기 위해 조직화된 데이터를 수집하는 저장 시스템
+
+## Database 기본 구조
+
+### 1. 스키마(Schema)
+
+- 뼈대 Structure
+- 데이터베이스에서 자료의 구조, 표현 방법, 관계 등을 정의한 구조
+    
+    
+    | column | datatype |
+    | --- | --- |
+    | id | INT |
+    | name | TEXT |
+    | age | INT |
+    | email | TEXT |
+
+### 2. 테이블(Table)
+
+- 필드와 레코드를 사용해 조직된 데이터 요소들의 집합
+- 관계Relation라고도 부름
+
+![django2_1.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/44fea0ce-549a-4458-9d40-911b11bf7ac2/django2_1.png)
+
+1. **필드 field**
+    - 속성, 컬럼(Column)
+    - 각 필드에는 고유한 데이터 형식이 지정됨
+        - INT, TEXT…
+2. **레코드 record**
+    - 튜플, 행(Row)
+    - 테이블의 데이터는 레코드에 저장
+- PK (Primary Key)
+    - 기본 키
+    - 각 레코드의 고유한 값 (식별자로 이용)
+    - 다른 항목과 절대로 중복되어 나타날 수 없는 단일 값을 가짐
+    - 데이터베이스 관리/테이블 간 관계 설정 시 주요하게 활용
+    - ex) 주민등록번호
+
+### 쿼리 Query
+
+- 데이터를 조회하기 위한 명령어
+- 조건에 맞는 데이터를 추출·조작하는 명령어
+- “Query를 날린다” = “데이터베이스를 조작한다”
+
+---
+
+# Django Model
+
+- Model을 통해 데이터 관리
+- 단일한 데이터에 대한 정보를 가짐
+- 사용자가 저장하는 데이터들의 필수적인 필드들과 동작들을 포함
+- 저장된 데이터베이스의 구조 (layout)
+- 일반적으로 각각의 모델은 하나의 데이터베이스 테이블에 매핑(mapping)
+    - 모델 클래스 1개 == 데이터베이스 테이블 1개
+    
+    <aside>
+    📎 Mapping : 하나의 값을 다른 값으로 대응시키는 것
+    
+    </aside>
+    
+
+### 모델 작성하기
+
+- [models.py](http://models.py) 작성
+    - 데이터베이스 테이블의 스키마를 정의
+    - 모델 클래스 == 테이블 스키마
+    
+    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e9d94ad3-082e-43e0-8580-9fec1b20038b/Untitled.png)
+    
+    - 각 모델은 django.db.models 모듈의 Model 클래스를 상속받아 구성
+    - 데이터 유형에 따른 모델 필드
+        
+        [Model field reference | Django documentation | Django](http://docs.djangoproject.com/en/3.2/ref/models/fields/)
+        
+        - `CharField(max_length=None, **options)` 최대 길이 : 유효성 검사에 활용
+        - `TextField(**options)` 유효성 검사 x
+
+---
+
+# Queryset API
+
+### 사전준비
+
+- `pip install ipython`
+- `pip install django-extensions` : settings에서 APPS에 django_extensions 추가
+- Django Shell : `python manage.py shell_plus`
+    
+    <aside>
+    🤖 Shell : 운영체제 상에서 다양한 기능과 서비스를 구현하는 인터페이스를 제공하는 프로그램 (사용자 ↔ 셸 ↔ 운영체제)
+    
+    </aside>
+    
+
+### Database API
+
+- Django가 기본적으로 ORM을 제공. DB를 편하게 조작.
+- Modle을 만들면 객체들을 만들고 읽고 수정하고 지울 수 있는 DB API를 자동으로 만듬.
+- `Article.objects.all()` : {Model class}.{Manager}.{Query API}
+
+### **“objects” manager**
+
+- DB를 Python class로 조작할 수 있도록 여러 메서드를 제공하는 manager
+
+### Query
+
+- 파이썬으로 작성한 코드가 **ORM에 의해 SQL로 변환**되어 데이터베이스에 전달
+- 데이터베이스의 응답 데이터를 **ORM이 QuerySet이라는 자료 형태로 변환**하여 우리에게 전달
+
+### QuerySet
+
+- 데이터베이스에게서 전달 받은 객체 목록
+- ↔ 단일한 객체 : 모델의 인스턴스
+
+### QuerySet API
+
+- QuerySet과 상호작용하기 위해 사용하는 도구 (메서드, 연산자 등)
+
+---
+
+## CRUD
+
+- 기본적인 데이터 처리 기능 4가지
+
+### Create 생성
+
+```python
+# 첫번째 방법
+article = Article()
+article.title = '제목'
+article.save()
+```
+
+```python
+# 첫번째 방법
+article = Article()
+article.title = '제목'
+article.save()
+```
+
+```python
+# 첫번째 방법
+article = Article()
+article.title = '제목'
+article.save()
+```
+
+- 두번째 방법
+    1. `article = Article(title='제목')`
+    2. `article.save()`
+- 세번째 방법
+    - `Article.objects.create(title="세번째 제목")`
+
+### Read 조회
+
+- all() : `Article.objects.all()`
+    - QuerySet return
+    - 전체 데이터 조회
+- get() : `Article.objects.get(pk=1)`
+- filter() : `Article.objects.filter(content='django!')`
+    - 지정된 조회 매개 변수와 일치하는 객체를 포함하는 새 QuerySet을 반환
+    - 조회된 객체가 없거나 1개여도 QuerySet 반환
+- Field lookups : `Article.objects.filter(content__contains='dj')`
+    - 특정 레코드에 대한 조건을 설정하는 방법
+    - filter(), exclude(), get()에 대한 키워드 인자로 지정됨
+
+### Update 수정
+
+1. 수정하고자 하는 article 인스턴스 객체를 조회 후 반환 값을 저장
+2. article 인스턴스 객체의 인스턴스 변수 값을 새로운 값으로 할당
+3. save() 인스턴스 메서드 호출
+
+### Delete 삭제
+
+1. 삭제하고자 하는 article 인스턴스 객체를 조회 후 반환 값을 저장
+2. delete() 인스턴스 메서드 호출 `article.delete()`
+
+<aside>
+🤖 `__str__()` : 각각의 object가 문자열을 반환하도록 할 수 있음
+
+- DB에 변경사항을 가하는 게 아니라 migration 필요 없음
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b76cce48-8c47-4bad-ac74-c24ea59b9c0a/Untitled.png)
+
+</aside>
+
+---
