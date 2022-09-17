@@ -21,7 +21,7 @@
 
 - 대부분의 웹 서비스는 클라이언트-서버 구조를 기반으로 동작
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1404f9d0-d844-49b5-b92a-6afcc3f787bd/Untitled.png)
+![Untitled](../images/django1_1.png)
 
 ### 클라이언트
 
@@ -98,17 +98,17 @@
 
 ### 가상환경 설정 및 활성화 → 설치
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ad4ddd4e-8874-47e4-adf0-ceff01eec993/Untitled.png)
+![Untitled](../images/django1_2.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/05957804-e614-4391-98eb-214b8812ee45/Untitled.png)
+![Untitled](../images/django1_3.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/29ca4f8e-7e84-4f14-985a-4263101a47d8/Untitled.png)
+![Untitled](../images/django1_4.png)
 
 ### 패키지 목록 생성
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34b2ab42-bdab-4b15-b8a8-f41a6a771dbd/Untitled.png)
+![Untitled](../images/django1_5.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a844ce2d-600b-4fc7-bbd8-56355dbb3bbe/Untitled.png)
+![Untitled](../images/django1_6.png)
 
 <aside>
 🤖 LTS (LongTerm Support 장기 지원 버전) : 장기간에 걸쳐 지원하도록 고안된 소프트웨어 버전.
@@ -120,57 +120,122 @@
 `$ django-admin startproject firstpjt .`
 
 - .을 붙이지 않을 경우 현재 디렉토리에 프로젝트 디렉토리를 새로 생성
+- collection of apps
+- 프로젝트에는 여러 앱이 포함될 수 있음.
+- 앱은 여러 프로젝트에 있을 수 있음.
 
 ### 서버 실행
 
-`$ pyhton [manage.py](http://manage.py) runserver`
+- `$ pyhton [manage.py](http://manage.py) runserver`
 
-## 프로젝트 구조
+### 프로젝트 구조
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bd779189-16be-4143-a146-f46292c6d602/Untitled.png)
+![Untitled](../images/django1_7.png)
 
-- asgi.py
-- settings.py
-- urls.py
-- wsgi.py
-- manage.py
+- `[asgi.py](http://asgi.py)` : Django 애플리케이션이 비동기식 웹 서버와 연결 밑 소통하는 것을 도움
+- `setting.py` : Django 프로젝트 설정을 관리
+- `urls.py` : 사이트의 url과 적절한 views의 연결을 지정 📨우편배달부
+- `[wsgi.py](http://wsgi.py)` : Django 애플리케이션이 웹 서버와 연결 밑 소통하는 것을 도움
+- `manage.py` : Django 프로젝트와 다양한 방법으로 상호작용하는 커맨드라인 유틸리티
 
 ### 애플리케이션 생성
 
-`$ python [manage.py](http://manage.py) startapp articles`
+- `$ python manage.py startapp articles`
+- 앱은 실제 요청을 처리하고 페이지를 보여주는 등의 역할을 담당
+- 일반적으로 앱은 하나의 역할 및 기능 단위로 작성
 
-[urls.py](https://www.notion.so/Template-View-Routing-7b6536d29816415984e012e8d070438b) 우편배달부
+### 프로젝트 구조
 
-하나의 장고 프로젝트에는 여러개의 앱이 들어갈 수 있다
+![Untitled](../images/django1_8.png)
 
-앱 : 기능 단위
+- `migrations` : 데이터베이스변경 히스토리
+- `admin.py` : 관리자용 페이지를 설정하는 곳
+- `apps.py` : 앱의 정보가 작성된 곳
+- `models.py` : 애플리케이션에서 사용하는 Model을 정의하는 곳
+- `test.py` : 프로젝트의 테스트 코드를 작성하는 곳
+- `views.py` : view 함수들이 정의되는 곳
 
-migrations : 데이터베이스변경 히스토리
+### 애플리케이션 등록
 
-[test.py](http://test.py) 테스트코드
+![Untitled](../images/django1_9.png)
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/638a0271-3f46-439d-b90c-55d2db53ffd8/Untitled.png)
+- 앱을 사용하기 위해 INSTALLED_APPS 리스트에 추가
+- **반드시 생성 후 등록**
 
-프로젝트에는 여러 앱이 들어갈 수 있다.
+---
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b2255930-a62b-49cb-978d-52c4b31b633f/Untitled.png)
+### 요청과 응답 : URL → VIEW → TEMPLATE ⭐
+
+### URL
+
+- url에 따라 view에 요청 꽂아주기
+
+### **View**
+
+- HTTP 요청을 수신하고 HTTP 응답을 반환하는 함수 작성
+- Template에게 HTTP 응답 서식을 맡김
+- `render(request, template_name, context)`
+    - 주어진 템플릿을 주어진 컨텍스트 데이터와 결합하고 렌더링 된 텍스트와 함께 HttpResponse 객체를 반환
+    1. `request` : 응답을 생성하는데 사용되는 요청 객체
+    2. `template_name` : 템플릿의 전체 이름 또는 템플릿 이름의 경로
+    3. `context` : 템플릿에서 사용할 데이터 (dict)
+
+### Templates
+
+- 파일의 구조나 레이아웃을 정의
 
 ---
 
 # Django Template
 
+- 데이터 표현을 제어하는 도구이자 표현에 관련된 로직
 - HTML 정적 부분과 동적 컨텐츠 삽입
 
-## Django Template Language (DTL)
+## Django Template Language (DTL) Syntax
 
 ### 1. variable
 
-`{{ variable }}`
+- `{{ variable }}`
+- dot(.)를 사용하여 변수 속성에 접근할 수 있음
+- render()의 context로 넘겨주며, 여기서 정의한 key에 해당되는 문자열이 template에서 사용 가능한 변수명이 됨
 
 ### 2. Filters
 
-`{{ variable|filter }}`
+- `{{ variable|filter }}`
+- 표시할 변수를 수정할 때 사용
 
 ### 3. Tags
 
-`{% tag %}`
+- `{% tag %}`
+- 출력, 반복, 논리
+- `{% if %}{% endif %}`
+
+### 4. Comments
+
+- `{# #}`
+    
+    ```html
+    {% comment %}
+    	여러 줄
+    	주석
+    {% endcomment %}
+    ```
+    
+
+### 템플릿 상속 Template Inheritance
+
+- 코드의 재사용성에 초점
+- skeleton 템플릿 만들기
+- `{% extends 'base.html' %}`
+    - 자식 템플릿이 부모 템플릿을 확장한다는 것을 알림
+- `{% block content %}{% endblock content %}`
+    - 하위 템플릿에서 재지정overridden할 수 있는 블록을 정의
+- 추가 템플릿 경호 추가하기
+    - `BASE_DIR/'templates',`
+        
+        ![Untitled](../images/django1_10.png)
+
+
+---
+
+
