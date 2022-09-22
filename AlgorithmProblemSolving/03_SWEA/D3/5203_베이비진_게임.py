@@ -1,0 +1,44 @@
+'''
+ 5203. [파이썬 S/W 문제해결 구현] 3일차 - 베이비진 게임 D3
+ https://swexpertacademy.com/main/learn/course/lectureProblemViewer.do
+
+0부터 9까지인 숫자 카드 4세트를 섞은 후 6개의 카드를 골랐을 때, 연속인 숫자가 3개 이상이면 run, 같은 숫자가 3개 이상이면 triplet이라고 한다.
+
+게임을 시작하면 플레이어1과 플레이어 2가 교대로 한 장 씩 카드를 가져가며, 6장을 채우기 전이라도 먼저 run이나 triplet이 되는 사람이 승자가 된다.
+
+두 사람이 가져가게 되는 순서대로 12장의 카드에 대한 정보가 주어졌을 때 승자를 알아내는 프로그램을 작성하시오. 만약 무승부인 경우 0을 출력한다.
+
+예를 들어 9 9 5 6 5 6 1 1 4 2 2 1인 경우, 플레이어 1은 9, 5, 5, 1, 4, 2카드를, 플레이어2는 9, 6, 6, 1, 2, 1을 가져가게 된다.
+
+이때는 카드를 모두 가져갈 때 까지 run이나 triplet이 없으므로 무승부가 된다.
+'''
+
+T = int(input())
+for tc in range(1, T+1):
+    lst = list(map(int, input().split()))
+    card1 = [0]*10
+    card2 = [0]*10
+    for i in range(0, 6, 2):
+        card1[lst[i]] += 1
+        card2[lst[i+1]] += 1
+    ans = 0
+    f = 6
+    while ans == 0 and f != 14:
+        for i in range(10):
+            if card1[i] >= 3 or (i<=7 and card1[i]*card1[i+1]*card1[i+2]):
+                ans = 1
+                break
+        else:
+            for i in range(10):
+                if card2[i] >= 3 or (i<=7 and card2[i] * card2[i + 1] * card2[i + 2]):
+                    ans = 2
+                    break
+        if f == 12:
+            break
+        card1[lst[f]] += 1
+        card2[lst[f + 1]] += 1
+        f+=2
+    print(f'#{tc}', ans)
+
+
+

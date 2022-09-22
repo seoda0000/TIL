@@ -49,3 +49,31 @@ for tc in range(1, T+1):
     bit = [-1] * N
     solve(0, N, bit, 0)
     print(f'#{tc}', ans)
+
+
+# ===============================================================
+
+
+def dfs(n, s):
+    global mn
+    if n == N:
+        if mn > s:
+            mn = s
+    elif s < mn:
+        for i in range(N):
+            if not visited[i]:
+                visited[i] = True
+                dfs(n+1, s+arr[n][i])
+                visited[i] = False
+
+
+T = int(input())
+for tc in range(1, T+1):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    visited = [False] * N
+    mn = 10 * N
+    dfs(0, 0)
+
+
+    print(f'#{tc}', mn)
