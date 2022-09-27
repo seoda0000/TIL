@@ -109,8 +109,6 @@
 - 정복 Conquer : 나눈 작은 문제를 각각 해결한다.
 - 통합 Combine : 필요하다면 해결된 해답을 모은다.
 
-<br>
-
 ### 거듭제곱의 예
 
 ```python
@@ -128,7 +126,62 @@ def Power(Base, Exponent):
 		return (NewBase * NewBase) * Base
 ```
 
+
 <br>
+
+
+# 병합 정렬
+
+- 여러 개의 정렬된 자료의 집합을 병합하여 한 개의 정렬된 집합으로 만드는 방식
+- 분할 정복 알고리즘 활용
+    - 자료를 최소 단위의 문제까지 나눈 후에 차례대로 정렬하여 최종 결과를 얻어냄
+    - top-down 방식
+- 시간 복잡도 O(n log n)
+
+
+<br>
+
+
+### 정렬 과정
+
+- 분할 단계 : 전체 자료 집합에 대하여, 최소 크기의 부분집합이 될 때까지 분할 작업을 계속한다.
+- 병합 단계 : 2개의 부분집합을 정렬하면서 하나의 집합으로 병합 → 최종 1개
+
+```python
+def merge_sort(lst):
+    global cnt
+    if len(lst)<2:  # 정렬대상이 1개이면 종료
+        return lst
+ 
+    m = len(lst)//2 # [1] 반을 나눠서 각각을 정렬
+    left = merge_sort(lst[:m])
+    right = merge_sort(lst[m:])
+
+ 
+    # [2] 좌우 더 작은값을 하나씩 추가
+    ret = []
+    l = r = 0
+    while l<len(left) and r<len(right):
+        if left[l]<right[r]:
+            ret.append(left[l])
+            l+=1
+        else:
+            ret.append(right[r])
+            r+=1
+    ret += left[l:]+right[r:]
+    return ret
+ 
+T = int(input())
+# T = 10
+for test_case in range(1, T + 1):
+    N = int(input())
+    lst = list(map(int, input().split()))
+    cnt = 0
+    lst = merge_sort(lst)
+    print(f'#{test_case}', lst)
+```
+
+---
 
 # 퀵 정렬
 
@@ -146,7 +199,53 @@ def Power(Base, Exponent):
 - **L과 R이 만났을 때**, **원소를 pivot과 교환**하여 위치 확정
 - **L과 R이 만나기 전 둘 다 원소를 찾았다면 원소끼리 교환**
 
-<br>
+```python
+def qsort(lst):
+    if len(lst)<2:  # 종료조건: 한 개라면 정렬 진행하지 않음
+        return lst
+ 
+    # [1] p(기준)를 기준으로 좌/우로 나눔: 단위작업
+    p = lst.pop()
+    left = []
+    right = []
+    for n in lst:
+        if n<p:
+            left.append(n)
+        else:
+            right.append(n)
+ 
+    # [2] 왼쪽정렬, 오른쪽정렬, 그 결과를 합쳐서 리턴
+    return qsort(left) + [p] + qsort(right)
+ 
+
+def qsort_idx(s, e):
+    if s>=e:    # 정렬해야할 개수가 1개 이하
+        return
+ 
+    # [1] P기준으로 작은값(왼쪽), 그외 (오른쪽) : 단위작업
+    p, t = e, s
+    for i in range(s, e):
+        if lst[i]<lst[p]:   # p 왼쪽으로 이동시켜야 함
+            lst[i],lst[t] = lst[t],lst[i]
+            t+=1
+    lst[p],lst[t] = lst[t],lst[p]
+    p = t
+ 
+    # [2] p기준 왼쪽정렬, 오른쪽 정렬
+    qsort_idx(s, p-1)   # 왼쪽 정렬
+    qsort_idx(p+1, e)   # 오른쪽 정렬
+ 
+
+T = int(input())
+# T = 10
+for test_case in range(1, T + 1):
+    N = int(input())
+    lst = list(map(int, input().split()))
+    # lst = qsort(lst)      # 1800ms
+    # qsort_idx(0, N-1)     # 1500ms
+    lst.sort()                  # 1000ms
+    print(f'#{test_case} {lst[N//2]}')
+```
 
 ---
 
