@@ -20,6 +20,7 @@ https://www.acmicpc.net/problem/1497
 def f(nth, s, cnt): # nth번째 기타 고려, 연주할 수 있는 곡, 기타의 수
     global mn, mxs
     if nth >= N:    # 마지막 요소까지 고려했다면 종료
+        s = bin(s).count('1')
         if mxs < s:     # 만약 곡 수가 최대라면
             mn = cnt        # 바로 mn, mxs 갱신
             mxs = s
