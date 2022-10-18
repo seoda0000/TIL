@@ -5,15 +5,15 @@
 ## OS
 [0103 운영체제의 구조](#)
 
-[0205 [심화학습] 무어의 법칙과 암달의 법칙](#)
+[0205 [심화학습] 무어의 법칙과 암달의 법칙](https://github.com/seoda0000/TIL/blob/master/CS/OS/%EB%AC%B4%EC%96%B4%EC%9D%98_%EB%B2%95%EC%B9%99%EA%B3%BC_%EC%95%94%EB%8B%AC%EC%9D%98_%EB%B2%95%EC%B9%99.md)
 
-[03 프로세스와 스레드](#)
+[03 프로세스와 스레드](https://github.com/seoda0000/TIL/blob/master/CS/OS/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EC%99%80_%EC%8A%A4%EB%A0%88%EB%93%9C.md)
 
 [0401 CPU 스케쥴링 개요](#)
 
 [0501 프로세스간 통신](https://github.com/seoda0000/TIL/blob/master/CS/OS/%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4_%EA%B0%84_%ED%86%B5%EC%8B%A0.md)
 
-[0502 공유자원과 임계구역](#)
+[0502 공유자원과 임계구역](https://github.com/seoda0000/TIL/blob/master/CS/OS/%EA%B3%B5%EC%9C%A0%EC%9E%90%EC%9B%90%EA%B3%BC_%EC%9E%84%EA%B3%84%EA%B5%AC%EC%97%AD.md)
 
 [0503 임계구역 해결 방법](#)
 
