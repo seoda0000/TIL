@@ -1,3 +1,46 @@
+- [**JavaScript**](#JavaScript)
+    + [JavaScript 실행하기](#JavaScript-실행하기)
+- [**JavaScript 기초 문법**](#JavaScript-기초-문법)
+- [**변수와 식별자**](#변수와-식별자)
+    + [식별자 정의와 특징](#식별자-정의와-특징)
+  * [변수 선언 키워드](#변수-선언-키워드)
+    + [ 💡 선언, 할당, 초기화](#-💡-선언,-할당,-초기화)
+    + [ 💡 호이스팅 hoisting](#-💡-호이스팅-hoisting)
+  * [데이터 타입](#데이터-타입)
+- [**원시 타입 데이터**](#원시-타입-데이터)
+    + [Number](#Number)
+    + [String](#String)
+- [**반복문**](#반복문)
+- [**함수**](#함수)
+    + [함수 선언식](#함수-선언식)
+    + [함수 표현식 ⭐](#함수-표현식-⭐)
+    + [기본 인자 Default arguments](#기본-인자-Default-arguments)
+    + [매개변수와 인자의 개수 불일치 허용](#매개변수와-인자의-개수-불일치-허용)
+  * [화살표 함수 Arrow Function](#화살표-함수-Arrow-Function)
+    + [즉시 실행 함수(Immediately Invoked Function Expression)](#즉시-실행-함수(Immediately-Invoked-Function-Expression))
+- [**참조 타입 데이터**](#참조-타입-데이터)
+- [**배열 Array**](#배열-Array)
+    + [배열 메서드](#배열-메서드)
+    + [배열 순회 비교](#배열-순회-비교)
+- [**객체 Object**](#객체-Object)
+    + [key](#key)
+    + [value](#value)
+    + [객체 요소 접근](#객체-요소-접근)
+  * [객제 관련 ES6 문법](#객제-관련-ES6-문법)
+    + [1. 속성명 축약](#1.-속성명-축약)
+    + [2. 메서드명 축약](#2.-메서드명-축약)
+    + [3. 계산된 속성](#3.-계산된-속성)
+    + [4. 구조 분해 할당](#4.-구조-분해-할당)
+    + [5. Spread syntax](#5.-Spread-syntax)
+  * [JSON](#JSON)
+
+<br>
+
+---
+
+
+
+
 # JavaScript
 
 - HTML 문서의 콘텐츠를 동적으로 변경할 수 있는 언어
@@ -45,11 +88,17 @@
     [GitHub - airbnb/javascript: JavaScript Style Guide](https://github.com/airbnb/javascript)
     
 
+<br>
+
+---
+
 # 변수와 식별자
 
 - 식별자 : 변수를 구분할 수 있는 변수명
     - 문자, $, _로 시작
     - 대소문자 구분
+
+<br>
 
 ### 식별자 정의와 특징
 
@@ -60,6 +109,9 @@
 - 대문자 스네이크 케이스 `SNAKE_CASE`
     - 상수
 
+<br>
+
+
 ## 변수 선언 키워드
 
 | 키워드 | 선언 |  | 재할당 | 재선언 |
@@ -68,8 +120,14 @@
 | const | 블록 스코프 읽기 전용 상수를 선언 | 동시에 값을 초기화 | X | X |
 | var | (함수 스코프) 변수를 선언 | 동시에 값을 초기화 | O | O |
 
+
+<br>
+
+
+#### 💡 선언, 할당, 초기화
+
 <aside>
-💡 **선언, 할당, 초기화**
+
 
 - **선언 Declaration** : 변수를 생성하는 행위 또는 시점
 - **할당 Assignment** : 선언된 변수에 값을 저장하는 행위 또는 시점
@@ -86,10 +144,15 @@ let bar = 0        // 선언 + 할당
 console.log(bar)   // 0
 ```
 
+<br>
+
+
 </aside>
 
+#### 💡 호이스팅 hoisting
+
 <aside>
-💡 **호이스팅 hoisting**
+
 
 변수를 선언 이전에 참조할 수 있는 현상.
 
@@ -97,14 +160,20 @@ var 에 나타나므로 사용 권장 XXX
 
 </aside>
 
+---
+
+<br>
+
 ## 데이터 타입
 
 | 원시 타입 Primitive | 참조 타입 Reference |
 | --- | --- |
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2aa8fa80-80bb-40ea-9b0f-af036b6af55e/Untitled.png)
+![Untitled](./images/basic1.png)
 
 ---
+
+<br>
 
 # 원시 타입 데이터
 
@@ -130,6 +199,9 @@ Number.isNaN('NaN')   // false
     3. 피연산자가 NaN `7 ** NaN`
     4. 정의할 수 없는 계산식 `0 * Infinity`
     5. 문자열을 포함하면서 덧셈이 아닌 계산식 `"가" / 3`
+
+<br>
+
 
 ### String
 
@@ -178,6 +250,9 @@ for (let i=1; i <= 9; i+=2) {
 *********
 ```
 
+<br>
+
+
 ### Empty Value
 
 - `null`
@@ -193,6 +268,9 @@ typeof null        // "object"
 typeof undefined   // "undefined"
 ```
 
+<br>
+
+
 ### Boolean
 
 - `true`/ `false`
@@ -206,6 +284,9 @@ typeof undefined   // "undefined"
 | String | 빈 문자열 | 나머지 모든 경우 |
 | Object | X | 항상 true |
 
+<br>
+
+
 ---
 
 # 연산자
@@ -216,6 +297,9 @@ typeof undefined   // "undefined"
 - Decrement (—) : 1 감소
 - +=, -= 등 더 분명한 표현 권장
 
+<br>
+
+
 ### 비교 연산자
 
 - <, >
@@ -223,16 +307,25 @@ typeof undefined   // "undefined"
     - 알파벳 후순위가 더 크다
     - 소문자가 대문자보다 더 크다
 
+<br>
+
+
 ### 동등 연산자 `==`
 
 - 암묵적 타입 변환을 통해 타입을 일치시킨 후 같은 값인지 비교
 - 두 피연산자가 모두 객체일 경우 메모리의 같은 객체를 바라보는지 판별
 - 권장 X
 
+<br>
+
+
 ### 일치 연산자 `===`
 
 - 두 피연산자가 같은 객체를 가리키거나, 값과 타입이 모두 같을 경우 true 반환
 - 암묵적 타입 변환이 발생 X 엄격한 비교
+
+<br>
+
 
 ### 논리 연산자
 
@@ -242,6 +335,9 @@ typeof undefined   // "undefined"
 | --- | --- |
 | or | || |
 | not  | ! |
+
+<br>
+
 
 ### 삼항 연산자
 
@@ -254,6 +350,9 @@ false ? 1 : 2  // 2
 const result = Math.PI > 4 ? 'Yep' : 'Nope'
 console.log(result)  // Nope
 ```
+
+<br>
+
 
 ---
 
@@ -274,6 +373,9 @@ if (name === 'admin') {
 	console.log(`${name}님 환영합니다.`)
 }
 ```
+
+<br>
+
 
 ### `switch`
 
@@ -343,6 +445,9 @@ switch (name) {
 관리자님 환영합니다.
 ```
 
+<br>
+
+
 ---
 
 # 반복문
@@ -367,6 +472,9 @@ while (i < 6) {
 // 0, 1, 2, 3, 4, 5
 ```
 
+<br>
+
+
 ### `for`
 
 - 특정한 조건이 거짓으로 판별될 때까지 반복
@@ -389,6 +497,9 @@ for (let i = 0; i < 6; i++) {
 2. 조건문 평가 후 코드 블럭 실행
 3. 코드 블럭 실행 후 i 값 증가
 
+<br>
+
+
 ### `for...in`
 
 - 객체(Object)의 속성을 순회할 때 사용
@@ -407,6 +518,9 @@ for (const key in fruits) {
 	console.log(fruits[key]) // apple, banana
 }
 ```
+
+<br>
+
 
 ### `for...of`
 
@@ -427,6 +541,9 @@ for (const number of numbers) {
 }
 ```
 
+<br>
+
+
 ### `for...in` 과 `for...of` 의 차이
 
 - `for...in` : 속성 이름을 통해 반복 → 객체 순회 적합
@@ -446,12 +563,18 @@ for (const i of arr) {
 
 ---
 
+<br>
+
+
 # 함수
 
 - 참조 타입 중 하나로써 function 타입에 속함
 - 함수를 정의하는 방법
     - 함수 선언식 (function declaration)
     - 함수 표현식 (function expression)
+
+<br>
+
 
 ### 함수 선언식
 
@@ -470,6 +593,9 @@ function add(num1, num2) {
 
 add(2, 7) // 9
 ```
+
+<br>
+
 
 ### 함수 표현식 ⭐
 
@@ -498,6 +624,9 @@ mySub(7, 2) // 5
 namedSub(7, 2)  // ReferenceError: nameSub is not defined
 ```
 
+<br>
+
+
 ### 기본 인자 Default arguments
 
 - 인자 작성 시 = 뒤 기본 인자 선언 가능
@@ -509,6 +638,9 @@ const greeting = function (name = 'Anonymous') {
 
 greeting()  // Hi Anonymous
 ```
+
+<br>
+
 
 ### 매개변수와 인자의 개수 불일치 허용
 
@@ -532,6 +664,9 @@ const threeArgs = function (arg1, arg2, arg3) {
 threeArgs(1, 2)  // [1, 2, undefined]
 ```
 
+<br>
+
+
 ### 전개 구문 Spread syntax `...`
 
 - 전개 구문을 사용하면 배열이나 문자열과 같이 반복 가능한 객체를 배열의 경우는 요소, 함수의 경우는 인자로 확장할 수 있음
@@ -554,6 +689,9 @@ threeArgs(1, 2)  // [1, 2, undefined]
     restArgs(1, 2)  // [1, 2, []]
     ```
     
+
+<br>
+
 
 ## 화살표 함수 Arrow Function
 
@@ -590,6 +728,9 @@ let returnObject = () => { return { key: 'value'} } // return을 명시적으로
 returnObject = () => ({ key: 'value' })
 ```
 
+<br>
+
+
 ### 즉시 실행 함수(Immediately Invoked Function Expression)
 
 - 선언과 동시에 실행되는 함수
@@ -606,6 +747,9 @@ returnObject = () => ({ key: 'value' })
 
 ```
 
+<br>
+
+
 ---
 
 # 참조 타입 데이터
@@ -614,6 +758,9 @@ returnObject = () => ({ key: 'value' })
 - 객체는 속성들의 모음(collection)
     - Array
     - Object
+
+<br>
+
 
 ---
 
@@ -631,6 +778,9 @@ console.log(numbers[0])       // 1
 console.log(numbers[-1])      // undefined
 console.log(numbers.length)   // 5
 ```
+
+<br>
+
 
 ### 배열 메서드
 
@@ -677,12 +827,371 @@ console.log(result)  // 1-2-3-4-5
 
 ```
 
+<br>
+
+
 | 메서드 |  설명 | 비고 |
 | --- | --- | --- |
-| forEach | 원본 배열의 요소들의 순서를 반대로 정렬 |  |
-| map | 배열의 가장 뒤에 요소를 추가 또는 제거 |  |
-| filter | 배열의 가장 뒤에 요소를 추가 또는 제거 |  |
-| reduce | 배열에 특정 값이 존재하는지 판별 후 참/거짓 반환 |  |
-| find | 배열에 특정 값이 존재하는지 판별 후 인덱스 반환 | 요소가 없을 경우 -1 반환 |
-| some | 배열의 모든 요소를 구분자를 이용하여 연결 | 구분자 생략 시 쉼표 기준 |
-| every |  |  |
+| forEach | 배열의 각 요소에 대해 콜백 함수를 한번씩 실행 | 반환값 없음 |
+| map | 콜백 함수의 반환값을 요소로 하는 새로운 배열 반환 |  |
+| filter | 콜백 함수의 반환 값이 참인 요소들만 모아서 새로운 배열을 반환 |  |
+| reduce | 콜백 함수의 반환 값들을 하나의 값acc에 누적 후 반환 |  |
+| find | 콜백 함수의 반환 값이 참이면 해당 요소를 반환 |  |
+| some | 배열의 요소 중 하나라도 판별 함수를 통과한다면 참을 반환 |  |
+| every | 배열의 모든 요소가 판별 함수를 통과하면 참을 반환 |  |
+
+<br>
+
+
+### `forEach`
+
+```jsx
+array.forEach((element, index, array) => {
+	// do something
+})
+
+const colors = ['red', 'blue', 'greem']
+colors.forEach((color) => {
+	console.log(color)
+})
+
+// red
+// blue
+// green
+```
+
+<br>
+
+
+### 배열 순회 비교
+
+| 방식 | 특징 | break, continue | 비고 |
+| --- | --- | --- | --- |
+| for loop | 인덱스를 활용하여 배열의 요소에 접근 | 사용 가능 |  |
+| for … of | 인덱스 없이 배열의 요소에 바로 접근 | 사용가능 |  |
+| forEach |  | 사용 불가능 | Airbnb Style Guide 권장 방식 |
+
+
+<br>
+
+
+### `map`
+
+```jsx
+array.map((element, index, array) => {
+	// do something
+})
+
+const numbers = [1, 2, 3]
+const doubleNumbers = numbers.map((number) => {
+	return number * 2
+})
+console.log(doubleNumbers) // [2, 4, 6]
+```
+
+<br>
+
+
+### `filter`
+
+```jsx
+array.filter((element, index, array) => {
+	// do something
+})
+
+const products = [
+	{ name: 'cucumber', type: 'vegetable' },
+	{ name: 'banana', type: 'fruit' },
+	{ name: 'carrot', type: 'vegetable' },
+	{ name: 'apple', type: 'fruit' },
+]
+
+const fruits = products.filter((product) => {
+	return product.type === 'fruit'
+})
+```
+
+<br>
+
+
+### `reduce`
+
+- `initialValue` (optional)
+    - 최소 callback 함수 호출 시 acc에 할당되는 값
+    - default : 배열의 첫번째 값
+    - 빈 배열일 경우 필수적으로 써야함
+
+```jsx
+array.reduce((acc, element, index, array) => {
+	// do something
+}, initialValue)
+
+const tests = [90, 90, 80, 77]
+
+const sum = tests.reduce(function (total, x) {
+	return total + x
+}, 0) // 0 생략 가능
+
+const sum = tests.reduce((total, x) => total + x, 0)
+const sum = tests.reduce((total, x) => total + x, 0) / test.length  // 평균
+```
+
+<br>
+
+
+### `find`
+
+- 조건을 만족하는 첫번째 요소 반환
+- 찾는 값이 배열에 없으면 undefined 반환
+
+```jsx
+array.find((element, index, array)) {
+	// do something
+}
+
+const avengers = [
+	{ name: 'Tony Stark', age: 45 },
+	{ name: 'Steve Rogers', age: 32 },
+	{ name: 'Thor', age: 40 },
+]
+
+const avenger = find((avenger) => {
+	return avenger.name === 'Thor' 
+})
+```
+
+<br>
+
+
+### `some`
+
+- 배열의 요소 중 하나라도 주어진 판별 함수를 통과하면 true 반환
+- 모든 요소가 통과하지 못하면 false 반환
+- 빈 배열은 항상 false 반환
+
+```jsx
+array.some((element, index, array) => {
+	// do something
+})
+
+const arr = [1, 2, 3, 4, 5]
+
+const result = arr.some((elem) => {
+	result elem % 2 === 0
+})
+// true
+```
+
+<br>
+
+
+### `every`
+
+- 배열의 모든 요소가 주어진 판별 함수를 통과하면 true 반환
+- 하나의 요소라도 통과하지 못하면 false 반환
+- 빈 배열은 항상 true 반환
+
+```jsx
+array.every((element, index, array) => {
+	// do something
+})
+
+const arr = [1, 2, 3, 4, 5]
+
+const result = arr.every((elem) => {
+	result elem % 2 === 0
+})
+// false
+```
+
+<br>
+
+
+
+
+---
+
+# 객체 Object
+
+- 속성property의 집합
+- 중괄호 내부에 key와 value의 쌍으로 표현
+
+### key
+
+- 문자열 타입만 가능
+- key 이름에 띄어쓰기 등의 구분자가 있으면 따옴표로 묶어서 표현
+
+### value
+
+- 함수 포함 모든 타입 가능
+
+<br>
+
+
+### 객체 요소 접근
+
+- 점(.) 또는 대괄호([])로 가능
+- key 이름에 띄어쓰기 같은 구분자가 있으면 대괄호 접근만 가능
+
+---
+
+<br>
+
+
+## 객제 관련 ES6 문법
+
+### 1. 속성명 축약
+
+- 객체를 정의할 때 key와 할당하는 변수의 이름이 같으면 축약 가능
+
+```jsx
+const books = ['Learning Java', 'Learning Python']
+const megazines = ['Vogue', 'Science']
+
+const bookShop = {
+	books,
+	megazines,
+}
+console.log(bookShop)
+/*
+{
+	books: ['Learning Java', 'Learning Python'],
+	megazines: ['Vogue', 'Science']
+}
+*/
+```
+
+<br>
+
+
+### 2. 메서드명 축약
+
+- 메서드 선언 시 function 키워드 생략 가능
+
+```jsx
+const obj = {
+	greeting() {
+		console.log('Hi!')
+	}
+}
+
+obj.greeting() // Hi!
+```
+
+<br>
+
+
+### 3. 계산된 속성
+
+- 객체를 정의할 때 key의 이름을 표현식을 이용하여 동적으로 생성 가능
+
+```jsx
+const key = 'country'
+const value = ['한국', '미국', '일본', '중국']
+
+const myObj = {
+	[key]: value
+}
+
+console.log(myObj) // {country: ['한국', '미국', '일본', '중국']}
+console.log(myObj.country) // ['한국', '미국', '일본', '중국']
+```
+
+<br>
+
+
+### 4. 구조 분해 할당
+
+- 배열 또는 객체를 분해하여 속성을 변수에 쉽게 할당할 수 있는 문법
+
+```jsx
+const userInformation = {
+	name: 'ssafy kim',
+	useId: 'ssafyStudent1234',
+	phoneNumber: '010-1234-1234',
+	email: 'ssafy@ssafy.com'
+}
+
+const { name } = userInformation
+const { userId } = userInformation
+const { phoneNumber } = userInformation
+const { email } = userInformation
+
+// 여러개도 가능
+const { name, userId } = userInformation
+```
+
+<br>
+
+
+### 5. Spread syntax
+
+- 배열과 마찬가지로 전개구문을 사용해 객체 내부에서 객체 전개 가능
+- 얕은 복사에 활용 가능
+
+```jsx
+const obj = {b: 2, c: 3, d: 4}
+const newObj = {a: 1, ...obj, e: 5}
+
+console.log(newObj)  // {a: 1, b: 2, c: 3, d: 4, e: 5}
+```
+
+<br>
+
+
+## JSON
+
+- JavaScript Object Notation
+- Key-Value 형태로 이루어진 자료 표기법
+- JS의 Object와 유사한 구조를 가지고 있지만 Object는 그 자체로 타입이고, JSON은 형식이 있는 “문자열”
+- 즉 JSON을 Object로 사용하기 위해서는 변환 작업이 필요
+
+```jsx
+const jsObject = {
+	coffee: 'Americano',
+	iceCream: 'Cookie and cream',
+}
+```
+
+### Object → JSON
+
+```jsx
+const objToJson = JSON.stringify(jsObject)
+
+console.log(objToJson) // {"coffee":"Americano","iceCream":"Cookie and cream"}
+console.log(typeof objToJson) // string
+```
+
+### JSON → Object
+
+```jsx
+const jsonToObj = JSON.parse(objToJson)
+
+console.log(jsonToObj) // {coffee: 'Americano', iceCream: 'Cookie and cream'}
+console.log(typeof jsonToObj) // object
+```
+
+<br>
+
+#### 💡 배열은 객체다
+
+<aside>
+
+
+- 배열은 키와 속성들을 담고 있는 참조 타입의 객체
+- 배열은 인덱스를 키로 가지며 length 프로퍼티를 갖는 특수한 객체
+    
+    ```jsx
+    Object.getOwnPropertyDescriptors([1, 2, 3])
+    
+    /*
+    {
+    	'0': { value: 1, writable: true, enumerable: true, configurable: true },
+    	'1': { value: 2, writable: true, enumerable: true, configurable: true },
+    	'2': { value: 3, writable: true, enumerable: true, configurable: true },
+    	length: { value: 3, writable: true, enumerable: false, configurable: false },
+    }
+    */
+    ```
+    
+</aside>
