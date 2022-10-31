@@ -1,3 +1,15 @@
+    + [Browser APIs](#Browser-APIs)
+- [**DOM**](#DOM)
+    + [window 메서드 예시](#window-메서드-예시)
+    + [선택 관련 메서드](#선택-관련-메서드)
+- [**Event**](#Event)
+- [**Event 취소**](#Event-취소)
+    + [1. 단순 호출](#1.-단순-호출)
+    + [2. Method](#2.-Method)
+
+---
+
+
 “브라우저에서의 JavaScript”
 
 - 웹 페이지에서 다양한 기능을 구현하는 스크립트 언어
