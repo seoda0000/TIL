@@ -2,9 +2,9 @@
   <div id="app" style="margin: auto;">
     <div
     style="
-      width: 260px;
+      width: 270px;
       border: 3px solid black;
-      padding: 25px;
+      padding: 0px 35px 50px;
       align-items: center;
       margin: auto;"
     >
