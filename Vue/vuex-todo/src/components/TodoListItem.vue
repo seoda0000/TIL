@@ -7,7 +7,7 @@
       :class="{ 'is-completed': todo.isCompleted }"
       style="
         margin-right:10px;
-        width: 200px;
+        width: 205px;
         display:inline-block;
         "
       @click="checkTodo"
