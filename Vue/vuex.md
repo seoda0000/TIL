@@ -5,7 +5,7 @@
 - 여러개의 component를 조합하여 하나의 App을 만듬
     - 여러개의 component가 같은 상태를 유지 필요
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/56d99568-0e0a-4938-b023-c759089af16e/Untitled.png)
+![Untitled](./images/vuex1.png)
 
 ## Centralized Store
 
@@ -22,6 +22,7 @@
 - 중앙 저장소를 통해 상태 관리를 할 수 있도록 하는 라이브러리
 - 데이터가 예측 가능한 방식으로만 변경될 수 있도록 규칙 설정
 - Vue의 반응성을 효율적으로 사용하는 상태 관리 기능을 제공
+<<<<<<< HEAD
 
 ---
 
@@ -42,7 +43,7 @@ vue add vuex  // vue CLI를 통해 vuex plugin 적용
     3. mutations
     4. actions
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1207d4df-e794-459f-b76e-7a7aca14e4a1/Untitled.png)
+![Untitled](./images/vuex2.png)
 
 ## 1. State
 
@@ -266,7 +267,7 @@ export default {
 - 각 단계가 트리거가 되어 특정 로직을 실행할 수 있음
 - 이를 Lifecycle Hooks라고 함
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/279303e6-c539-43d6-ae2c-be23dc74d1d9/Untitled.png)
+![Untitled](./images/vuex3.png)
 
 ## created
 
