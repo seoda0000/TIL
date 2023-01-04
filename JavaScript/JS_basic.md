@@ -1,38 +1,67 @@
-- [**JavaScript**](#JavaScript)
-    + [JavaScript 실행하기](#JavaScript-실행하기)
-- [**JavaScript 기초 문법**](#JavaScript-기초-문법)
-- [**변수와 식별자**](#변수와-식별자)
-    + [식별자 정의와 특징](#식별자-정의와-특징)
-  * [변수 선언 키워드](#변수-선언-키워드)
-    + [ 💡 선언, 할당, 초기화](#-💡-선언,-할당,-초기화)
-    + [ 💡 호이스팅 hoisting](#-💡-호이스팅-hoisting)
-  * [데이터 타입](#데이터-타입)
-- [**원시 타입 데이터**](#원시-타입-데이터)
-    + [Number](#Number)
-    + [String](#String)
-- [**반복문**](#반복문)
-- [**함수**](#함수)
-    + [함수 선언식](#함수-선언식)
-    + [함수 표현식 ⭐](#함수-표현식-⭐)
-    + [기본 인자 Default arguments](#기본-인자-Default-arguments)
-    + [매개변수와 인자의 개수 불일치 허용](#매개변수와-인자의-개수-불일치-허용)
-  * [화살표 함수 Arrow Function](#화살표-함수-Arrow-Function)
-    + [즉시 실행 함수(Immediately Invoked Function Expression)](#즉시-실행-함수(Immediately-Invoked-Function-Expression))
-- [**참조 타입 데이터**](#참조-타입-데이터)
-- [**배열 Array**](#배열-Array)
-    + [배열 메서드](#배열-메서드)
-    + [배열 순회 비교](#배열-순회-비교)
-- [**객체 Object**](#객체-Object)
-    + [key](#key)
-    + [value](#value)
-    + [객체 요소 접근](#객체-요소-접근)
-  * [객제 관련 ES6 문법](#객제-관련-ES6-문법)
-    + [1. 속성명 축약](#1.-속성명-축약)
-    + [2. 메서드명 축약](#2.-메서드명-축약)
-    + [3. 계산된 속성](#3.-계산된-속성)
-    + [4. 구조 분해 할당](#4.-구조-분해-할당)
-    + [5. Spread syntax](#5.-Spread-syntax)
-  * [JSON](#JSON)
+- [JavaScript](#javascript)
+		- [JavaScript 실행하기](#javascript-실행하기)
+- [JavaScript 기초 문법](#javascript-기초-문법)
+- [변수와 식별자](#변수와-식별자)
+		- [식별자 정의와 특징](#식별자-정의와-특징)
+	- [변수 선언 키워드](#변수-선언-키워드)
+			- [💡 선언, 할당, 초기화](#-선언-할당-초기화)
+			- [💡 호이스팅 hoisting](#-호이스팅-hoisting)
+	- [데이터 타입](#데이터-타입)
+- [원시 타입 데이터](#원시-타입-데이터)
+		- [Number](#number)
+		- [String](#string)
+		- [Empty Value](#empty-value)
+		- [Boolean](#boolean)
+- [연산자](#연산자)
+		- [할당 연산자](#할당-연산자)
+		- [비교 연산자](#비교-연산자)
+		- [동등 연산자 `==`](#동등-연산자-)
+		- [일치 연산자 `===`](#일치-연산자-)
+		- [논리 연산자](#논리-연산자)
+		- [삼항 연산자](#삼항-연산자)
+- [조건문](#조건문)
+		- [`if`, `else if`, `else`](#if-else-if-else)
+		- [`switch`](#switch)
+- [반복문](#반복문)
+		- [`while`](#while)
+		- [`for`](#for)
+		- [`for...in`](#forin)
+		- [`for...of`](#forof)
+		- [`for...in` 과 `for...of` 의 차이](#forin-과-forof-의-차이)
+- [함수](#함수)
+		- [함수 선언식](#함수-선언식)
+		- [함수 표현식 ⭐](#함수-표현식-)
+		- [기본 인자 Default arguments](#기본-인자-default-arguments)
+		- [매개변수와 인자의 개수 불일치 허용](#매개변수와-인자의-개수-불일치-허용)
+		- [전개 구문 Spread syntax `...`](#전개-구문-spread-syntax-)
+	- [화살표 함수 Arrow Function](#화살표-함수-arrow-function)
+		- [즉시 실행 함수(Immediately Invoked Function Expression)](#즉시-실행-함수immediately-invoked-function-expression)
+- [참조 타입 데이터](#참조-타입-데이터)
+- [배열 Array](#배열-array)
+		- [배열 메서드](#배열-메서드)
+		- [`forEach`](#foreach)
+		- [배열 순회 비교](#배열-순회-비교)
+		- [`map`](#map)
+		- [`filter`](#filter)
+		- [`reduce`](#reduce)
+		- [`find`](#find)
+		- [`some`](#some)
+		- [`every`](#every)
+- [객체 Object](#객체-object)
+		- [key](#key)
+		- [value](#value)
+		- [객체 요소 접근](#객체-요소-접근)
+	- [객제 관련 ES6 문법](#객제-관련-es6-문법)
+		- [1. 속성명 축약](#1-속성명-축약)
+		- [2. 메서드명 축약](#2-메서드명-축약)
+		- [3. 계산된 속성](#3-계산된-속성)
+		- [4. 구조 분해 할당](#4-구조-분해-할당)
+		- [5. Spread syntax](#5-spread-syntax)
+		- [6. Export \& Import](#6-export--import)
+	- [JSON](#json)
+		- [Object → JSON](#object--json)
+		- [JSON → Object](#json--object)
+			- [💡 배열은 객체다](#-배열은-객체다)
 
 <br>
 
@@ -1135,6 +1164,40 @@ const newObj = {a: 1, ...obj, e: 5}
 
 console.log(newObj)  // {a: 1, b: 2, c: 3, d: 4, e: 5}
 ```
+
+
+### 6. Export & Import
+
+```jsx
+// person.js
+const person = {
+	name:'Max'
+}
+
+export default person
+```
+
+```jsx
+utility.js
+
+export const clean = () => {}
+export const baseData = 10;
+```
+
+```jsx
+// app.js
+import person from './person.js'
+import prs from './person.js
+
+import { baseData } from './utility.js'
+import { clean as cl } from './utility.js'
+import * as bundled from '.utility.js'
+```
+
+- Export : 파일 내 항목을 다른 파일로 보낼 수 있다.
+    - default export (보통) : default를 사용하면 이 파일에서 export 될 기본 객체를 선언한다. import하는 파일에서 자유롭게 이름을 선언할 수 있다.
+    - named export : default를 사용하지 않으면 특정 객체의 이름을 중괄호 안에 담아야 한다. as 를 활용해 자유롭게 이름을 선언할 수 있다.
+
 
 <br>
 
