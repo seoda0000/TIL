@@ -164,3 +164,23 @@ const obj = {
 }
 obj.print(myFunc) // undefined
 ```
+
+## 스프레드
+
+- 객체의 복사본 생성
+
+```jsx
+const person = {
+	name: 'Max'
+};
+const secondPerson = {
+	...person
+};
+person.name = 'Manu';
+console.log(secondPerson);
+
+// [object Object] {
+// 	name: "Max"
+// }
+```
+
