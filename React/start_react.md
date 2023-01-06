@@ -37,6 +37,7 @@ import App from './App'; // 자바 스크립트 파일의 경우 확장자 생�
 ReactDOM.render(<App />, document.getElementById('root')); 
 ```
 
+
 ### `render(jsx 구문, 어느 부분에 랜더링 해야 하는지)`
 
 - JS 내의 HTML 구문은 빌드 단계에서만 가능하다. (jsx구문)
