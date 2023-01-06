@@ -37,7 +37,7 @@ import App from './App'; // 자바 스크립트 파일의 경우 확장자 생�
 ReactDOM.render(<App />, document.getElementById('root')); 
 ```
 
-### `render(HTML 구문, 어느 부분에 랜더링 해야 하는지)`
+### `render(jsx 구문, 어느 부분에 랜더링 해야 하는지)`
 
 - JS 내의 HTML 구문은 빌드 단계에서만 가능하다. (jsx구문)
 - 브라우저는 App을 보여주지 않는다. App이 return하는 HTML Tag를 보여준다.
@@ -48,7 +48,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 ### 리액트 컴포넌트
 
 - 자바스크립트 함수 형식
-- jsx코드(HTML)를 return
+- jsx코드(HTML처럼 보인다)를 return
 
 ```jsx
 function App() {
@@ -57,3 +57,162 @@ function App() {
 
 export default App;
 ```
+
+# 스타일 적용하기
+
+### CSS 파일 import
+
+`import './index.css';`
+
+### class 선언
+
+`<div className="card"> // HTML의 class`
+
+---
+
+# 컴포넌트
+
+## App.js
+
+### `<Componet key="value"/>`
+
+- 컴포넌트로 데이터 넘겨주기 : props 객체
+
+```jsx
+import Todo from "./components/Todo";
+function App() {
+  return <div>
+    <h1>My Todos</h1>
+    <Todo text="Learn React"/> 
+    <Todo text="Master React"/>
+    <Todo text="Explore React"/>
+  </div>; 
+} 
+
+export default App;
+```
+
+## Todo.js
+
+### `{props.key}`
+
+- props : 자바스크립트 객체. 함수의 변수로 받음.
+- {} 안은 리액트가 자바스크립트로 인식
+
+```jsx
+
+function Todo(props) { 
+
+  return (
+    <div className="card">
+      <h2>{ props.text }</h2>
+      <div className="actions">
+        <button className="btn">Delete</button>
+      </div>
+    </div>
+  )
+}
+
+export default Todo;
+```
+
+---
+
+# 이벤트 적용
+
+## 패키지 import
+
+### `import { useState } from 'react';`
+
+## 리액트 훅 선언
+
+- 리액트 훅. 컴포넌트 함수나 커스텀 훅 안에서 바로 호출되어야 한다.
+- 항상 두가지 요소를 가진 배열로 표현된다.
+
+### `const [ 현재 상태의 스냅샷, state값을 변경할 수 있는 함수 ] = useState(초기값);`
+
+- 첫번째 값 : 현재 상태의 스냅샷
+- 두번째 값 : state값을 변경할 수 있는 함수. 이 함수가 호출될 때마다 해당 컴포넌트 함수가 재실행된다.
+
+## 함수 정의
+
+- 컴포넌트 내부에서 함수 정의
+- 리액트 훅의 두번째 값 (함수)를 활용
+
+```jsx
+import { useState } from 'react';
+
+import Modal from './Modal';
+import Backdrop from './Backdrop';
+
+function Todo(props) { 
+  const [ modalIsOpen, setModalIsOpen ] = useState(false);
+
+  function deleteHandler() {
+    setModalIsOpen(true);
+  }
+
+  function closeModalHandler() {
+    setModalIsOpen(false);
+  }
+
+  return (
+    <div className="card">
+      <h2>{ props.text }</h2>
+      <div className="actions">
+        <button className="btn" onClick={deleteHandler}>Delete</button>
+      </div>
+      { modalIsOpen && (
+        <Modal onCancel={closeModalHandler} onConfirm={closeModalHandler} />
+      )}
+      { modalIsOpen && <Backdrop onCancel={closeModalHandler} /> }
+    </div>
+  )
+}
+
+export default Todo;
+```
+
+## 함수 및 변수 활용
+
+### `<컴포넌트 이벤트={함수} />`
+
+- 컴포넌트 내부에 함수를 쓸 때는 ( ) 생략. ( )를 붙이면 코드를 검증되는 순간에 실행된다. 생략해야 특정 조건에 실행될 수 있다.
+
+### `{ modalIsOpen ? <Modal /> : null }`
+`{ modalIsOpen && <Modal /> }`
+
+- 변수 값에 따라 컴포넌트 띄우고 없애기
+
+## 사용자 정의 컴포넌트에서의 활용
+
+### `<컴포넌트 이벤트={함수} />`
+
+- 이벤트와 함수를 정의해주어야 한다.
+- 이벤트도 props로 넘긴다고 생각하면 된다.
+
+### `function 컴포넌트내부함수() { props.함수() };`
+
+```jsx
+function Modal(props) {
+
+    function cancelHandler() {
+        props.onCancel();
+    };
+    function confirmHandler() {
+        props.onConfirm();
+    };
+    return (
+    <div className="modal">
+        <p>Are you sure?</p>
+        <button className="btn btn--alt" onClick={cancelHandler}>Cancel</button>
+        <button className="btn" onClick={confirmHandler}>Confirm</button>
+    </div>
+    );
+}
+
+export default Modal;
+```
+
+- 함수 정의 후 요소에 이벤트로 적용해준다.
+
