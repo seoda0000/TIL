@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 
 // CSS 모듈 : module.css로 끝나야함
-import classes from './MainNavigation.module.css'
+import classes from "./MainNavigation.module.css";
 // 모든 css가 자바스크립트 객체(classes)의 속성이 된다.
 
 function MainNavigation() {
   return (
     <header className={classes.header}>
-      <div>React Meetups</div>
+      <div className={classes.logo}>React Meetups</div>
       <nav>
         <ul>
           <li>
