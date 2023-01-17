@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 // useSelector : 저장소가 관리하는 상태 부분을 자동으로 선택/구독
-
+import { counterActions } from "../store/index";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
@@ -11,17 +11,17 @@ const Counter = () => {
   const show = useSelector((state) => state.showCounter);
 
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 }); // action payload 추가 가능
+    dispatch(counterActions.increase({})); // action payload 추가 가능 { type: SOME_UNIQUE_IDENTIFIER, payload: 10}
   };
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
