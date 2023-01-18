@@ -1,27 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
 // useSelector : 저장소가 관리하는 상태 부분을 자동으로 선택/구독
-
+import { counterActions } from "../store/counter";
 import classes from "./Counter.module.css";
 
 const Counter = () => {
   // 컴포넌트 삭제 시 자동으로 구독 취소
 
   const dispatch = useDispatch();
-  const counter = useSelector((state) => state.counter); // 저장소에서 추출하려는 데이터 선택
-  const show = useSelector((state) => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter); // 저장소에서 추출하려는 데이터 선택
+  const show = useSelector((state) => state.counter.showCounter);
 
   const incrementHandler = () => {
-    dispatch({ type: "increment" });
+    dispatch(counterActions.increment());
   };
   const increaseHandler = () => {
-    dispatch({ type: "increase", amount: 5 }); // action payload 추가 가능
+    dispatch(counterActions.increase(10)); // action payload 추가 가능 { type: SOME_UNIQUE_IDENTIFIER, payload: 10}
   };
   const decrementHandler = () => {
-    dispatch({ type: "decrement" });
+    dispatch(counterActions.decrement());
   };
 
   const toggleCounterHandler = () => {
-    dispatch({ type: "toggle" });
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
