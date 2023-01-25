@@ -11,7 +11,7 @@ let isInitial = true;
 
 function App() {
   const dispatch = useDispatch();
-  const showCart = useSelector((state) => state.ui.cartIsVisible);
+  const showCart = useSelector((state) => state.ui.cartIsVisible); // 스토어 상태가 변할 때마다 컴포넌트가 업데이트 됨.
   const cart = useSelector((state) => state.cart);
   const notification = useSelector((state) => state.ui.notification);
 
