@@ -119,3 +119,5 @@ const counterSlice = createSlice({
   },
 });
 ```
+---
+## Thunks
