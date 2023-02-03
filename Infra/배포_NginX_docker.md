@@ -81,3 +81,11 @@ npm run serve : 개발 서버. 최적화가 안되어 있음. 성능이 떨어�
 
 - ISP(SKT, KT, LGU 등등)에 따라서 닫혀 있는 포트가 존재
 - 고객은 포트가 막혔을 거라는 생각을 하지 못하고 이탈
+
+# gitlab → Jenkins
+
+![Untitled](../images/%EB%B0%B0%ED%8F%AC_Nginx_docker2.png)
+
+- 개발자가 gitlab의 특정 브랜치 (develop or master)에 머지를 하면 이벤트가 트리거되어 Jenkins에서 빌드를 시작한다
+- 빌드가 완료되면 도커 이미지가 제작되어 배포된다
+- 동일한 도커 이미지로 제작, 배포되기 때문에 동일성이 보장된다
