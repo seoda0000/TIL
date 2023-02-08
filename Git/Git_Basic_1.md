@@ -1,9 +1,10 @@
 # Git 기초 : 소개와 commit
+
 ## Git : **분산 버전 관리 프로그램**
 
 - 버전 : 컴퓨터 소프트웨어의 특정 상태
 - 관리 : 어떤 이의 사무, 시설이나 물건의 유지
-    -  코드를 서로 비교/ 확인
+  - 코드를 서로 비교/ 확인
 
 ↔ **중앙집중** : 버전 관리 히스토리only one
 
@@ -19,17 +20,18 @@
 ## Git 기본
 
 ### README.md
-* 특정 레포지토리나 폴더를 소개하는 기본적인 문서
+
+- 특정 레포지토리나 폴더를 소개하는 기본적인 문서
 
 ### Repository
 
-* 특정 디렉토리를 버전 관리하는 저장소
+- 특정 디렉토리를 버전 관리하는 저장소
 
-* `git init` 로컬 저장소 생성
+- `git init` 로컬 저장소 생성
 
 ![Untitled](../images/Git1_1.png)
 
-* **master** 표시되는 곳은 **깃으로 버전 관리가 되는 곳**
+- **master** 표시되는 곳은 **깃으로 버전 관리가 되는 곳**
 
 ---
 
@@ -41,17 +43,17 @@
 - 세 가지 영역을 바탕으로 동작!
 
 1. **Working Directory** : 내가 작업하고 있는 실제 디렉토리
-    1. 파일 신규 생성 `untracked`
-    2. Working Directory → `git add` → Staging Area
-    3. `untracked` → `tracked`
+   1. 파일 신규 생성 `untracked`
+   2. Working Directory → `git add` → Staging Area
+   3. `untracked` → `tracked`
 2. **Staging Area** : 커밋으로 남기고 싶은, 특정 버전으로 관리하고 싶은 파일이 있는 곳. 특정 버전으로 관리하고 싶은 변경상태들이 잠깐 머무는 곳.
-    1. Git으로 버전관리 된 상태 `staged` 
-    2. Staging Area → `git commit` → Repository
-    3. `tracked` → `committed`
+   1. Git으로 버전관리 된 상태 `staged`
+   2. Staging Area → `git commit` → Repository
+   3. `tracked` → `committed`
 3. **Repository** : 커밋들이 저장되는 곳 (.git sirectory)
-    1. 파일 수정 `modified`
-    2. Working Directory →`git add` → Staging Area
-    3. 반복!
+   1. 파일 수정 `modified`
+   2. Working Directory →`git add` → Staging Area
+   3. 반복!
 
 ---
 
@@ -73,6 +75,10 @@
 
 - 특정 파일을 **Staging Area**에 올리기
 
+### `git reset HEAD 파일명`
+
+- git add 취소
+
 ### `git commit -m "한줄 커밋 메세지"`
 
 - 커밋 메세지 : 영어가 좋긴 하지만 알아볼 수 있어야 함!
@@ -85,7 +91,6 @@
 
 - commit {커밋 아이디}
 - 보통 앞 네 자리만으로 구분 가능
-
 
 ### `git diff {커밋아이디A} {커밋아이디B}`
 
