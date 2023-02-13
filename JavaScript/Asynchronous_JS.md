@@ -21,8 +21,8 @@
 
 1. Call Stack
 2. Web AP
-3.  
-4.  
+3.
+4.
 
 ## 비동기 처리 동작 방식
 
@@ -33,6 +33,8 @@
 ---
 
 # Callback과 Promise
+
+then은 Promise 객체를 반환해야 사용 가능
 
 ---
 
