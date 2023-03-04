@@ -8,7 +8,22 @@ n개의 정점을 갖는 이진 트리의 정점에 1부터 n까지의 번호가
 
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+def f(si, ei, sp, ep):
+    if si > ei or sp > ep:
+        return
+    num = postorder[ep]
+    print(num, end=" ")
+    if si == ei:
+        return
+    n = inorderIndex[num] - si
+    f(si, si+n-1, sp, sp+n-1)
+    f(si+n+1, ei, sp+n, ep-1)
 
 n = int(input())
 inorder = list(map(int, input().split()))
 postorder = list(map(int, input().split()))
+inorderIndex = [0] * (n+1)
+for i in range(n):
+    inorderIndex[inorder[i]] = i
+f(0, n-1, 0, n-1)
