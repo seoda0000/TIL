@@ -9,16 +9,17 @@ n개의 정점을 갖는 이진 트리의 정점에 1부터 n까지의 번호가
 import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10**6)
-def f(si, ei, sp, ep):
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+def f(si, ei, sp, ep): # 노드의 inorder 시작 idx, 끝 idx, postorder 시작 idx, 끝 idx
     if si > ei or sp > ep:
         return
-    num = postorder[ep]
+    num = postorder[ep]           # 노드의 부모
     print(num, end=" ")
-    if si == ei:
-        return
-    n = inorderIndex[num] - si
-    f(si, si+n-1, sp, sp+n-1)
-    f(si+n+1, ei, sp+n, ep-1)
+    n = inorderIndex[num] - si    # 노드의 부모 위치 idx
+    f(si, si+n-1, sp, sp+n-1)         # 왼쪽 노드
+    f(si+n+1, ei, sp+n, ep-1)         # 오른쪽 노드
 
 n = int(input())
 inorder = list(map(int, input().split()))
