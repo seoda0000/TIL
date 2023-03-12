@@ -1,4 +1,8 @@
 """
+폴더 정리 (small)
+백준 골드3 22860
+https://www.acmicpc.net/problem/22860
+
 이름이 main 폴더 안에 여러가지 파일과 폴더가 존재한다.
 
 main
@@ -19,3 +23,41 @@ main 하위 디렉토리에 같은 이름의 폴더가 두 개 이상 존재할 
 
 주어지는 쿼리에 대해 폴더와 파일의 정보를 알려주는 프로그램을 만들어보자.
 """
+
+import sys
+from collections import defaultdict
+input = sys.stdin.readline
+sys.setrecursionlimit(10**6)
+
+def findFile(f):
+    global ans
+    for fname in filetree[f]:
+        child, id = fname
+        if id == 0:
+            ans += 1
+            st.add(child)
+        else:
+            findFile(child)
+
+
+N, M = map(int, input().split())
+filetree = defaultdict(dict)
+filetree['main'] = []
+
+for _ in range(N+M):
+    P, F, C = input().split()
+    if P not in filetree:
+        filetree[P] = [[F, int(C)]]
+    else:
+        filetree[P].append([F, int(C)])
+
+
+Q = int(input())
+for _ in range(Q):
+    folder = input().rstrip().split('/')[-1]
+    ans = 0
+    st = set()
+    findFile(folder)
+    print(len(st), ans)
+
+
