@@ -9,3 +9,9 @@ develop으로 상태 변경
 
 `git cherry- pick {commit num}`
 해당 commit 변경사항만 떠오기
+
+======================================
+`git remote add github {레포주소}`
+`git push github master`
+
+레포 옮기기
