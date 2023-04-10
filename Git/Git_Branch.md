@@ -15,3 +15,7 @@ develop으로 상태 변경
 `git push github master`
 
 레포 옮기기
+
+=====================================
+`git filter-branch --tree-filter 'find . -name "*.pt" -exec rm -rf {} +' HEAD~10..HEAD`
+최근 10개 커밋 확인해서 pt 파일 업로드한 커밋 수정하기
