@@ -1,111 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:orientation="vertical">
-    
-    <LinearLayout
+
+<layout>
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
-        >
-        <androidx.cardview.widget.CardView
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".MainActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="40dp">
+
+                <ImageView
+                    android:id="@+id/sd_image_1"
+                    android:layout_width="103dp"
+                    android:layout_height="160dp"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sd1" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="40dp">
+
+
+                <ImageView
+                    android:id="@+id/sd_image_2"
+                    android:layout_width="103dp"
+                    android:layout_height="160dp"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sd2" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="40dp">
+
+
+                <ImageView
+                    android:id="@+id/sd_image_3"
+                    android:layout_width="103dp"
+                    android:layout_height="160dp"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sd3" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="40dp">
+
+
+                <ImageView
+                    android:id="@+id/sd_image_4"
+                    android:layout_width="103dp"
+                    android:layout_height="160dp"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/sd4" />
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="160dp">
+
+            <ImageView
+                android:id="@+id/sd_image_5"
+                android:layout_width="103dp"
+                android:layout_height="160dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/sd5" />
+
+            <ImageView
+                android:id="@+id/sd_image_6"
+                android:layout_width="103dp"
+                android:layout_height="160dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/sd6" />
+
+            <ImageView
+                android:id="@+id/sd_image_7"
+                android:layout_width="103dp"
+                android:layout_height="160dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/sd7" />
+
+            <ImageView
+                android:id="@+id/sd_image_8"
+                android:layout_width="103dp"
+                android:layout_height="160dp"
+                android:padding="5dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/sd8" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/main_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="40dp">
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_1"
-            android:src="@drawable/sd1"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
+            android:text="button" />
+
+
+        <Button
+            android:id="@+id/lst_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="40dp">
+            android:text="Go List" />
 
 
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_2"
-            android:src="@drawable/sd2"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="40dp">
-
-
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_3"
-            android:src="@drawable/sd3"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="40dp">
-
-
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_4"
-            android:src="@drawable/sd4"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        </androidx.cardview.widget.CardView>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="160dp"
-        >
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_5"
-            android:src="@drawable/sd5"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_6"
-            android:src="@drawable/sd6"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_7"
-            android:src="@drawable/sd7"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-        <ImageView
-            android:padding="5dp"
-            android:scaleType="fitXY"
-            android:id="@+id/sd_image_8"
-            android:src="@drawable/sd8"
-            android:layout_width="103dp"
-            android:layout_height="160dp" />
-    </LinearLayout>
-
-
-
-
-
-
-</LinearLayout>
+</layout>
