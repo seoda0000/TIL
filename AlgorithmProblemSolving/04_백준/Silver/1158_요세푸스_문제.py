@@ -6,20 +6,47 @@ https://www.acmicpc.net/problem/1158
 
 N과 K가 주어지면 (N, K)-요세푸스 순열을 구하는 프로그램을 작성하시오.
 """
+#
+#
+# N, M = map(int, input().split())
+# lst = list(range(1, N+1))
+#
+# i = M-1
+# ans = []
+#
+# while lst:
+#     n = len(lst)
+#     while i > n-1:
+#         i -= n
+#     ans.append(lst[i])
+#     lst.pop(i)
+#     i = i-1+M
+# ans = ", ".join(map(str, ans))
+# print(f"<{ans}>")
+def calculateScore(text, prefixString, suffixString):
+    # Write your code here
+    tN = len(text)
+    pN = len(prefixString)
+    sN = len(suffixString)
+    text += "x"
+    dic = dict()
+    for p in range(tN):
+        for k in range(p+1, tN+1):
+            target = text[p:k]
+            print(target, p, k)
+            preScore = sufScore = 0
+            for p in range(1, pN+1):
+                if prefixString[-p:] in target:
+                    preScore = p
+                else:
+                    break
+            for s in range(1, sN+1):
+                if suffixString[:s] in target:
+                    sufScore = s
+                else:
+                    break
+            if preScore + sufScore > 0:
+                dic[target] = preScore + sufScore
+    print(dic)
 
-
-N, M = map(int, input().split())
-lst = list(range(1, N+1))
-
-i = M-1
-ans = []
-
-while lst:
-    n = len(lst)
-    while i > n-1:
-        i -= n
-    ans.append(lst[i])
-    lst.pop(i)
-    i = i-1+M
-ans = ", ".join(map(str, ans))
-print(f"<{ans}>")
+calculateScore("nothing", "bruno", "thing")
