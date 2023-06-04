@@ -4,6 +4,9 @@ RAW_DATA = pd.read_excel("/fileName.xlsx",
 # 헤더 하나 제거
 RAW_DATA.columns.droplevel(0)
 
+# 헤더 지정
+RAW_DATA.columns = raw_columns
+
 # 조건에 맞는 행 찾기
 RAW_DATA.loc[RAW_DATA['FDAgroup1'] == 2]
 
