@@ -15,3 +15,6 @@ RAW_DATA.reset_index(drop=True)
 
 # 상관성 분석 (centered)
 sm.OLS(TARGET_DATA['y'], sm.add_constant(TARGET_DATA['x'])).fit()
+
+# 히스토그램
+plt.hist(TARGET_DATA['resid'], bins = 30)
