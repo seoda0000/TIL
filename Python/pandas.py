@@ -13,8 +13,11 @@ RAW_DATA.loc[RAW_DATA['FDAgroup1'] == 2]
 # 인덱스 0부터 재설정하기
 RAW_DATA.reset_index(drop=True)
 
-# 상관성 분석 (centered)
+# 회귀분석 (centered)
 sm.OLS(TARGET_DATA['y'], sm.add_constant(TARGET_DATA['x'])).fit()
 
 # 히스토그램
 plt.hist(TARGET_DATA['resid'], bins = 30)
+
+# 피어슨 상관계수 구하기
+correlation_coefficient = TARGET_DATA['A'].corr(TARGET_DATA['B'])
