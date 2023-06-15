@@ -24,3 +24,6 @@ correlation_coefficient = TARGET_DATA['A'].corr(TARGET_DATA['B'])
 
 # 열 기준 병합
 MERGED_DATA = pd.merge(DATA1, DATA2, on='열 제목', how='inner')
+
+# 엑셀 파일 저장
+MERGED_DATA.to_excel('DATA.xlsx', index=False)
