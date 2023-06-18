@@ -1,0 +1,26 @@
+"""
+2021 KAKAO BLIND RECRUITMENT
+https://school.programmers.co.kr/learn/courses/30/lessons/72413
+"""
+
+def solution(n, s, a, b, fares):
+    
+    map = [[100001*len(fares)]*(n+1) for _ in range(n+1)]
+    for x in range(1, n+1):
+        map[x][x] = 0
+    for fare in fares:
+        map[fare[0]][fare[1]] = map[fare[1]][fare[0]] = fare[2]
+    
+    for x in range(1, n+1):
+        for y in range(1, n+1):
+            for z in range(1, n+1):
+                if map[y][z] > map[y][x] + map[x][z]:
+                    map[z][y] = map[y][x] + map[x][z]
+                    map[y][z] = map[y][x] + map[x][z]
+                
+    answer = map[s][a] + map[s][b]
+    for i in range(1, n+1):
+        if answer > map[s][i] + map[i][a] + map[i][b]:
+            answer = map[s][i] + map[i][a] + map[i][b]
+
+    return answer
