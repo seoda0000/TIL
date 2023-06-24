@@ -7,6 +7,10 @@ RAW_DATA.columns.droplevel(0)
 # 헤더 지정
 RAW_DATA.columns = raw_columns
 
+# n번째 행 m번째 열 지정
+RAW_DATA.iloc[n][m]
+
+
 # 조건에 맞는 행 찾기
 RAW_DATA.loc[RAW_DATA['FDAgroup1'] == 2]
 
