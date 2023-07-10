@@ -1,54 +1,58 @@
 - [**Java 기본**](#Java-기본)
-    + [컴퓨터의 자료표현](#컴퓨터의-자료표현)
-    + [자바 가상머신 (JVM, Java virtual machine)](#자바-가상머신-(JVM,-Java-virtual-machine))
-    + [main method](#main-method)
-    + [주석 Coment](#주석-Coment)
-    + [출력문](#출력문)
+  - [컴퓨터의 자료표현](#컴퓨터의-자료표현)
+  - [자바 가상머신 (JVM, Java virtual machine)](<#자바-가상머신-(JVM,-Java-virtual-machine)>)
+  - [main method](#main-method)
+  - [주석 Coment](#주석-Coment)
+  - [출력문](#출력문)
 - [**변수와 자료형**](#변수와-자료형)
-    + [변수](#변수)
-    + [메모리의 단위](#메모리의-단위)
-    + [Data Type-기본 자료형](#Data-Type-기본-자료형)
-    + [선언](#선언)
-    + [저장](#저장)
-    + [초기화](#초기화)
-    + [자료형의 크기 비교](#자료형의-크기-비교)
-    + [데이터 형변환](#데이터-형변환)
+  - [변수](#변수)
+  - [메모리의 단위](#메모리의-단위)
+  - [Data Type-기본 자료형](#Data-Type-기본-자료형)
+  - [선언](#선언)
+  - [저장](#저장)
+  - [초기화](#초기화)
+  - [자료형의 크기 비교](#자료형의-크기-비교)
+  - [데이터 형변환](#데이터-형변환)
 - [**연산자**](#연산자)
-    + [단항 연산자](#단항-연산자)
-    + [산술 연산자](#산술-연산자)
-    + [비교 연산자](#비교-연산자)
-    + [논리 연산자](#논리-연산자)
-    + [삼항 연산자](#삼항-연산자)
-    + [복합 대입 연산자](#복합-대입-연산자)
-- [**제어문 (조건문 & 반복문)**](#제어문-(조건문-&-반복문))
-  * [조건문 Conditional Statement](#조건문-Conditional-Statement)
-    + [if문](#if문)
-    + [if-else문](#if-else문)
-    + [중첩 if문](#중첩-if문)
-    + [if - else if - else문](#if---else-if---else문)
-    + [do ~ while문](#do-~-while문)
-
+  - [단항 연산자](#단항-연산자)
+  - [산술 연산자](#산술-연산자)
+  - [비교 연산자](#비교-연산자)
+  - [논리 연산자](#논리-연산자)
+  - [삼항 연산자](#삼항-연산자)
+  - [복합 대입 연산자](#복합-대입-연산자)
+- [**제어문 (조건문 & 반복문)**](<#제어문-(조건문-&-반복문)>)
+  - [조건문 Conditional Statement](#조건문-Conditional-Statement)
+    - [if문](#if문)
+    - [if-else문](#if-else문)
+    - [중첩 if문](#중첩-if문)
+    - [if - else if - else문](#if---else-if---else문)
+    - [do ~ while문](#do-~-while문)
 
 ---
 
 # Java 기본
 
+- Java 간단히 사용하기
+
+`jshell`
+`/exit`
+
 ### 컴퓨터의 자료표현
 
-- 1 byte :  -128~127 표현
+- 1 byte : -128~127 표현
 - 2의 보수법
-    - 00001001 → 9
-    - 10001001 → -119 : 왼쪽 첫번째 자리가 1이면 마이너스라는 뜻. 128에서 나머지 1에 해당하는 숫자를 뺀다.
+  - 00001001 → 9
+  - 10001001 → -119 : 왼쪽 첫번째 자리가 1이면 마이너스라는 뜻. 128에서 나머지 1에 해당하는 숫자를 뺀다.
 
 <br>
 
 ### 자바 가상머신 (JVM, Java virtual machine)
 
 - **자바 바이트코드**를 실행할 수 있는 주체
-    - 자바 바이트코드 : **OS에 독립적**.
-    - JVM : OS마다 있음
-    - JRE : 실행 시 필요한 것
-    - JDK : JRE + 개발에 필요한 것
+  - 자바 바이트코드 : **OS에 독립적**.
+  - JVM : OS마다 있음
+  - JRE : 실행 시 필요한 것
+  - JDK : JRE + 개발에 필요한 것
 - Java 원시 프로그램 `.java` → 컴파일 → 자바 바이트 코드 `.class`
 - 모든 JVM은 자바 가상 머신 규격에 정의된대로 자바 바이트코드를 실행
 
@@ -60,7 +64,7 @@ cf) `.`:참조 연산자 “가지고 있는”
 
 - 실행 명령인 java를 실행 시 **가장 먼저 호출**되는 부분
 - Application 시작 → 특정 클래스의 main() 실행
-    - 만약, Application에서 main() 메소드가 없다면 절대로 실행 XXX
+  - 만약, Application에서 main() 메소드가 없다면 절대로 실행 XXX
 - `public static void matin(String [] args){ }`
 - main + Ctrl + Space + Enter
 
@@ -79,27 +83,27 @@ cf) `.`:참조 연산자 “가지고 있는”
 - `print` 출력
 - `println` 뒤에 자동 줄 바꿈
 - `printf("%d", 10)` 포맷 설정
-    - %d 정수
-    - %f 실수
-    - %c 문자
-    - %s 문자열
+  - %d 정수
+  - %f 실수
+  - %c 문자
+  - %s 문자열
 
 ```java
 public class intro01_Hello {
 	public static void main(String[] args) {
 		System.out.println("Hello SSAFY!!!");
 		System.out.print("Hello SSAFY!!!\n");
-		
+
 		System.out.printf("%4d\n", 10); //4칸을 확보한 뒤 오른쪽부터 차지 '  10'
 		System.out.printf("%-4d\n", 10); //4칸을 확보한 뒤 왼쪽부터 차지 '10  '
 		System.out.printf("%04d\n", 10); //4칸을 확보한 뒤 오른쪽부터 차지 (빈칸 0으로) '0010'
-		
+
 		System.out.printf("%f\n", 10.1); //10.100000
 		System.out.printf("%.2f\n", 10.1); //10.10
-		
+
 		System.out.printf("%s\n", "와우우우"); //문자열은 쌍따옴표 사용
 		System.out.printf("%c\n", '와'); //문자는 따옴표 사용
-		
+
 		System.out.printf("안녕하세요. 저는 %s입니다. 혈액형은 %c일 걸요?\n", "리자", 'A');
 	}
 }
@@ -129,16 +133,16 @@ public class intro01_Hello {
 
 ### Data Type-기본 자료형
 
-| 타입 | 세부타입 | 데이터형 | 크기 | 범위 |
-| --- | --- | --- | --- | --- |
-| 논리형 |  | boolean |  | true/flase |
-| 문자형 |  | char | 2byte | 0~65,535 |
-| 숫자형 | 정수형 | byte | 1byte | -128~127 |
-|  |  | short | 2byte | -32,768~32,767 |
-|  |  | int | 4byte | -2,147,483,648~2,147,483,647 |
-|  |  | long | 8byte | -9,223,372,036,854,775,808~9,223,372,036,854,775,807 |
-|  | 실수형 | float | 4byte |  |
-|  |  | double | 8byte |  |
+| 타입   | 세부타입 | 데이터형 | 크기  | 범위                                                 |
+| ------ | -------- | -------- | ----- | ---------------------------------------------------- |
+| 논리형 |          | boolean  |       | true/flase                                           |
+| 문자형 |          | char     | 2byte | 0~65,535                                             |
+| 숫자형 | 정수형   | byte     | 1byte | -128~127                                             |
+|        |          | short    | 2byte | -32,768~32,767                                       |
+|        |          | int      | 4byte | -2,147,483,648~2,147,483,647                         |
+|        |          | long     | 8byte | -9,223,372,036,854,775,808~9,223,372,036,854,775,807 |
+|        | 실수형   | float    | 4byte |                                                      |
+|        |          | double   | 8byte |                                                      |
 
 <br>
 
@@ -161,7 +165,6 @@ public class intro01_Hello {
 
 <br>
 
-
 ### 자료형의 크기 비교
 
 - 단순 크기가 아닌 표현 범위 기준!
@@ -172,27 +175,28 @@ public class intro01_Hello {
 ### 데이터 형변환
 
 - 묵시적 Implicit Casting
-    - **범위가 넓은 데이터 형**에 좁은 데이터 형을 대입
-    - ex) `byte b = 100; int i = b;`
+  - **범위가 넓은 데이터 형**에 좁은 데이터 형을 대입
+  - ex) `byte b = 100; int i = b;`
 - 명시적 Explicit Casting
-    - **범위가 좁은 데이터 형**에 넓은 데이터 형을 대입
-    - 형 변환 연산자 사용 `(타입) 값;`
-    - 데이터 손실 위험
-    - ex) `int i = 100; byte b = (byte) i;`
+  - **범위가 좁은 데이터 형**에 넓은 데이터 형을 대입
+  - 형 변환 연산자 사용 `(타입) 값;`
+  - 데이터 손실 위험
+  - ex) `int i = 100; byte b = (byte) i;`
 
 ---
 
 # 연산자
 
-| 종류 | 연산기호 | 결합 방향 | 우선순위 |
-| --- | --- | --- | --- |
-| 최우선 연산자 | () . [] |  |  |
-| 단항 연산자 | ++ — + - ~ ! (type) : 형변환 * / % | ← | 높음 |
-| 산술 연산자 | + - << >> >>> | → |  |
-| 비교 연산자 | < > <= >= instanceof == != | → |  |
-| 논리 연산자 | & ^ | && || | → |  |
-| 삼항 연산자 | ? : | → |  |
-| 대입 연산자 | = *= /= %= += -= <≤ >>= >>>= &= ^= ≠ | ← |  |
+| 종류          | 연산기호                              | 결합 방향 | 우선순위 |
+| ------------- | ------------------------------------- | --------- | -------- | --- | --- | --- |
+| 최우선 연산자 | () . []                               |           |          |
+| 단항 연산자   | ++ — + - ~ ! (type) : 형변환 \* / %   | ←         | 높음     |
+| 산술 연산자   | + - << >> >>>                         | →         |          |
+| 비교 연산자   | < > <= >= instanceof == !=            | →         |          |
+| 논리 연산자   | & ^                                   | &&        |          |     | →   |     |
+| 삼항 연산자   | ? :                                   | →         |          |
+| 대입 연산자   | = \*= /= %= += -= <≤ >>= >>>= &= ^= ≠ | ←         |          |
+
 - 만약 우선순위가 동급이면 작성된 순서로 실행.
 
 <br>
@@ -200,9 +204,9 @@ public class intro01_Hello {
 ### 단항 연산자
 
 - 증감 연산자 ++, —
-    - 피연산자의 값을 1 증가, 감소
-    - 전위형prefix ++i : 하고 연산
-    - 후위형postfix i-- : 연산 후 함
+  - 피연산자의 값을 1 증가, 감소
+  - 전위형prefix ++i : 하고 연산
+  - 후위형postfix i-- : 연산 후 함
 - 부호 연산자 +-
 - 논리 부정 연산자 !
 - 비트 부정 연산자 ~
@@ -210,23 +214,26 @@ public class intro01_Hello {
 
 ### 산술 연산자
 
-- * / % + -
+- - / % + -
 - 정수와 실수의 연산 → 실수
 
 ### 비교 연산자
 
 - 대소 비교 연산 : < > <= >= → boolean
 - 동등 비교 연산 : == != → boolean
-    - **string 변수 비교 : equals() 사용**
-	```python
-	String c = "Hi";
-	String d = "Hi";
-	String e = new String("Hi"); # 다른 메모리 공간에 생성
 
-	System.out.println(c == d); # true
-	System.out.println(c == e); # false
-	System.out.println(c.equals(e)); # true
-	```
+  - **string 변수 비교 : equals() 사용**
+
+  ```python
+  String c = "Hi";
+  String d = "Hi";
+  String e = new String("Hi"); # 다른 메모리 공간에 생성
+
+  System.out.println(c == d); # true
+  System.out.println(c == e); # false
+  System.out.println(c.equals(e)); # true
+  ```
+
 - 객체 타입 비교 연산 : instanceof
 
 ### 논리 연산자
@@ -244,7 +251,7 @@ public class intro01_Hello {
 
 ### 복합 대입 연산자
 
-- +=, -=, *=, /=…
+- +=, -=, \*=, /=…
 
 ---
 
@@ -280,7 +287,7 @@ if(조건식) {
 
 if(조건식)
 		실행할 문장1; // 실행할 문장이 하나라면 중괄호 생략 가능
-else 
+else
 		실행할 문장a; // 실행할 문장이 하나라면 중괄호 생략 가능
 ```
 
@@ -326,7 +333,7 @@ if(조건식) {
 switch(수식) {  // 수식에 올 수 있는 것 : byte, short, char, int, enum, String
 		case 값1:
 				실행문 A;
-				break;  
+				break;
 		case 값2:
 				실행문 B;
 				break;
@@ -439,7 +446,7 @@ do{
 - 크기가 고정되어 있음 (한번 생성된 후 크기 변경 불가)
 - 배열을 객체로 취급
 - 배열의 요소를 참조하려면 배열 이름과 색인을 조합하여 사용
-- `[stack 영역]` array 이름  → 주소로 참조 → `[heap 영역]` array 내용 : String 주소 → 주소로 참조 → String 내용
+- `[stack 영역]` array 이름 → 주소로 참조 → `[heap 영역]` array 내용 : String 주소 → 주소로 참조 → String 내용
 
 <br>
 
@@ -447,15 +454,13 @@ do{
 
 - 타입[] 변수 `int[] arr` ⭐
 - 타입 변수[] `int arr[]`
-    
-    
-    | 타입 | 배열이름 | 선언 |
-    | --- | --- | --- |
-    | int | iArr | int[] iArr; |
-    | char | cArr | char[] cArr; |
-    | boolean | bArr | boolean[] bArr; |
-    | String | strArr | String[] strArr; |
-    | Date | dateArr | Date[] dateArr; |
+  | 타입    | 배열이름 | 선언             |
+  | ------- | -------- | ---------------- |
+  | int     | iArr     | int[] iArr;      |
+  | char    | cArr     | char[] cArr;     |
+  | boolean | bArr     | boolean[] bArr;  |
+  | String  | strArr   | String[] strArr; |
+  | Date    | dateArr  | Date[] dateArr;  |
 
 <br>
 
@@ -464,17 +469,15 @@ do{
 - `자료형[] 배열이름 = {값1, 값2, 값3, 값4};` // 선언과 동시에 초기화
 - `배열이름 = new 자료형[] {값1, 값2, 값3, 값4};` // 배열 생성 및 값 초기화
 - `배열이름 = new 자료형[길이];` // 배열 생성
-    
-    
-    | 자료형 | 기본값 | 비고 |
-    | --- | --- | --- |
-    | boolean | false |  |
-    | char | ‘\u0000’ | 공백문자 |
-    | byte, short, int | 0 |  |
-    | long | 0L |  |
-    | float | 0.0f |  |
-    | double | 0.0 |  |
-    | 참조형 변수 (String, Date…) | null | 아무것도 참조하지 않음 |
+  | 자료형                      | 기본값   | 비고                   |
+  | --------------------------- | -------- | ---------------------- |
+  | boolean                     | false    |                        |
+  | char                        | ‘\u0000’ | 공백문자               |
+  | byte, short, int            | 0        |                        |
+  | long                        | 0L       |                        |
+  | float                       | 0.0f     |                        |
+  | double                      | 0.0      |                        |
+  | 참조형 변수 (String, Date…) | null     | 아무것도 참조하지 않음 |
 - 배열의 사용
 - index는 0부터
 - `배열이름.length` : 배열 길이 조회
@@ -517,7 +520,7 @@ import java.util.Arrays;
 
 public class arrayfirst {
 	public static void main(String[] args) {
-		
+
 		int[] arr = {77, 50, 10, 12, 64, 15};
 
 		int[] tmp = new int[arr.length*2]; // 반복문을 이용하여 복사
@@ -525,7 +528,7 @@ public class arrayfirst {
 			tmp[i] = arr[i];
 		}
 		System.out.println(Arrays.toString(tmp)); // [77, 50, 10, 12, 64, 15, 0, 0, 0, 0, 0, 0]
-		
+
 		int[] tmp2 = new int[arr.length*2];
 
 		System.arraycopy(arr, 0, tmp2, 0, arr.length);
