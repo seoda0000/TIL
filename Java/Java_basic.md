@@ -215,6 +215,7 @@ public class intro01_Hello {
 ### 산술 연산자
 
 - - / % + -
+- 정수와 정수의 연산 → 정수 `(ex 5/2 → 2)`
 - 정수와 실수의 연산 → 실수
 
 ### 비교 연산자
@@ -454,13 +455,13 @@ do{
 
 - 타입[] 변수 `int[] arr` ⭐
 - 타입 변수[] `int arr[]`
-  | 타입    | 배열이름 | 선언             |
+  | 타입 | 배열이름 | 선언 |
   | ------- | -------- | ---------------- |
-  | int     | iArr     | int[] iArr;      |
-  | char    | cArr     | char[] cArr;     |
-  | boolean | bArr     | boolean[] bArr;  |
-  | String  | strArr   | String[] strArr; |
-  | Date    | dateArr  | Date[] dateArr;  |
+  | int | iArr | int[] iArr; |
+  | char | cArr | char[] cArr; |
+  | boolean | bArr | boolean[] bArr; |
+  | String | strArr | String[] strArr; |
+  | Date | dateArr | Date[] dateArr; |
 
 <br>
 
@@ -469,15 +470,15 @@ do{
 - `자료형[] 배열이름 = {값1, 값2, 값3, 값4};` // 선언과 동시에 초기화
 - `배열이름 = new 자료형[] {값1, 값2, 값3, 값4};` // 배열 생성 및 값 초기화
 - `배열이름 = new 자료형[길이];` // 배열 생성
-  | 자료형                      | 기본값   | 비고                   |
+  | 자료형 | 기본값 | 비고 |
   | --------------------------- | -------- | ---------------------- |
-  | boolean                     | false    |                        |
-  | char                        | ‘\u0000’ | 공백문자               |
-  | byte, short, int            | 0        |                        |
-  | long                        | 0L       |                        |
-  | float                       | 0.0f     |                        |
-  | double                      | 0.0      |                        |
-  | 참조형 변수 (String, Date…) | null     | 아무것도 참조하지 않음 |
+  | boolean | false | |
+  | char | ‘\u0000’ | 공백문자 |
+  | byte, short, int | 0 | |
+  | long | 0L | |
+  | float | 0.0f | |
+  | double | 0.0 | |
+  | 참조형 변수 (String, Date…) | null | 아무것도 참조하지 않음 |
 - 배열의 사용
 - index는 0부터
 - `배열이름.length` : 배열 길이 조회
