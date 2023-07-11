@@ -34,8 +34,19 @@
 
 - Java 간단히 사용하기
 
-`jshell`
-`/exit`
+- 명령프롬프트에 `jshell` 시작하기
+- `/exit` 끝내기
+- Ctrl+A : 문장 맨앞으로
+- Ctrl+E : 문장 맨끝으로
+- Ctrl+R : 검색
+- jshell에서는 자동으로 변수를 할당한다.
+
+```
+jshell> 3 * 4
+$2 ==> 12
+jshell> $2
+$2 ==> 12
+```
 
 ### 컴퓨터의 자료표현
 
@@ -104,7 +115,15 @@ public class intro01_Hello {
 		System.out.printf("%s\n", "와우우우"); //문자열은 쌍따옴표 사용
 		System.out.printf("%c\n", '와'); //문자는 따옴표 사용
 
-		System.out.printf("안녕하세요. 저는 %s입니다. 혈액형은 %c일 걸요?\n", "리자", 'A');
+		System.out.printf("Hi I'm %s. My score is %c?\n", "Liza", 'A');
+		//Hi I'm Liza. My score is A?$7 ==> java.io.PrintStream@49993335
+
+		System.out.printf("Hi I'm %s. My score is %c?\n", "Liza", 'A').println();
+		//Hi I'm Liza. My score is A?
+
+		System.out.printf("%d + %d + %d", 5, 6, 7, 8).println()
+		//5 + 6 + 7
+		//변수가 모자라면 에러, 많으면 앞에서부터
 	}
 }
 ```
@@ -157,6 +176,19 @@ public class intro01_Hello {
 - ex) `age = 30;`, `name = “철수”`
 - 기본 자료형은 값을 저장, 참조 자료형은 값이 있는 주소가 저장
 - `b = age;` 기초 자료형에서는 값을 복사해서 저장
+- 소수점 표현 : float과 double은 정확하지 않다. 회계는 big decimal 등을 활용해야 한다.
+
+```java
+float f = 4.0f // float는 32bit : 선언시 f 붙여줘야 함
+double d = 67.0 // double은 64bit
+```
+
+- 문자열 표현 : char은 한글자만 저장
+
+```java
+char a = 'A'
+char a = "A" // 오류. 작은 따옴표만 사용해야 한다.
+```
 
 ### 초기화
 
@@ -181,7 +213,12 @@ public class intro01_Hello {
   - **범위가 좁은 데이터 형**에 넓은 데이터 형을 대입
   - 형 변환 연산자 사용 `(타입) 값;`
   - 데이터 손실 위험
-  - ex) `int i = 100; byte b = (byte) i;`
+  - ex) `int i = 100; byte b = (byte) i;` // b = 28(최대값)
+
+```java
+"1" + 2 // "12"
+"1" + (2 + 3) // "15"
+```
 
 ---
 
@@ -225,7 +262,7 @@ public class intro01_Hello {
 
   - **string 변수 비교 : equals() 사용**
 
-  ```python
+  ```java
   String c = "Hi";
   String d = "Hi";
   String e = new String("Hi"); # 다른 메모리 공간에 생성
@@ -253,6 +290,12 @@ public class intro01_Hello {
 ### 복합 대입 연산자
 
 - +=, -=, \*=, /=…
+
+### Math
+
+- `Math.random()`
+- `Math.min(3, 5)`
+- `Math.max(3, 5)`
 
 ---
 
@@ -438,6 +481,10 @@ do{
 ### break
 
 ### continue
+
+---
+
+# 메서드 Method
 
 ---
 
