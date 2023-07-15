@@ -40,6 +40,10 @@
 - Ctrl+E : 문장 맨끝으로
 - Ctrl+R : 검색
 - jshell에서는 자동으로 변수를 할당한다.
+- `/methods` : 전체 메서드 보기
+- `/save backup.txt` txt파일에 저장하기
+- `/edit sayHello` 메서드 수정하기
+- `/list ClassName` Class 코드 확인하기
 
 ```
 jshell> 3 * 4
@@ -76,10 +80,22 @@ cf) `.`:참조 연산자 “가지고 있는”
 - 실행 명령인 java를 실행 시 **가장 먼저 호출**되는 부분
 - Application 시작 → 특정 클래스의 main() 실행
   - 만약, Application에서 main() 메소드가 없다면 절대로 실행 XXX
-- `public static void matin(String [] args){ }`
+- `public static void main(String [] args){ }`
 - main + Ctrl + Space + Enter
 
 <br>
+
+### 메서드 Method
+
+`반환형태 메서드이름() {}`
+void : return이 없는 메서드
+
+```java
+void sayHello(int noOfTimes) {
+	for (int i = 1, i <= noOfTimes, i++)
+	System.out.println("Hello World")
+}
+```
 
 ### 주석 Coment
 
@@ -481,10 +497,6 @@ do{
 ### break
 
 ### continue
-
----
-
-# 메서드 Method
 
 ---
 
