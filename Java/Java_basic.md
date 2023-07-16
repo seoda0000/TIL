@@ -44,6 +44,8 @@
 - `/save backup.txt` txt파일에 저장하기
 - `/edit sayHello` 메서드 수정하기
 - `/list ClassName` Class 코드 확인하기
+- `javac 파일명.java` 컴파일
+- `java Planet` 실행하기
 
 ```
 jshell> 3 * 4
