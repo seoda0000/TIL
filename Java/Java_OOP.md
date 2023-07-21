@@ -50,11 +50,11 @@ public class Person {
 	String name; // 인스턴스 변수
 	int age;
 	String hobby;
-	
+
 	// 동작
 	public void info() {
 		System.out.println("나의 이름은 " + name + "입니다.");
-		System.out.println("나이는 " + age + "세, 취미는 " + hobby + " 입니다.");	
+		System.out.println("나이는 " + age + "세, 취미는 " + hobby + " 입니다.");
 	}
 }
 ```
@@ -64,7 +64,7 @@ public class Person {
 ```java
 public class FunctionTest1 {
 	public static void main(String[] args) {
-		
+
 		System.out.println("아침에 일어난다.");
 		System.out.println("교육장으로 대중교통을 이용하여 이동한다.");
 		System.out.println("오전 수업을 듣는다.");
@@ -72,37 +72,37 @@ public class FunctionTest1 {
 		System.out.println("오후 수업을 듣는다.");
 		System.out.println("집으로 대중교통을 이용하여 이동한다.");
 		System.out.println("잔다.");
-		
+
 		System.out.println("============================");
-		
+
 		boolean homework;
-		
+
 		System.out.println("아침에 일어난다.");
 		transfer("제주도", "비행기");
 		homework = education();
-		
+
 		if(homework)
 				System.out.println("과제를 해결한다.");
-		
+
 		transfer("집", "배");
 		System.out.println("잔다.");
 	}
-	
+
 	public static boolean education() {
 		System.out.println("오전 수업을 듣는다.");
 		System.out.println("점식을 먹는다.");
 		System.out.println("오후 수업을 듣는다.");
-		
+
 		// 과제 랜덤 발생기.
 		Random random = new Random();
 		return random.nextBoolean();
-		
+
 		/* 이래도 됨
 		Random random = ;
 		return new Random().nextBoolean();
 		*/
 	}
-	
+
 	public static void transfer(String 장소, String 탈것) {
 		System.out.println(장소+"(으)로 "+탈것+"(을)를 이용하여 이동한다.");
 	}
