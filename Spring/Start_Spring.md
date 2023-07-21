@@ -156,15 +156,56 @@ public class PacmanGame implements GamingConsole {
 	public void down() {
 		System.out.println("Eat Down");
 	}
+}
+```
+
+- @Primary: 가장 먼저 참조
+- @Qualifier: 이름을 붙여 참조
+
+```java
+@Component
+public class GameRunner {
+	private GamingConsole game;
+
+	public GameRunner(@Qualifier("SuperContraGameQualifier")GamingConsole game) {
+		this.game = game;
+	}
+
+	public void run() {
+
+		System.out.println("Running game: " + game);
+		game.up();
+		game.down();
+		game.left();
+		game.right();
+
+	}
+
+}
+```
+
+```java
+@Component
+@Qualifier("SuperContraGameQualifier")
+public class SuperContraGame implements GamingConsole {
 
 	@Override
-	public void left() {
-		System.out.println("Eat Left");
+	public void up() {
+		System.out.println("up");
 	}
 
 	@Override
-	public void right() {
-		System.out.println("Eat Right");
+	public void down() {
+		System.out.println("Sit down");
 	}
 }
+```
+
+- @Autowired: 알아서 찾기. 클래스 정의에 Qualifier로 명시하지 않아도 됨
+
+```java
+@Component
+class Algorithm
+	@Autowired @Qualifier("radixSortQualifier")
+	private TheAlgorithm wowwow;
 ```
