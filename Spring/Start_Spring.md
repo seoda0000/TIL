@@ -69,6 +69,8 @@ class JavaBean() implements Serializable {
 
 ### 스프링 빈
 
+스프링 프레임워크가 관리하는 모든 객체
+
 ```java
 record Person(String name, int age, Address address) {
 };
@@ -122,7 +124,15 @@ public class HelloWorldConfiguration {
 
 ```
 
-- @Component 이용 : 자동 와이어링
+---
+
+- Dependency : 클래스를 구동하는데 필요한 다른 클래스
+- @Component : 클래스에 @Component를 추가하면 클래스와 인스턴스는 스프링 프레임워크가 관리하게 된다.
+- @ComponentScan : 특정 클래스에서 Component를 검색하여 스프링 빈 생성
+- Dependency Injection : 빈과 의존성을 확인하고 이를 Wiring 한다
+- IoC : 제어 반전
+- IoC Container : 빈과 의존성의 생명 주기를 관리하는 스프링 프레임워크 컴포넌트
+- Autowiring : 스프링 빈에 대한 의존성을 와이어링하는 과정 전체
 
 ```java
 @Configuration
@@ -209,3 +219,13 @@ class Algorithm
 	@Autowired @Qualifier("radixSortQualifier")
 	private TheAlgorithm wowwow;
 ```
+
+## @Component vs @Bean
+
+|                       | @Component                                    | @Bean                                                        |
+| --------------------- | --------------------------------------------- | ------------------------------------------------------------ |
+| 어디서                | 모든 Java Class                               | Spring Configuration Classes                                 |
+| 사용하기 편한 정도    | 매우 쉬움. annotation 추가.                   | 모든 코드 작성 필요                                          |
+| Autowiring            | Field, Setter, Constructor Injection에서 가능 | method call이나 method parameters에서 가능                   |
+| beans를 누가 만드는지 | Spring Framework                              | 개발자                                                       |
+| 추천 용도             | 어플리케이션 코드를 인스턴스화할 때           | 커스텀 비즈니스 로직 / 서드파티 라이브러리를 위한 인스턴스화 |
