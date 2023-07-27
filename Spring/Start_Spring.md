@@ -126,13 +126,45 @@ public class HelloWorldConfiguration {
 
 ---
 
-- Dependency : 클래스를 구동하는데 필요한 다른 클래스
+# Spring Core
+
+### Dependency
+
+클래스를 구동하는데 필요한 다른 클래스
+
+### Dependency Injection
+
+빈과 의존성을 확인하고 이를 Wiring 하는 전반적인 과정. IoC라고도 한다.
+
+### IoC
+
+제어 반전
+
+- 생성자 주입
+
+생성자를 호출해서 의존성 주입
+
+- 수정자 주입
+
+수정자를 호출해서 의존성 주입
+
+- 필드 주입
+
+생성자와 수정자가 없는 경우 reflection을 사용해서 의존성을 주입한다.
+
+### IoC Container
+
+빈과 의존성의 생명 주기를 관리하는 스프링 프레임워크 컴포넌트
+
+- Bean Factory : 기본 Spring IoC Container
+- Application Context : 기업에 특화된 기능을 갖춘 고급 스프링 IoC 컨테이너
+
+### Autowiring
+
+스프링 빈에 대한 의존성을 와이어링하는 과정 전체
 - @Component : 클래스에 @Component를 추가하면 클래스와 인스턴스는 스프링 프레임워크가 관리하게 된다.
 - @ComponentScan : 특정 클래스에서 Component를 검색하여 스프링 빈 생성
-- Dependency Injection : 빈과 의존성을 확인하고 이를 Wiring 한다
-- IoC : 제어 반전
-- IoC Container : 빈과 의존성의 생명 주기를 관리하는 스프링 프레임워크 컴포넌트
-- Autowiring : 스프링 빈에 대한 의존성을 와이어링하는 과정 전체
+
 
 ```java
 @Configuration
