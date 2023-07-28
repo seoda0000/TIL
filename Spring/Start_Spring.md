@@ -229,3 +229,5 @@ class Algorithm
 | Autowiring            | Field, Setter, Constructor Injection에서 가능 | method call이나 method parameters에서 가능                   |
 | beans를 누가 만드는지 | Spring Framework                              | 개발자                                                       |
 | 추천 용도             | 어플리케이션 코드를 인스턴스화할 때           | 커스텀 비즈니스 로직 / 서드파티 라이브러리를 위한 인스턴스화 |
+
+---
