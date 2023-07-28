@@ -1,0 +1,4 @@
+*.vert linguist-vendored
+*.glsl linguist-vendored
+*.frag linguist-vendored
+*.ipynb linguist-vendored
