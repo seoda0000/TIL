@@ -30,7 +30,6 @@ class Pojo {
 ### Java bean
 
 ```java
-
 class JavaBean() implements Serializable {
 
     // 1. public no-arg constructor
@@ -58,12 +57,6 @@ class JavaBean() implements Serializable {
     public String setNumber(int number) {
         return this.number = number
     }
-
-
-
-
-
-
 }
 ```
 
@@ -106,22 +99,17 @@ public class HelloWorldConfiguration {
 		return new Person(name, age, address3);
 	}
 
-
 	@Bean(name="address2")
 	public Address address() {
 		return new Address("Baker Street", "London");
 	}
-
 
 	@Bean(name="address3")
 	public Address address3() {
 		return new Address("Centraltown Street", "Suwon");
 	}
 
-
-
 }
-
 ```
 
 ---
@@ -162,9 +150,34 @@ public class HelloWorldConfiguration {
 ### Autowiring
 
 스프링 빈에 대한 의존성을 와이어링하는 과정 전체
-- @Component : 클래스에 @Component를 추가하면 클래스와 인스턴스는 스프링 프레임워크가 관리하게 된다.
-- @ComponentScan : 특정 클래스에서 Component를 검색하여 스프링 빈 생성
 
+### @Component
+
+- CDI : @Named
+
+클래스에 @Component를 추가하면 클래스와 인스턴스는 스프링 프레임워크가 관리하게 된다.
+
+```java
+
+@Component
+public class PacmanGame implements GamingConsole {
+
+	@Override
+	public void up() {
+		System.out.println("Eat Up");
+	}
+
+	@Override
+	public void down() {
+		System.out.println("Eat Down");
+	}
+}
+
+```
+
+### @ComponentScan
+
+특정 클래스에서 Component를 검색하여 스프링 빈 생성
 
 ```java
 @Configuration
@@ -182,27 +195,11 @@ public class GamingAppLauncherApplication {
 		}
 	}
 }
-
 ```
 
-```java
-@Component
-public class PacmanGame implements GamingConsole {
+### @Primary: 가장 먼저 참조
 
-	@Override
-	public void up() {
-		System.out.println("Eat Up");
-	}
-
-	@Override
-	public void down() {
-		System.out.println("Eat Down");
-	}
-}
-```
-
-- @Primary: 가장 먼저 참조
-- @Qualifier: 이름을 붙여 참조
+### @Qualifier: 이름을 붙여 참조
 
 ```java
 @Component
@@ -222,11 +219,11 @@ public class GameRunner {
 		game.right();
 
 	}
-
 }
 ```
 
 ```java
+
 @Component
 @Qualifier("SuperContraGameQualifier")
 public class SuperContraGame implements GamingConsole {
@@ -243,7 +240,11 @@ public class SuperContraGame implements GamingConsole {
 }
 ```
 
-- @Autowired: 알아서 찾기. 클래스 정의에 Qualifier로 명시하지 않아도 됨
+### @Autowired
+
+- CDI : @Inject
+
+알아서 찾기. 클래스 정의에 Qualifier로 명시하지 않아도 됨
 
 ```java
 @Component
@@ -251,6 +252,8 @@ class Algorithm
 	@Autowired @Qualifier("radixSortQualifier")
 	private TheAlgorithm wowwow;
 ```
+
+---
 
 ## @Component vs @Bean
 
@@ -263,3 +266,98 @@ class Algorithm
 | 추천 용도             | 어플리케이션 코드를 인스턴스화할 때           | 커스텀 비즈니스 로직 / 서드파티 라이브러리를 위한 인스턴스화 |
 
 ---
+
+## 싱글톤 vs 프로토타입
+
+```java
+@Component
+
+class NormalClass {
+}
+
+@Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+@Component
+class PrototypeClass {
+
+}
+```
+
+### 싱글톤(기본)
+
+- 매번 특정 빈의 동일한 인스턴스 출력
+- 무상태유지, 애플리케이션 전체
+
+### 프로토타입
+
+- 매번 특정 빈의 새로운 인스턴스 출력
+- 상태유지가 되고 사용자 정보를 갖고 있는 빈을 생성하려는 경우
+
+### 자바 싱글톤 vs 스프링 싱글톤
+
+- 자바 싱글톤 : 설계 패턴 관점. 자바 가상머신당 1개의 객체 인스턴스
+- 스프링 싱글톤 : 스프링 IoC 컨테이너당 1개의 객체 인스턴스가 주어지는 것
+- 자바가 여러개의 IoC 컨테이너를 구동한다면 둘은 다른 개념이다. 보통 하나만 구동하긴 함.
+
+## PostConstruct 및 PreDestroy
+
+```java
+@Component
+class SomeClass {
+	private SomeDependency someDependency;
+
+	public SomeClass(SomeDependency someDependency) {
+		super();
+		this.someDependency = someDependency;
+		System.out.println("All dependencies are ready!");
+	}
+
+	@PostConstruct // 의존성 주입이 완료되어 초기화가 수행된 후 실행되어야 하는 메서드에서 사용
+	public void initialize() {
+		someDependency.getReady();
+	}
+
+	@PreDestroy // 인스턴스가 컨테이너에 의해 제거되고 있다는 신호에 대한 콜백 알림으로서 메소드에서 쓰임. 일반적으로 보유하고 있던 리소스를 해제할 때 사용.
+	public void cleanup() {
+		System.out.println("Clean up");
+	}
+
+}
+
+@Component
+class SomeDependency {
+
+	public void getReady() {
+		System.out.println("Some logic using SomeDependency");
+
+	}
+
+}
+```
+
+### @PostConstruct
+
+- 의존성 주입이 완료되어 초기화가 수행된 후 실행되어야 하는 메서드에서 사용
+
+### @PreDestroy
+
+- 인스턴스가 컨테이너에 의해 제거되고 있다는 신호에 대한 콜백 알림으로서 메소드에서 쓰임
+- 일반적으로 보유하고 있던 리소스를 해제할 때 사용
+
+---
+
+## 스프링 annotation 정리
+
+### @Component
+
+모든 클래스에 추가 가능
+
+제너릭 어노테이션
+
+- @Service : 비즈니스 로직을 가진 클래스를 나타냄
+- @Controller : 웹 애플리케이션 등 컨트롤러를 나타냄
+- @Repository : DB에 데이터 저장, 조작, 검색 등을 요청하는 경우
+
+### 가장 정확한 annotation을 사용하자.
+
+- 의도에 대해 더 많은 정보를 줄 수 있다.
+- 관점 지향 프로그래밍을 사용하여 어노테이션을 감지하고 추가 행동을 추가할 수 있다.
