@@ -6,6 +6,7 @@ import java.util.*;
 
 public class MemoryMemberRepository implements MemberRepository{
 
+//    static은 class에 붙어있는 거라 인스턴스마다 공유됨
     private static Map<Long, Member> store = new HashMap<>();
     private static long sequence = 0L;
 
