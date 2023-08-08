@@ -19,3 +19,9 @@ gradlew build
 
 - gradle 지우기
   ./gradlew clean
+
+---
+
+### 정적 컨텐츠
+
+static 폴더 내부의 파일 명 -> url로 바로 접근 가능
