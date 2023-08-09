@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
-@Repository
+
 public class MemoryMemberRepository implements MemberRepository{
 
 //    static은 class에 붙어있는 거라 인스턴스마다 공유됨
