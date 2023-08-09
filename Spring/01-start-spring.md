@@ -8,7 +8,12 @@ Spring Container, IOC Container
 - Bean Factory
   - 기본 스프링 컨테이너
 - Application Context
+
   - 특정 기능(웹 등)을 위해 고도화된 스프링 컨테이너
+
+### 중요
+
+- 스프링은 스프링 컨테이너에 스프링 빈을 등록할 때, 기본으로 싱글톤으로 등록한다. 같은 스프링 빈이면 모두 같은 인스턴스다.
 
 # POJO와 자바 빈, 스프링 빈
 
