@@ -25,6 +25,7 @@ public class Member {
     private Address address;
 
     @OneToMany(mappedBy = "member") // 읽기 전용
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>(); // 가급적 변경 x
+
 
 }
