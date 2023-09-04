@@ -1,17 +1,15 @@
 # REST API
 
-
-
 # HTTP
 
 - HyperText Transfer Protocol : 클라이언트-서버 프로토콜
-    - 요청(request)
-        - 클라이언트에 의해 전송되는 메시지
-    - 응답(response)
-        - 서버에서 응답으로 전송되는 메시지
+  - 요청(request)
+    - 클라이언트에 의해 전송되는 메시지
+  - 응답(response)
+    - 서버에서 응답으로 전송되는 메시지
 - 기본 특성
-    - Stateless 무상태
-    - Connectionless
+  - Stateless 무상태
+  - Connectionless
 - 쿠키와 세션을 통해 서버 상태를 요청과 연결되도록 함
 
 <br>
@@ -34,6 +32,7 @@
 
 - DB를 hit해서 update할 때 (모든 데이터를 수정)
 - 요청한 주소의 리소스를 수정
+- 멱등성(같은 요청을 여러번 수행하더라도 동일한 결과를 생성하는 성질) 만족
 
 ### 4. DELETE
 
@@ -49,11 +48,11 @@
 ## HTTP response status codes
 
 - 특정 HTTP 요청이 성공적으로 완료되었는지 여부를 나타냄
-    1. Informational responses (100-199)
-    2. Successful responses (200-299)
-    3. Redirection responses (300-399)
-    4. Client error responses (400-499)
-    5. Server error responses (500-599)
+  1. Informational responses (100-199)
+  2. Successful responses (200-299)
+  3. Redirection responses (300-399)
+  4. Client error responses (400-499)
+  5. Server error responses (500-599)
 
 <br>
 
@@ -70,10 +69,10 @@
 
 - Uniform Resource Identifier 통합 자원 식별자
 - 인터넷에서 하나의 리소스를 가리키는 문자열
-    - URN
-        - 고유한 이름으로 자원을 식별 ex) ISBN
-    - URL
-        - 자원의 위치로 자원을 식별
+  - URN
+    - 고유한 이름으로 자원을 식별 ex) ISBN
+  - URL
+    - 자원의 위치로 자원을 식별
 
 ## URL
 
@@ -99,20 +98,22 @@
 `www.example.com:80`
 
 - 권한
+
 1. Domain Name
-    
-    `www.example.com`
-    
-    - 요청 중인 웹 서버를 나타냄
-    - 어떤 웹 서버가 요구되는지를 가리키며 직접 IP 주소를 사용하는 것도 가능
+
+   `www.example.com`
+
+   - 요청 중인 웹 서버를 나타냄
+   - 어떤 웹 서버가 요구되는지를 가리키며 직접 IP 주소를 사용하는 것도 가능
+
 2. Port
-    `:80`
-    
-    - 웹 서버의 리소스에 접근하는데 사용되는 기술적인 문(Gate)
-    - HTTP 프로토콜의 표준 포트 (유일하게 생략 가능)
-        - HTTP : 80
-        - HTTPS : 443
-    - Django의 경우 8000(80+00)이 기본 포트로 설정
+   `:80`
+
+   - 웹 서버의 리소스에 접근하는데 사용되는 기술적인 문(Gate)
+   - HTTP 프로토콜의 표준 포트 (유일하게 생략 가능)
+     - HTTP : 80
+     - HTTPS : 443
+   - Django의 경우 8000(80+00)이 기본 포트로 설정
 
 ### Path
 
@@ -145,7 +146,7 @@
 # API
 
 - Application Programming Interface 애플리케이션과 프로그래밍으로 소통하는 방법
-    - 개발자가 복잡한 기능을 보다 쉽게 만들 수 있도록 프로그래밍 언어로 제공되는 구성
+  - 개발자가 복잡한 기능을 보다 쉽게 만들 수 있도록 프로그래밍 언어로 제공되는 구성
 - API를 제공하는 애플리케이션과 다른 소프트웨어 및 하드웨어 등의 것들 사이의 간단한 계약(인터페이스)
 - API는 복잡한 코드를 추상화하여 대신 사용할 수 있는 몇 가지 더 쉬운 구문을 제공
 
@@ -165,6 +166,7 @@
 - API Server를 개발하기 위한 일종의 소프트웨어 설계 방법론
 - “소프트웨어 아키텍쳐 디자인 제약 모음”
 - 자원을 정의하고 자원에 대한 주소를 지정하는 전반적인 방법을 서술
+
 1. 자원을 식별 - URI
 2. 자원에 대한 행위 - HTTP Methods
 3. 자원을 표현(자원과 행위를 통해 궁극적으로 표현되는 추상화된 결과물) - JSON
@@ -194,8 +196,8 @@
 
 - JSON-encoded response를 만드는 클래스
 - `safe` parameter
-    - 기본 값  True : dict 인스턴스만 허용
-    - False : 모든 타입의 객체를 serialization 할 수 있다.
+  - 기본 값 True : dict 인스턴스만 허용
+  - False : 모든 타입의 객체를 serialization 할 수 있다.
 
 ```python
 # articles/views.py
@@ -205,7 +207,7 @@ from django.http.response import JsonResponse
 def article_json_1(request):
 	articles = Article.objects.all()
 	article_json = []
-	
+
 	for article in articles:
 		articles_json.append(
 			{
@@ -215,7 +217,7 @@ def article_json_1(request):
 			}
 		)
 	return JsonResponse(articles_json, safe=False)
-	
+
 ```
 
 <br>
@@ -226,8 +228,8 @@ def article_json_1(request):
 
 - 직렬화
 - 데이터 구조나 객체 상태를 컴퓨터 환경에 저장하고, 나중에 재구성할 수 있는 포맷으로 변환하는 과정
-    - 어떠한 언어나 환경에서도 **나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정**
-    - 변환 포맷 : json, xml, yaml 등
+  - 어떠한 언어나 환경에서도 **나중에 다시 쉽게 사용할 수 있는 포맷으로 변환하는 과정**
+  - 변환 포맷 : json, xml, yaml 등
 - Serialization in Django : 변환 가능한 파이썬 데이터 타입으로 만들어줌
 
 ### DRF (Django REST framework)
@@ -244,16 +246,17 @@ from django.core import serializers
 def article_json_2(request):
 	articles = Article.objects.all()
 	data = serializers.serialize('json', articles)
-	return HTTPResponse(data, content_type='application/json')	
+	return HTTPResponse(data, content_type='application/json')
 ```
 
 ```python
 class ArticleSerializer(serilaizers.ModelSerializer):
-		
+
 		class Meta:
 				model = Article
 				fields = '__all__'
 ```
+
 <br>
 
 ## ModelSerializer
@@ -322,7 +325,7 @@ def article_detail(request, article_pk):
 - 유효하지 않은 데이터에 대해 예외 발생시키기
 - 유효성 검사 오류가 있는 경우 ValidationError 예외를 발생
 - DRF에서 제공하는 기본 예외 처리기에 의해 자동으로 처리
-    - 기본적으로 `HTTP 400` 응답을 반환
+  - 기본적으로 `HTTP 400` 응답을 반환
 
 ```python
 # views.py
@@ -462,6 +465,7 @@ class Comment(models.Model):
 	article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
 	content = models.TextField()
 ```
+
 <br>
 
 ### 2. Nested relationships
@@ -505,6 +509,7 @@ class ArticleSerializer(serializers.ModelSerializer):
 		model = Article
 		fields = '__all__'
 ```
+
 <br>
 
 ### `source`
@@ -524,8 +529,8 @@ class ArticleSerializer(serializers.ModelSerializer):
 # Django shortcuts dunctions
 
 - `django.shortcuts` 패키지 : 개발에 도움될 수 있는 여러 함수와 클래스 제공
-    - `render()`, `redirect()`
-    - `get_object_or_404()`, `get_list_or_404()` → 올바른 에러 전달을 위해
+  - `render()`, `redirect()`
+  - `get_object_or_404()`, `get_list_or_404()` → 올바른 에러 전달을 위해
 
 <br>
 
