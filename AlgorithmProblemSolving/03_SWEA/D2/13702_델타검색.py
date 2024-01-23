@@ -10,11 +10,12 @@ NxN 리스트에 있는 모든 요소들에 대해서 위처럼 조사하여 이
 
 '''
 import sys
+
 sys.stdin = open('s_list2_연습문제1_iin.txt', 'r')
 
 T = int(input())
 
-for case in range(1, T+1):
+for case in range(1, T + 1):
     N = int(input())
     arr = [list(map(int, input().split())) for _ in range(N)]
 
@@ -28,9 +29,31 @@ for case in range(1, T+1):
                 nj = j + dj
 
                 # 범위를 벗어났는지 파악 후 계산
-                if 0 <= ni <N and 0 <= nj < N:
+                if 0 <= ni < N and 0 <= nj < N:
                     ans += abs(arr[i][j] - arr[ni][nj])
 
     print(f"#{case}", ans)
 
+"""
+아이디어를 적용한 풀이
+"""
 
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    arr = [list(map(int, input().split())) for _ in range(N)]
+    ans = 0
+
+    # 절댓값은 언제나 두 번 더해진다는 것에 주목
+
+    # 가로 인접 계산
+    for i in range(N):
+        for j in range(N - 1):
+            ans += abs(arr[i][j] - arr[i][j + 1]) * 2
+
+    # 세로 인접 계산
+    for j in range(N):
+        for i in range(N - 1):
+            ans += abs(arr[i][j] - arr[i + 1][j]) * 2
+
+    print(f'#{test_case} {ans}')
