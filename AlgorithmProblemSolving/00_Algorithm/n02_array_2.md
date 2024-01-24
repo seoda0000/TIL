@@ -237,16 +237,16 @@ def binarySearch (a, N, key):
 ```python
 # 재귀 함수 이용
 def binarySearch (a, low, high, key):
-		if low > high : # 검색 실패
+		if start > end : # 검색 실패
 				return False
 		else:
 				middle = (start+end) // 2
 				if a[middle] == key :  # 검색 성공
 						return true
 				elif a[middle] > key:
-						return binarySearch(a, low, middle-1, key)
+						return binarySearch(a, start, middle-1, key)
 				elif a[middle] < key:
-						return binarySearch(a, middle+1, high, key)
+						return binarySearch(a, middle+1, end, key)
 ```
 
 ---
