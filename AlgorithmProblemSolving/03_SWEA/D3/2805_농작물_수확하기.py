@@ -29,3 +29,25 @@ for tc in range(1, T+1):
         for j in range(-N+i+1, N-i):
             ans += arr[i][N//2+j]
     print(f'#{tc}', ans)
+
+"""
+모든 영역 한번에 계산하기
+"""
+
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    arr = [list(map(int, list(input()))) for _ in range(N)]
+    center = N // 2  # 중앙값
+    ans = 0
+    for n in range(N):
+        num = min(N-n-1, n)      # (행에 따라 중앙값을 중심으로 추가되어야 할 열 / 2)
+
+        temp = arr[n][center]        # 중앙값을 먼저 더해준다
+
+        for i in range(1, num+1):  # 양 옆의 추가 값을 더해준다
+            temp += arr[n][center-i] + arr[n][center+i]
+
+        ans += temp
+
+    print(f'#{test_case} {ans}')
