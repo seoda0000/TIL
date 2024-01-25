@@ -62,3 +62,29 @@ for _ in range(10):
 * range 값을 실수로 11로 넣어서 계속 런타임 에러가 떴다. 주의하자...
 * 0으로 둘러쌌다는 사실을 잊고 마지막에 x 좌표 처리를 하지 않았다. 늘 인덱스에 주의하자.
 
+
+* 델타 검색과 visited 배열을 활용한 풀이
+```commandline
+T = 10
+for test_case in range(1, T + 1):
+    _ = int(input())
+    arr = [list(map(int, input().split())) for _ in range(100)]
+    v = [[0] * 100 for _ in range(100)]
+    di = [0, 0, -1]
+    dj = [1, -1, 0]
+    ans = 100
+    si = 99
+    sj = arr[-1].index(2)
+    v[si][sj] = 1
+
+    while si != 0:
+        for n in range(3):
+            ni, nj = si + di[n], sj + dj[n]
+            if 0 <= ni < 100 and 0 <= nj < 100 and v[ni][nj] == 0:
+                if arr[ni][nj] == 1:
+                    si, sj = ni, nj
+                    v[ni][nj] = 1
+                    break
+
+    print(f'#{test_case} {sj}')
+```
