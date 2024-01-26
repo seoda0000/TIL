@@ -43,3 +43,32 @@ for y in range(len(ylst)-1):
     if maxh < h:        # 최대 세로 길이 찾기
         maxh = h
 print(maxw * maxh)
+
+
+"""
+1년 후 풀이
+"""
+
+W, H = map(int, input().split())
+N = int(input())
+wlst = [0, H]
+hlst = [0, W]
+wlen = hlen = 0
+
+for _ in range(N):
+    a, b = map(int, input().split())
+    if a:
+        hlst.append(b)
+    else:
+        wlst.append(b)
+
+wlst.sort()
+hlst.sort()
+
+for w in range(1, len(wlst)):
+    wlen = max(wlst[w]-wlst[w-1], wlen)
+
+for h in range(1, len(hlst)):
+    hlen = max(hlst[h]-hlst[h-1], hlen)
+
+print(wlen * hlen)

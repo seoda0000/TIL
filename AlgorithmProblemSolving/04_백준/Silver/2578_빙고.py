@@ -17,21 +17,21 @@ https://www.acmicpc.net/problem/2578
 '''
 
 
-def b(arr):                # 빙고인지 확인하는 함수
+def b(arr):  # 빙고인지 확인하는 함수
     bingo = 0
-    for a in arr:              # 행
+    for a in arr:  # 행
         if a == [0, 0, 0, 0, 0]:
-            bingo+=1
+            bingo += 1
     for a in list(zip(*arr)):  # 열
         if a == (0, 0, 0, 0, 0):
-            bingo+=1
-    for n in range(5):         # 오른쪽 아래 대각선
+            bingo += 1
+    for n in range(5):  # 오른쪽 아래 대각선
         if arr[n][n] != 0:
             break
     else:
         bingo += 1
-    for n in range(5):         # 왼쪽 위 대각선
-        if arr[n][4-n] != 0:
+    for n in range(5):  # 왼쪽 위 대각선
+        if arr[n][4 - n] != 0:
             break
     else:
         bingo += 1
@@ -44,14 +44,14 @@ key = []
 for _ in range(5):
     key += list(map(int, input().split()))
 
-for z in range(11):             # 11회까지는 3 빙고 생성 불가
+for z in range(11):  # 11회까지는 3 빙고 생성 불가
     k = key[z]
     for i in range(5):
         for j in range(5):
             if arr[i][j] == k:
                 arr[i][j] = 0
 f = True
-for z in range(11, 25):          # 12회부터 3 빙고 여부 확인
+for z in range(11, 25):  # 12회부터 3 빙고 여부 확인
     if f:
         k = key[z]
         for i in range(5):
@@ -60,6 +60,103 @@ for z in range(11, 25):          # 12회부터 3 빙고 여부 확인
                     if arr[i][j] == k:
                         arr[i][j] = 0
                         if b(arr):
-                            print(z+1)
+                            print(z + 1)
                             f = False
                             break
+
+"""
+1년 후 코드
+"""
+
+
+def goBinggo(num):
+    bingo = 0
+    for i in range(5):
+        for j in range(5):
+            if board[i][j] == num:  # board에서 숫자 찾기
+                v[i][j] = 1
+
+                # 빙고인지 체크!
+                # 1. 가로
+                if sum(v[i]) == 5:
+                    bingo += 1
+
+                # 2. 세로
+                if sum(list(zip(*v))[j]) == 5:
+                    bingo += 1
+
+                # 3. 오른쪽 아래 대각선
+                if i == j:
+                    cnt = 0
+                    for a in range(5):
+                        cnt += v[a][a]
+                    if cnt == 5:
+                        bingo += 1
+
+                # 4. 왼쪽 위 대각선
+                if i + j == 4:
+                    cnt = 0
+                    for a in range(5):
+                        cnt += v[4 - a][a]
+                    if cnt == 5:
+                        bingo += 1
+    return bingo
+
+
+board = [input().split() for _ in range(5)]
+nums = []
+for _ in range(5):
+    nums.extend(input().split())
+v = [[0] * 5 for _ in range(5)]
+ans = 0
+
+for n in range(25):
+    num = nums[n]
+    ans += goBinggo(num)
+    if ans >= 3:
+        break
+
+print(n + 1)
+
+"""
+count 개념 이용
+"""
+
+
+def goBinggo(num):
+    for i in range(5):
+        for j in range(5):
+            if board[i][j] == num:  # board에서 숫자 찾기
+                # 빙고인지 체크!
+                # 1. 가로
+                bingo[i] += 1
+
+                # 2. 세로
+                bingo[j + 5] += 1
+
+                # 3. 오른쪽 아래 대각선
+                if i == j:
+                    bingo[10] += 1
+
+                # 4. 왼쪽 위 대각선
+                if i + j == 4:
+                    bingo[11] += 1
+    return
+
+
+board = [input().split() for _ in range(5)]
+nums = []
+for _ in range(5):
+    nums.extend(input().split())
+
+bingo = [0] * 12
+
+ans = 0
+
+for n in range(25):
+    num = nums[n]
+    goBinggo(num)
+    if bingo.count(5) >= 3:
+        break
+
+print(n + 1)
