@@ -15,19 +15,54 @@ N×M크기의 배열로 표현되는 미로가 있다.
 
 '''
 from collections import deque
+
 N, M = map(int, input().split())
 arr = [list(map(int, list(input()))) for _ in range(N)]
 q = deque([(0, 0, 1)])
-visited = [[False]*M for _ in range(N)]
+visited = [[False] * M for _ in range(N)]
 visited[0][0] = 1
 ans = N * M
 while q:
     pi, pj, s = q.popleft()
-    if pi == N-1 and pj == M-1:
+    if pi == N - 1 and pj == M - 1:
         if s < ans:
             ans = s
     for a, b in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
-        if 0<=pi+a<N and 0<=pj+b<M and arr[pi+a][pj+b] and not visited[pi+a][pj+b]:
+        if 0 <= pi + a < N and 0 <= pj + b < M and arr[pi + a][pj + b] and not visited[pi + a][pj + b]:
             visited[pi + a][pj + b] = True
-            q.append((pi+a, pj+b, s+1))
+            q.append((pi + a, pj + b, s + 1))
+print(ans)
+
+"""
+칸 수 단위로 나눈 풀이
+"""
+
+N, M = map(int, input().split())
+N, M = N + 2, M + 2
+arr = ['0' * M] + ['0' + input() + '0' for _ in range(N - 2)] + ['0' * M]
+v = [[0] * M for _ in range(N)]
+v[1][1] = 1
+t = 0
+flag = False
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+q = [(1, 1)]
+ans = -1
+while q:
+    n = len(q)
+    t += 1
+    for _ in range(n):
+        ci, cj = q.pop(0)
+        if ci == N - 2 and cj == M - 2:
+            ans = t
+            flag = True
+            break
+        for d in range(4):
+            ni, nj = ci + di[d], cj + dj[d]
+            if arr[ni][nj] == '1' and v[ni][nj] == 0:
+                v[ni][nj] = 1
+                q.append((ni, nj))
+
+    if flag:
+        break
 print(ans)

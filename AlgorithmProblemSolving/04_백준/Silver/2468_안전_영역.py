@@ -47,3 +47,45 @@ for w in range(mnh, mxh):
     ans = max(ans, f(w, v))
 
 print(ans)
+
+"""
+함수화 적용한 풀이
+"""
+def searchArea(si, sj, h):
+    stk = [(si, sj)]
+    v[si][sj] = h
+    while stk:
+        ci, cj = stk.pop(0)
+        for d in range(4):
+            ni, nj = ci + di[d], cj + dj[d]
+            if arr[ni][nj] > h > v[ni][nj]:
+                v[ni][nj] = h
+                stk.append((ni, nj))
+
+    return
+
+
+def findAreaCnt(h):
+    cnt = 0
+    for i in range(1, N - 1):
+        for j in range(1, N - 1):
+            if arr[i][j] > h > v[i][j]:
+                searchArea(i, j, h)
+                cnt += 1
+    return cnt
+
+
+N = int(input()) + 2
+arr = [[0] * N] + [[0] + list(map(int, input().split())) + [0] for _ in range(N - 2)] + [[0] * N]
+v = [[0] * N for _ in range(N)]
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+hset = set()
+for a in arr:
+    hset |= set(a)
+hlst = sorted(list(hset))
+ans = 1
+
+for height in hlst[1:]:
+    ans = max(ans, findAreaCnt(height))
+print(ans)

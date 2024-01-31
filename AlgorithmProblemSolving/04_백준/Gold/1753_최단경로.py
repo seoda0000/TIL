@@ -1,16 +1,38 @@
+"""
+https://www.acmicpc.net/problem/1753
+
+백준 골드4 1753 최단경로
+
+방향그래프가 주어지면 주어진 시작점에서 다른 모든 정점으로의 최단 경로를 구하는 프로그램을 작성하시오. 단, 모든 간선의 가중치는 10 이하의 자연수이다.
+"""
+
 import sys
+
+input = sys.stdin.readline
 sys.setrecursionlimit(20001)
-def dfs(now, d):
 
-    nxts = list(roads[now].keys())
 
-    for nxt in nxts:
-        nd = d + roads[now][nxt]
-        if v[nxt] == 0 and mnroads[nxt] > nd:
-            v[nxt] = 1
-            mnroads[nxt] = nd
-            dfs(nxt, d + roads[now][nxt])
-            v[nxt] = 0
+def dij(now, d):
+    v[now] = 1
+    relations = list(roads[now].items())
+    relations.sort(key=lambda x: x[1])
+
+    for k, itms in relations:
+        if mnroads[k] > itms + d:
+            mnroads[k] = itms + d
+
+    mnd = INF
+    nxtIdx = 0
+
+    for i in range(V + 1):
+        if mnroads[i] < mnd and v[i] == 0:
+            nxtIdx = i
+            mnd = mnroads[i]
+
+    if nxtIdx:
+        dij(nxtIdx, mnroads[nxtIdx])
+    else:
+        return
 
 
 V, E = map(int, input().split())
@@ -27,9 +49,8 @@ for _ in range(E):
 
 mnroads = [INF] * (V + 1)
 v = [0] * (V + 1)
-v[K] = 1
 mnroads[K] = 0
-dfs(K, 0)
+dij(K, 0)
 for a in mnroads[1:]:
     if a == INF:
         print('INF')
