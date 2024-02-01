@@ -48,5 +48,56 @@ if ans == 0:
 else:
     print(-1)
 
+"""
+1년 후 풀이
+"""
+
+import sys
+input = sys.stdin.readline
+from collections import  deque
+
+M, N = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+q = deque()
+zeroCnt = 0
+for n in range(N):
+    zeroCnt += arr[n].count(0)
+    for m in range(M):
+        if arr[n][m] == 1:  # 익은 토마토 위치 파악
+            q.append((n, m))
+
+if zeroCnt == 0:  # 모든 토마토가 익은 경우
+    print(0)
+elif len(q) == 0:  # 모든 토마토가 못 익는 경우
+    print(-1)
+else:
+    day = 0
+    di = [0, 0, 1, -1]
+    dj = [1, -1, 0, 0]
+    while q:
+        isChanged = False
+        nq = len(q)
+
+        for _ in range(nq):
+            ci, cj = q.popleft()
+
+            for d in range(4):
+                ni, nj = ci + di[d], cj + dj[d]
+                if 0 > ni or ni >= N or 0 > nj or nj >= M: continue
+                if arr[ni][nj] == 0:
+                    zeroCnt -= 1
+                    isChanged = True
+                    arr[ni][nj] = 1
+                    q.append((ni, nj))
+
+        if isChanged:
+            day += 1
+        else:
+            break
+
+    if zeroCnt:
+        print(-1)
+    else:
+        print(day)
 
 

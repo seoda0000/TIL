@@ -65,3 +65,64 @@ while True:
     day += 1
 
 print(day)
+
+
+"""
+1년 후 풀이
+"""
+
+def move(union, popul):
+    popul //= len(union)
+    for u in union:
+        ci, cj = u
+        arr[ci][cj] = popul
+
+
+def findUnionAndMove(si, sj) -> bool:
+    union = [(si, sj)]  # 연합 국가 목록
+    q = [(si, sj)]
+    sm = arr[si][sj]  # 연합의 인구 총합
+    v[si][sj] = 1
+
+    while q:
+        ci, cj = q.pop(0)
+
+        for d in range(4):
+            ni, nj = ci + di[d], cj + dj[d]
+            if ni < 0 or ni >= N or nj < 0 or nj >= N or v[ni][nj]: continue
+            if L <= abs(arr[ci][cj] - arr[ni][nj]) <= R:
+                v[ni][nj] = 1
+                union.append((ni, nj))
+                q.append((ni, nj))
+                sm += arr[ni][nj]
+
+    if len(union) > 1:
+        move(union, sm)
+        return True
+    else:
+        return False
+
+    return
+
+
+N, L, R = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+
+t = 0
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+flag = False
+while True:
+    v = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if v[i][j] == 0:
+                if findUnionAndMove(i, j):
+                    flag = True
+    if flag:
+        t += 1
+        flag = False
+    else:
+        ans = t
+        break
+print(ans)
