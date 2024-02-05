@@ -9,17 +9,35 @@ https://www.acmicpc.net/problem/15650
 고른 수열은 오름차순이어야 한다.
 '''
 
-
 N, M = map(int, input().split())
-arr = [0]*M
+arr = [0] * M
+
 
 def f(i, M):
     if i == M:
         print(*arr)
         return
-    for m in range(1, N+1):
-        if m not in arr and (i == 0 or arr[i-1] < m):
+    for m in range(1, N + 1):
+        if m not in arr and (i == 0 or arr[i - 1] < m):
             arr[i] = m
-            f(i+1, M)
+            f(i + 1, M)
             arr[i] = 0
+
+
 f(0, M)
+
+"""
+다른 풀이
+"""
+
+
+def printNums(nth, lst):
+    if nth == M:
+        print(*lst[1:])
+        return
+    for n in range(lst[-1] + 1, N + 1):
+        printNums(nth + 1, lst + [n])
+
+
+N, M = map(int, input().split())
+printNums(0, [0])
