@@ -75,3 +75,51 @@ else:
     else:                        # 아니라면 전체 최대값 return
         ans = max(mx)
 print(ans)
+
+"""
+1년 후 풀이
+"""
+
+from collections import deque
+
+M, N, H = map(int, input().split())
+arr = []
+for _ in range(H):
+    floor = [list(map(int, input().split())) for _ in range(N)]
+    arr.append(floor)
+dk = [0, 0, 0, 0, 1, -1]
+di = [0, 0, 1, -1, 0, 0]
+dj = [1, -1, 0, 0, 0, 0]
+q = deque()
+zeroCnt = 0
+for k in range(H):
+    for i in range(N):
+        for j in range(M):
+            if arr[k][i][j] == 1:
+                q.append((k, i, j))
+            elif arr[k][i][j] == 0:
+                zeroCnt += 1
+if zeroCnt == 0:
+    print(0)
+elif len(q) == 0:
+    print(-1)
+else:
+    day = -1
+    while q:
+        nq = len(q)
+        day += 1
+
+        for _ in range(nq):
+            ck, ci, cj = q.popleft()
+
+            for d in range(6):
+                nk, ni, nj = ck + dk[d], ci + di[d], cj + dj[d]
+                if not (0 <= nk < H and 0 <= ni < N and 0 <= nj < M): continue
+                if arr[nk][ni][nj] == 0:
+                    zeroCnt -= 1
+                    arr[nk][ni][nj] = 1
+                    q.append((nk, ni, nj))
+    if zeroCnt:
+        print(-1)
+    else:
+        print(day)
