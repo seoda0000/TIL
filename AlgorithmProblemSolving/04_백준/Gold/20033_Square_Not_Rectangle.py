@@ -1,17 +1,35 @@
-from collections import defaultdict
+"""
+https://www.acmicpc.net/problem/20033
 
-# N = int(input())
-# columns = list(map(int, input().split()))
-N = len(list(range(1, 10**9+1, 3500)))
-columns = list(range(1, 10**9+1, 3500))
-mx = max(columns)
-cnts = [0]*(mx+1)
+백준 골드4 20033 Square, Not Rectangle
+
+"""
+
+N = int(input())
+columns = list(map(int, input().split())) + [0]
+stk = []
 ans = 0
+
 for h in columns:
-    print('...')
-    for i in range(ans, h+1):
-        cnts[i] += 1
-        if cnts[i] >= i:
-            ans = i
-    cnts[h+1:] = [0]*(mx-h)
+    if not stk:  # 처음 넣는 경우
+        stk.append([h, 1])
+
+    elif stk[-1][0] > h:  # 작아지는 경우
+        mxmnh = 10 ** 9 + 1
+        mxmncnt = 0
+        while stk and stk[-1][0] >= h:
+            ph, cnt = stk.pop()
+            mxmnh = min(mxmnh, ph)
+            mxmncnt += cnt
+            ans = max(ans, min(mxmnh, mxmncnt))
+        while stk and stk[-1][0] < ans:
+            stk.pop()
+        stk.append([h, mxmncnt + 1])
+
+    elif stk[-1][0] == h:  # 같은 높이인 경우
+        stk[-1][1] += 1
+
+    else:  # 커지는 경우
+        stk.append([h, 1])
+
 print(ans)
