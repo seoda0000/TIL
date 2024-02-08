@@ -28,3 +28,27 @@ for _ in range(N):
     if good:
         ans += 1
 print(ans)
+
+
+"""
+1년 후 풀이
+"""
+
+N = int(input())
+ans = 0
+for _ in range(N):
+    word = input()
+    stk = []
+
+    for w in word:
+        if stk and stk[-1] == w:
+            p = stk.pop()
+        else:
+            stk.append(w)
+
+    if stk:
+        continue
+
+    ans += 1
+
+print(ans)

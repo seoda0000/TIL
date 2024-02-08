@@ -17,7 +17,7 @@ https://www.acmicpc.net/problem/1189
 
 def f(ci, cj, k):
     global ans
-    if ci == 0 and cj == C-1:
+    if ci == 0 and cj == C - 1:
         if k == K:
             ans += 1
         return
@@ -25,16 +25,52 @@ def f(ci, cj, k):
         ni, nj = ci + a, cj + b
         if 0 <= ni < R and 0 <= nj < C and arr[ni][nj] == '.' and v[ni][nj] == 0:
             v[ni][nj] = 1
-            f(ni, nj, k+1)
+            f(ni, nj, k + 1)
             v[ni][nj] = 0
-
 
 
 R, C, K = map(int, input().split())
 arr = [list(input()) for _ in range(R)]
-v = [[0]*C for _ in range(R)]
-si, sj = R-1, 0
+v = [[0] * C for _ in range(R)]
+si, sj = R - 1, 0
 v[si][sj] = 1
 ans = 0
 f(si, sj, 1)
+print(ans)
+
+"""
+1년 후 풀이
+"""
+
+
+def goHome(ci, cj, h):
+    global ans
+    if h == K:
+        if ci == 0 and cj == M - 1:
+            ans += 1
+        return
+
+    v[ci][cj] = 1
+
+    for d in range(4):
+        ni, nj = ci + di[d], cj + dj[d]
+        if not (0 <= ni < N and 0 <= nj < M): continue
+        if v[ni][nj]: continue
+        if arr[ni][nj] == 'T': continue
+        goHome(ni, nj, h + 1)
+
+    v[ci][cj] = 0
+
+    return
+
+
+N, M, K = map(int, input().split())
+arr = [list(input()) for _ in range(N)]
+v = [[0] * M for _ in range(N)]
+ans = 0
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+si, sj = N - 1, 0
+
+goHome(si, sj, 1)
 print(ans)
