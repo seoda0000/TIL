@@ -36,3 +36,36 @@ for tc in range(1, T+1):
     answer = min(ans)
 
     print(f'#{tc}', answer)
+
+
+"""
+1년 후 풀이
+"""
+def go(nth, last, sm):
+    global ans
+    if sm > ans:
+        return
+
+    if nth == N-1:
+        ans = min(sm + arr[last][1], ans)
+        return
+
+    for i in range(1, N + 1):
+        if v[i]: continue
+        v[i] = 1
+        go(nth + 1, i, sm + arr[last][i])
+        v[i] = 0
+
+    return
+
+
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    arr = [[0] * (N + 1)] + [[0] + list(map(int, input().split())) for _ in range(N)]
+    INF = 100 * (N + 1)
+    ans = INF
+    v = [0] * (N + 1)
+    v[1] = 1
+    go(0, 1, 0)
+    print(f'#{test_case} {ans}')

@@ -45,3 +45,41 @@ for tc in range(1, T+1):
     dfs(0, 1)
     ans = mx*100
     print(f'#{tc} {ans:06.6f}')
+
+
+"""
+1년 후 풀이
+round 함수와 f formatting을 잘 알아두자
+"""
+
+def toPercent(n: str):
+    return int(n) / 100
+
+
+def work(nth, p):
+    global ans
+
+    if nth == N:
+        ans = max(ans, p)
+        return
+
+    if p <= ans:
+        return
+
+    for i in range(N):
+        if v[i]: continue
+        v[i] = 1
+        work(nth + 1, p * arr[nth][i])
+        v[i] = 0
+
+
+T = int(input())
+for test_case in range(1, T + 1):
+    N = int(input())
+    arr = [list(map(toPercent, input().split())) for _ in range(N)]
+    v = [0] * N
+    ans = 0
+    work(0, 1)
+    ans = round(ans*100, 6)
+
+    print(f'#{test_case} {ans:0.6f}')
