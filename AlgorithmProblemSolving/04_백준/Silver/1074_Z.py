@@ -38,3 +38,28 @@ ans = 0
 for n in range(N):
     ans += 2**(2*(N-1-n)) * (ansLst[n]-1)
 print(int(ans))
+
+"""
+1년 후 풀이
+"""
+
+def z(s, w, i, j):  # 칸의 시작 숫자, 칸의 너비, 목표 좌표 (i, j)
+    if w == 1:
+        return s
+
+    nw = w // 2  # 다음 칸의 너비
+    pi, pj = i // nw, j // nw
+
+    ni, nj = i, j
+
+    if pi: ni -= nw  # 다음 타겟 좌표
+    if pj: nj -= nw
+
+    return z(s + (nw * nw * arr[pi][pj]), nw, ni, nj)
+
+
+arr = [[0, 1],  # 4분면
+       [2, 3]]
+N, ti, tj = map(int, input().split())
+ans = z(0, 2 ** N, ti, tj)
+print(ans)
