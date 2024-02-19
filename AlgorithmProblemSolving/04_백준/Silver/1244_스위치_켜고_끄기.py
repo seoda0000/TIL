@@ -38,3 +38,40 @@ while len(lst) > 20:  # 20개씩 출력
     print(*lst[:20])
     lst = lst[20:]
 print(*lst)
+
+"""
+1년 후 풀이
+exclusive or 이용
+"""
+def switch(gender, x):
+    if gender == 1:  # 남자
+
+        num = x
+        for i in range(num, N+1, num):
+            lst[i] ^= 1
+
+    else:  # 여자
+
+        s = e = x
+        while True:
+            if s - 1 <= 0 or e + 1 > N: break
+            if lst[s - 1] == lst[e + 1]:
+                s -= 1
+                e += 1
+            else:
+                break
+        for n in range(s, e + 1):
+            lst[n] ^= 1
+
+    return
+
+
+N = int(input())
+lst = [0] + list(map(int, input().split()))
+M = int(input())
+for _ in range(M):
+    gender, x = map(int, input().split())
+    switch(gender, x)
+
+for i in range(1, N + 1, 20):
+    print(*lst[i:i + 20])
