@@ -1,3 +1,8 @@
+"""
+https://www.acmicpc.net/problem/19940
+백준 골드5 19940 피자 오븐
+"""
+
 from collections import deque
 
 T = int(input())
@@ -15,16 +20,17 @@ for _ in range(T):
     while q:
         cur, st = q.popleft()
 
-        if cur == target:
+        if cur == target:  # 종료조건
             for i in range(5):
                 ans[i] += st.count(str(i))
             break
 
-        for i, d in enumerate([-1, 1, -10, 10, 60]):
+        for i, d in enumerate([-1, 1, -10, 10, 60]):  # 사전순 고려하여 거꾸로
             nxt = max(0, cur + d)
             if nxt > 60: continue
             if v[nxt] <= v[cur] + 1: continue
 
             v[nxt] = v[cur] + 1
-            q.append((nxt, st + str(4 - i)))
+            q.append((nxt, st + str(4 - i)))  # 버튼 string으로 기록
+
     print(*ans)
