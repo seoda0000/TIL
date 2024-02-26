@@ -41,3 +41,33 @@ for j in range(len(even)):
 for j in range(len(odd)-1, -1, -1):
     print("".join(odd[j]))
     print("".join(even[j]))
+
+
+"""
+1년 후 풀이
+재귀 이용
+"""
+
+def draw(n):
+    if n == 1:
+        return ['*']
+    else:
+        bef = draw(n - 1)
+        nb = len(bef)
+        na = nb + 4
+        arr = [
+            "*" * na,
+            "*" + " " * (na - 2) + "*",
+        ]
+
+        for i in range(nb):
+            arr.append("* " + bef[i] + " *")
+        arr += [
+            "*" + " " * (na - 2) + "*",
+            "*" * na,
+        ]
+        return arr
+
+N = int(input())
+arr = draw(N)
+print(*arr, sep="\n")
