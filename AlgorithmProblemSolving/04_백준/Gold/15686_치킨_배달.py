@@ -33,3 +33,60 @@ for comb in combinations(range(len(chickens)), M):
         ans += routes
     answer = min(ans, answer)
 print(answer)
+
+
+"""
+조합 구하기 수제작 코드
+"""
+def choose_hospital(nth, temp):
+    if nth == m + 1:
+        check_shortcut(temp[1:])
+        return
+
+    for h in range(temp[nth - 1] + 1, Nh):
+        temp[nth] = h
+        choose_hospital(nth + 1, temp)
+        temp[nth] = -1
+
+
+def check_shortcut(temp):
+    global ans
+
+    res = 0
+    for c in range(Nc):
+        mn = INF
+
+        for idx in temp:
+            mn = min(mn, v[c][idx])
+        res += mn
+
+    ans = min(ans, res)
+    return
+
+
+N, m = map(int, input().split())
+customers = []
+hospitals = []
+for i in range(N):
+    ipt = list(map(int, input().split()))
+    for j in range(N):
+        if ipt[j] == 1:
+            customers.append((i, j))
+        elif ipt[j] == 2:
+            hospitals.append((i, j))
+
+Nc = len(customers)
+Nh = len(hospitals)
+v = [[0] * Nh for _ in range(Nc)]
+
+for c in range(Nc):
+    ci, cj = customers[c]
+    for h in range(Nh):
+        hi, hj = hospitals[h]
+        v[c][h] = abs(ci - hi) + abs(cj - hj)
+
+temp = [-1] * (m + 1)
+INF = N * N * Nc
+ans = INF
+choose_hospital(1, temp)
+print(ans)
