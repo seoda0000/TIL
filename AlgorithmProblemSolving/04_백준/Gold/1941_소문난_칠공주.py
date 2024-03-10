@@ -59,3 +59,62 @@ for s1 in range(19):
                                 continue
                             ans += 1
 print(ans)
+
+"""
+dfs를 활용한 풀이
+"""
+
+import sys
+
+input = sys.stdin.readline
+
+
+def find_princesses(lst):
+    global ans
+
+    lst.sort()
+    if tuple(lst) in st:  # 이미 확인한 그룹이면 pass
+        return
+    else:
+        st.add(tuple(lst))
+
+    if len(lst) == 7:
+        if check_s(lst):
+            ans += 1
+        return
+
+    for li, lj in lst:
+        for d in range(4):
+            ni, nj = li + di[d], lj + dj[d]
+
+            if not (0 <= ni < 5 and 0 <= nj < 5): continue  # 범위 밖
+            if v[ni][nj]: continue
+            v[ni][nj] = 1
+            find_princesses(lst + [(ni, nj)])
+            v[ni][nj] = 0
+
+    return
+
+
+def check_s(lst):  # 이다솜파가 4명 이상인지 여부
+    s_cnt = 0
+    for li, lj in lst:
+        if arr[li][lj] == 'S':
+            s_cnt += 1
+
+    return s_cnt >= 4
+
+
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+arr = [input() for _ in range(5)]
+st = set()  # 그룹 기록
+ans = 0
+v = [[0] * 5 for _ in range(5)]
+for i in range(5):
+    for j in range(5):
+        v[i][j] = 1
+        find_princesses([(i, j)])
+        v[i][j] = 0
+
+print(ans)
