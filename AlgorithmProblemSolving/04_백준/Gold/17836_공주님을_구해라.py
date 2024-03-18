@@ -21,41 +21,96 @@ https://www.acmicpc.net/problem/17836
 """
 
 import sys
+
 input = sys.stdin.readline
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10 ** 6)
+
+
 def f(i, j, t):
     global mn
     if mn <= t:
         return
 
-    if i == N-1 and j == M-1:
+    if i == N - 1 and j == M - 1:
         if t < mn:
             mn = t
         return
 
-
     for a, b in ab:
-        ni, nj = i+a, j+b
-        if 0 <= ni < N and 0 <= nj < M and visited[ni][nj] > t+1:
+        ni, nj = i + a, j + b
+        if 0 <= ni < N and 0 <= nj < M and visited[ni][nj] > t + 1:
             if arr[ni][nj] == 0:
-                visited[ni][nj] = t+1
-                f(ni, nj, t+1)
+                visited[ni][nj] = t + 1
+                f(ni, nj, t + 1)
             elif arr[ni][nj] == 2:
-                mn = min(mn, t+1 + abs(N-ni-1) + abs(M-nj-1))
+                mn = min(mn, t + 1 + abs(N - ni - 1) + abs(M - nj - 1))
 
 
 N, M, T = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 ab = [(0, 1), (1, 0), (0, -1), (-1, 0)]
-visited = [[M*N+1] * M for _ in range(N)]
+visited = [[M * N + 1] * M for _ in range(N)]
 mn = N * M + 1
 
 visited[0][0] = 0
 f(0, 0, 0)
 
-if mn == N*M + 1 or mn > T:
+if mn == N * M + 1 or mn > T:
     print("Fail")
 else:
     print(mn)
 
+"""
+1년 후 풀이
+"""
 
+"""
+81퍼 틀렸습니다
+"""
+
+# 입구 1, 1 / 공주 N, M
+# T시간 이내
+from collections import deque
+
+di = [1, -1, 0, 0]
+dj = [0, 0, 1, -1]
+N, M, T = map(int, input().split())
+# 0 빈 공간, 1 마법 벽, 2 그람
+arr = [list(map(int, input().split())) for _ in range(N)]
+
+si, sj = 0, 0
+ei, ej = N - 1, M - 1
+
+INF = 10001
+v = [[INF] * M for _ in range(N)]
+q = deque([(si, sj)])
+v[si][sj] = 0
+ans_gram = INF
+while q:
+    ci, cj = q.popleft()
+    if ci == ei and cj == ej:
+        break
+    if v[ci][cj] > T:
+        break
+
+    for d in range(4):
+        ni, nj = ci + di[d], cj + dj[d]
+
+        if not (0 <= ni < N and 0 <= nj < M): continue
+        if arr[ni][nj] == 1:  # 마법벽
+            continue
+
+        elif arr[ni][nj] == 2:  # 그람
+            if v[ni][nj] <= v[ci][cj] + 1: continue
+            v[ni][nj] = v[ci][cj] + 1
+            ans_gram = v[ni][nj] + abs(ei - ni) + abs(ej - nj)
+
+        else:  # 빈 공간
+            if v[ni][nj] <= v[ci][cj] + 1: continue
+            v[ni][nj] = v[ci][cj] + 1
+            q.append((ni, nj))
+
+ans = min(ans_gram, v[ei][ej])
+if ans > T:
+    ans = 'Fail'
+print(ans)

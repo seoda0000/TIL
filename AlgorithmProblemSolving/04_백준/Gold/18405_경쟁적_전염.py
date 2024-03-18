@@ -14,10 +14,8 @@ NxN 크기의 시험관이 있다. 시험관은 1x1 크기의 칸으로 나누�
 
 '''
 
-
-
-
 from collections import deque
+
 N, K = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(N)]
 S, X, Y = map(int, input().split())
@@ -34,8 +32,48 @@ while q:
     if bs == S:  # 시각이 S초라면 종료
         break
     for a, b in [(0, 1), (1, 0), (-1, 0), (0, -1)]:
-        if 0<=bi+a<N and 0<=bj+b<N and arr[bi+a][bj+b] == 0:  # 빈칸이면
-            arr[bi+a][bj+b] = bb                              # 바이러스 생성
-            q.append((bb, bi+a, bj+b, bs+1))                  # q에 enqueue
-print(arr[X-1][Y-1])
+        if 0 <= bi + a < N and 0 <= bj + b < N and arr[bi + a][bj + b] == 0:  # 빈칸이면
+            arr[bi + a][bj + b] = bb  # 바이러스 생성
+            q.append((bb, bi + a, bj + b, bs + 1))  # q에 enqueue
+print(arr[X - 1][Y - 1])
 
+"""
+1년 후 풀이
+"""
+from collections import deque
+
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+N, K = map(int, input().split())  # 1~K번 바이러스
+arr = [list(map(int, input().split())) for _ in range(N)]
+S, X, Y = map(int, input().split())
+X, Y = X - 1, Y - 1
+
+if arr[X][Y]:
+    print(arr[X][Y])
+else:
+    q = []
+    for i in range(N):
+        for j in range(N):
+            if arr[i][j] == 0: continue
+            q.append((arr[i][j], i, j, 0))
+    q.sort()
+    q = deque(q)
+
+    while q:
+        virus, ci, cj, ct = q.popleft()
+        if ct >= S:
+            break
+        if ci == X and cj == Y:
+            break
+
+        for d in range(4):
+            ni, nj = ci + di[d], cj + dj[d]
+
+            if not (0 <= ni < N and 0 <= nj < N): continue
+            if arr[ni][nj]: continue
+            arr[ni][nj] = virus
+            q.append((virus, ni, nj, ct + 1))
+
+    ans = arr[X][Y]
+    print(ans)
