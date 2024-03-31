@@ -1,4 +1,98 @@
 """
+실행시간: 168 -> 288
+풀이시간: 54분 -> 23분
+
+이전에 푼 풀이가 복잡하다고 느껴져서, 이번엔 다른 프로님들의 방식대로 풀어보았다.
+실행시간이 오래 걸리지만 훨씬 깔끔한 방식이라고 느껴진다.
+이전에는 포인터를 활용하여 한번에 이동과 계산을 처리했는데,
+이번엔 q를 이용하여 이동한 후에 계산을 해주었다.
+
+이때 방향에 따라 배열을 반대로 뒤집는 디테일을 놓치지 말아야 한다.
+새로운 배열을 만들 때는 4방향대로 검토해야 한다.
+"""
+
+"""
+5:10 시작
+5:16 구상 완료
+5:33 제출
+"""
+from collections import deque
+
+
+def play(arr, nth):
+    global ans
+
+    if nth == 5:
+        ans = max(ans, max([max(a) for a in arr]))
+        return
+
+    for d in range(4):
+        narr = swipe(arr, d)
+        play(narr, nth + 1)
+    return
+
+
+def swipe(arr, d):  # (d: 0 위 1 아래 2 왼 3 오)로 swipe 하기
+
+    if d % 2:
+        k = -1
+    else:
+        k = 1
+
+    new_arr = []
+    if d < 2:  # 위아래
+        for j in range(N):
+            q = deque()
+            for i in range(N)[::k]:  # 숫자만 채워주기
+                if arr[i][j]: q.append(arr[i][j])
+
+            row = []
+            while True:
+                if len(q) >= 2:
+                    if q[0] == q[1]:
+                        row.append(q.popleft() + q.popleft())
+                    else:
+                        row.append(q.popleft())
+                else:
+                    if q:
+                        row.append(q.popleft())
+                    break
+
+            row += [0] * (N - len(row))  # padding
+            new_arr.append(row[::k])
+        new_arr = list(map(list, zip(*new_arr)))
+
+    else:  # 왼오
+        for i in range(N):
+            q = deque()
+            for j in range(N)[::k]:  # 숫자만 채워주기
+                if arr[i][j]: q.append(arr[i][j])
+            row = []
+            while True:
+                if len(q) >= 2:
+                    if q[0] == q[1]:
+                        row.append(q.popleft() + q.popleft())
+                    else:
+                        row.append(q.popleft())
+                else:
+                    if q:
+                        row.append(q.popleft())
+                    break
+
+            row += [0] * (N - len(row))  # padding
+            new_arr.append(row[::k])
+
+    return new_arr
+
+
+N = int(input())
+arr = [list(map(int, input().split())) for _ in range(N)]
+ans = 0
+play(arr, 0)
+
+print(ans)
+
+"""
 9:10~10:04
 
 컨디션이 안 좋아서 최대한 천천히 꼼꼼히 풀었다.
