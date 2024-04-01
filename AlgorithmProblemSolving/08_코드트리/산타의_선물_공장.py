@@ -1,4 +1,3 @@
-from collections import defaultdict
 import sys
 
 input = sys.stdin.readline
@@ -24,7 +23,7 @@ class Container:
         self.head.next = self.tail
         self.size = 0
         self.status = status  # 1 정상 0 고장
-        self.id_to_package = defaultdict(Node)
+        self.id_to_package = {}
 
     def __str__(self):
         lst = []
