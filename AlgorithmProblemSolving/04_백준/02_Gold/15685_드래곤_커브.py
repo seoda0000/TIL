@@ -1,4 +1,60 @@
 """
+실행시간: 128(124) -> 120
+풀이시간: 60분 -> 22분
+
+코드트리와 백준이 x, y가 반대라 틀렸다. 황당...하지만 앞으로는 확인하자.
+소현 프로님 풀이를 적용해서 우선 방향리스트를 구한 후에 한번에 찍었다. 빠르다!
+시계 + 반대방향 -> 반시계라는 사실을 숙지하자.
+
+배열에 표시하는 문제는 규칙부터 찾은 이후에 그리면 심플해진다.
+"""
+
+"""
+14:00 시작
+14:04 구상 완료
+14:11 구현 완료
+14:15 제출
+14:22 백준 제출
+"""
+
+
+def get_dlst(d, g):
+    dlst = [d]
+
+    for _ in range(g):
+        nd = len(dlst)
+
+        for x in range(nd)[::-1]:
+            dlst.append((dlst[x] + 1) % 4)
+
+    return dlst
+
+
+def draw(arr, x, y, dlst):
+    ci, cj = x, y
+    arr[ci][cj] = 1
+    for d in dlst:
+        ci, cj = ci + di[d], cj + dj[d]
+        arr[ci][cj] = 1
+    return
+
+
+di = [0, -1, 0, 1]
+dj = [1, 0, -1, 0]
+N = int(input())
+arr = [[0] * 101 for _ in range(101)]
+for _ in range(N):
+    x, y, d, g = map(int, input().split())
+    dlst = get_dlst(d, g)
+    draw(arr, x, y, dlst)
+ans = 0
+for i in range(100):
+    for j in range(100):
+        if arr[i][j] and arr[i][j + 1] and arr[i + 1][j] and arr[i + 1][j + 1]:
+            ans += 1
+print(ans)
+
+"""
 9:07~9:33 구상
 9:34 구현 시작
 

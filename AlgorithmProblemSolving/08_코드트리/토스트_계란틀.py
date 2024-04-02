@@ -1,4 +1,72 @@
 """
+실행시간: 1592 -> 1564
+풀이시간: 19분 -> 20분
+
+확실히 하려고 check_v 배열을 따로 팠는데 백준에서 시간초과가 났다...
+v 배열의 원리를 찬찬히 파악했다면 굳이 두개를 쓸 필요가 없다.
+게으르게 구상하지 말고 v 배열의 원리를 하나하나 파악한 후에 구현하자
+"""
+
+"""
+14:27 시작
+14:30 구상 완료
+14:40 구현 완료 및 코드 점검
+14:41 제출
+14:47 백준 제출
+"""
+
+from collections import deque
+
+
+def move_eggs(si, sj):
+    v[si][sj] = 1
+    q = deque([(si, sj)])
+    egg_lst = [(si, sj)]
+    sm = arr[si][sj]
+
+    while q:
+        ci, cj = q.popleft()
+
+        for d in range(4):
+            ni, nj = ci + di[d], cj + dj[d]
+
+            if not (0 <= ni < N and 0 <= nj < N): continue
+            if v[ni][nj]: continue
+            if not (L <= abs(arr[ci][cj] - arr[ni][nj]) <= R): continue
+
+            v[ni][nj] = 1
+            q.append((ni, nj))
+            egg_lst.append((ni, nj))
+            sm += arr[ni][nj]
+
+    if len(egg_lst) > 1:
+        new_egg = sm // len(egg_lst)
+        for ei, ej in egg_lst:
+            arr[ei][ej] = new_egg
+        return True
+
+    return False
+
+
+di = [1, -1, 0, 0]
+dj = [0, 0, 1, -1]
+N, L, R = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+
+k = 0
+while True:
+    v = [[0] * N for _ in range(N)]
+    move = False
+    for i in range(N):
+        for j in range(N):
+            if v[i][j]: continue
+            if move_eggs(i, j):
+                move = True
+    if not move: break
+    k += 1
+print(k)
+
+"""
 9:05 시작
 9:12 구상 완료
 9:24 구현 완료

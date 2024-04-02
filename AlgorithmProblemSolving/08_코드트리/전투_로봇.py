@@ -1,4 +1,92 @@
 """
+실행시간: 152 -> 152
+풀이시간: 31분 -> 14분
+
+로봇 표시(9)를 지우지 않아서 몬스터처럼 처리하는 실수가 있었다.
+긴장감 없이 풀어서 사소한 실수가 많이 생기는 것 같다... 집중하자 집중
+이외 풀이는 완전히 동일하다
+
+"""
+
+"""
+3:43 시작
+3:46 구상 완료
+3:55 구현 완료
+3:57 디버깅: 로봇 표시 제거
+"""
+
+from collections import deque
+
+
+def find_monster(ri, rj):
+    v = [[0] * N for _ in range(N)]
+    v[ri][rj] = 1
+    q = deque([(ri, rj)])
+
+    monsters = []
+
+    k = -1
+    while q:
+        k += 1
+        nq = len(q)
+
+        for _ in range(nq):
+            ci, cj = q.popleft()
+
+            if 0 < arr[ci][cj] < level:  # 없앨 수 있는 몬스터 발견
+                monsters.append((ci, cj))
+
+            for d in range(4):
+                ni, nj = ci + di[d], cj + dj[d]
+
+                if not (0 <= ni < N and 0 <= nj < N): continue
+                if arr[ni][nj] > level: continue
+                if v[ni][nj]: continue
+
+                v[ni][nj] = 1
+                q.append((ni, nj))
+
+        if monsters:
+            break
+
+    if monsters:
+        monsters.sort()
+        ni, nj = monsters[0]
+        return ni, nj, k
+    else:
+        return -1, -1, -1
+
+
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+N = int(input())
+arr = [list(map(int, input().split())) for _ in range(N)]
+
+for i in range(N):
+    if 9 not in arr[i]: continue
+    ri, rj = i, arr[i].index(9)
+    arr[ri][rj] = 0
+    break
+
+t = 0
+level = 2
+exp = 0
+while True:
+    ni, nj, nt = find_monster(ri, rj)
+    if ni < 0: break  # 몬스터 없다
+
+    ri, rj = ni, nj
+    arr[ri][rj] = 0
+    t += nt
+    exp += 1
+
+    if exp == level:
+        level += 1
+        exp = 0
+
+print(t)
+
+"""
 09:40~09:51 구상
 09:51~10:00 1차 구현
 10:00~10:11 디버깅 및 제출

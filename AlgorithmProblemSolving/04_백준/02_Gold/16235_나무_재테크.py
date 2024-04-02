@@ -1,4 +1,78 @@
 """
+실행시간: 648(532) -> 464
+풀이시간: 45분 -> 36분
+
+원래 i, j로 모두 순회했는데 이번엔 dict의 keys만 순회했다. 그래서 더 빨라진 것 같다.
+또한 이전엔 새로운 리스트를 만들어 append 해주었는데, 이번엔 슬라이싱을 활용했다.
+append 방식은 실수할 수가 없는 구조다. 그러나 슬라이싱의 경우 동시 처리해주지 않는 경우 실수할 수 있다.
+이번에 실수했다!! 괜히 새로운 방식으로 빨리 처리하려고 하다가 실수한 것이다. 실수하지 않을 방식을 선택하자...
+"""
+
+"""
+3:01 시작
+3:12 구상완료
+3:29 제출
+3:37 디버깅 완료
+"""
+from collections import defaultdict
+
+di = [0, 0, 1, -1, 1, 1, -1, -1]
+dj = [1, -1, 0, 0, 1, -1, 1, -1]
+N, v_cnt, K = map(int, input().split())
+food = [[5] * N for _ in range(N)]
+plus_food = [tuple(map(int, input().split())) for _ in range(N)]
+virus_dic = defaultdict(list)
+for _ in range(v_cnt):
+    r, c, age = map(int, input().split())
+    virus_dic[(r - 1, c - 1)].append(age)
+
+for _ in range(K):
+    # 양분 섭취 + 죽은 바이러스->양분
+    for key in virus_dic.keys():
+        virus_lst = virus_dic[key]
+        i, j = key
+        virus_lst.sort()
+        nv = len(virus_lst)
+        dead_virus = []
+
+        for x in range(nv):
+            age = virus_lst[x]
+            if food[i][j] >= age:
+                food[i][j] -= age
+                virus_lst[x] += 1  # 나이 증가
+            else:
+                virus_lst, dead_virus = virus_lst[:x], virus_lst[x:]
+                break
+
+        for age in dead_virus:
+            food[i][j] += age // 2
+
+        virus_dic[key] = virus_lst
+
+    # 번식 + 양분 추가
+    new_virus_cnt_arr = [[0] * N for _ in range(N)]
+    for key, virus_lst in virus_dic.items():
+        i, j = key
+        for age in virus_lst:
+            if age % 5: continue
+
+            for d in range(8):
+                ni, nj = i + di[d], j + dj[d]
+                if not (0 <= ni < N and 0 <= nj < N): continue
+                new_virus_cnt_arr[ni][nj] += 1
+
+    for i in range(N):
+        for j in range(N):
+            food[i][j] += plus_food[i][j]
+            if new_virus_cnt_arr[i][j]:
+                virus_dic[(i, j)].extend([1] * new_virus_cnt_arr[i][j])
+
+ans = 0
+for value in virus_dic.values():
+    ans += len(value)
+print(ans)
+
+"""
 9:40 1차 구현 완료
 9:45 코드 검토 후 제출
 

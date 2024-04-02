@@ -1,4 +1,57 @@
 """
+실행시간: 120 -> 116
+풀이시간: 60분(추정) -> 14분
+
+과거에는 12시, 3시, 9시의 인덱스만을 변경하였는데, 굳이 싶어서 배열 전체를 돌렸다.
+인덱스, 포인터 초점의 접근을 주로 썼는데 배열 초점의 접근도 익숙해지면 몹시 편할 것 같다.
+상황에 따라서 선택하자
+"""
+
+"""
+9:39 시작
+9:44 구상 완료
+9:53 제출
+"""
+import sys
+
+sys.stdin = open("input.txt", "r")
+
+
+def turn(n, d):
+    v[n] = 1
+
+    # 양옆 확인
+    if n > 0 and wheels[n - 1][2] != wheels[n][6]:
+        if not v[n - 1]: turn(n - 1, -d)
+    if n < 3 and wheels[n + 1][6] != wheels[n][2]:
+        if not v[n + 1]: turn(n + 1, -d)
+
+    # 돈다
+    if d == 1:
+        wheels[n].insert(0, wheels[n].pop())
+    else:
+        wheels[n].append(wheels[n].pop(0))
+
+    return
+
+
+T = int(input())
+# 여러개의 테스트 케이스가 주어지므로, 각각을 처리합니다.
+for test_case in range(1, T + 1):
+    K = int(input())
+    wheels = [list(map(int, input().split())) for _ in range(4)]
+
+    for _ in range(K):
+        n, d = map(int, input().split())
+        n -= 1
+        v = [0] * 4
+        turn(n, d)
+    ans = 0
+    for i in range(4):
+        ans += wheels[i][0] * (2 ** i)
+    print(f'#{test_case} {ans}')
+
+"""
 쉬워 보여서 설계를 대충함...
 인덱스를 0부터 할 것인지 1부터 할 것인지 설계 단계에 정하고, 바꾸지 않아야 함. (중간에 바꿔서 난리가 남)
 톱니바퀴 회전이 연속적으로 이루어진다는 것을 늦게 깨달아서 난항을 겪음. 연속적인 활동의 경우 v 배열을 활용할 수 있음. (문제를 잘 읽지 않음)
