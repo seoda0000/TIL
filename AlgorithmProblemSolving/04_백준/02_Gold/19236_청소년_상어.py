@@ -1,4 +1,90 @@
 """
+실행시간: 116 -> 128
+풀이시간: 94분 -> 104분
+
+함수에서 si, sj를 참조하는데 매개변수를 주지 않아서, main 함수 단까지 가서 si, sj를 찾았다.
+그래서 오류가 났다... 엄청 찾기 어려웠다!!
+자동 참조에 기대지 말고 함수에 필요한 매개변수를 다 주자.
+
+그리고 틀린 테케로 디버깅한다고 생각했는데 맞은 테케로 디버깅하면서 왜 안되지 싶었다.
+도저히 찾기 어려워서 중간에 한시간 정도 자고 일어나서 다시 풀었다.
+피곤하면 별별 일을 다 저지르므로 상태가 최악이라고 가정하고 침착하게 살펴야 할 것이다.
+
+이건 한번 더 풀어야 할듯...
+"""
+
+"""
+3:18 시작
+3:25 구상 완료
+3:45 구현 완료
+5:01 디버깅 완료
+"""
+
+
+def solve(arr, si, sj, sd, score):
+    global ans
+
+    ans = max(ans, score)  # 정답 갱신
+
+    # 도둑말 이동
+    for id in range(1, 17):
+        move(arr, si, sj, id)
+
+    # 술래말 이동
+    ci, cj = si, sj
+    while True:
+        ci, cj = ci + di[sd], cj + dj[sd]
+
+        if OOB(ci, cj): return
+        if arr[ci][cj][0] == 0: continue  # 먹을 물고기 없음
+        fid, fd = arr[ci][cj]  # 먹을 물고기
+        arr[ci][cj] = (0, 0)  # 꿀꺽
+        solve([a[:] for a in arr], ci, cj, fd, score + fid)
+        arr[ci][cj] = (fid, fd)  # 꿀꺽 초기화
+
+    return
+
+
+def move(arr, si, sj, id):
+    for i in range(4):
+        for j in range(4):
+            if arr[i][j][0] != id: continue  # 이동할 도둑말 찾기
+
+            d = arr[i][j][1]
+            for _ in range(8):
+                ni, nj = i + di[d], j + dj[d]
+                if OOB(ni, nj) or (ni == si and nj == sj):  # 이동불가
+                    d = (d + 1) % 8
+                else:  # 이동 가능
+                    arr[i][j] = (id, d)  # 방향 갱신
+                    arr[i][j], arr[ni][nj] = arr[ni][nj], arr[i][j]
+                    return
+
+            return
+
+
+def OOB(i, j):
+    return not (0 <= i < 4 and 0 <= j < 4)
+
+
+di = [-1, -1, 0, 1, 1, 1, 0, -1]
+dj = [0, -1, -1, -1, 0, 1, 1, 1]
+arr = [[(0, 0) for _ in range(4)] for _ in range(4)]
+for i in range(4):
+    ipt = list(map(int, input().split()))
+    for j in range(4):
+        arr[i][j] = (ipt[j * 2], ipt[j * 2 + 1] - 1)
+
+# 0, 0 먹기
+si, sj = 0, 0
+sid, sd = arr[0][0]
+arr[0][0] = (0, 0)
+
+ans = 0
+solve(arr, si, sj, sd, sid)
+print(ans)
+
+"""
 2:05 시작
 2:10 문제 읽기 완료
 2:15 구상 완료

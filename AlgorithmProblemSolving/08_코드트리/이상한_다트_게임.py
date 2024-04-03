@@ -1,4 +1,94 @@
 """
+실행시간: 1624(340) -> 616
+풀이시간: 25분 -> 35분
+
+문제를 안 읽었다!!!!!!!!!!!!!!!!!!!!!!!
+문제 좀 읽자!!!!!!!!
+석의 프로님 코드를 참고하여 회전 로직을 구현했다
+"""
+
+"""
+11:16 시작
+11:21 구상 완료
+11:29 구현 완료
+11:32 회전 인덱스 디버깅
+11:51 정규화 로직 추가
+
+
+"""
+from collections import deque
+
+
+def turn(x, d, k, arr):
+    for i in range(N):
+        if (i + 1) % x == 0:  # 배수
+            if d:  # 반시계 방향
+                arr[i] = arr[i][k:] + arr[i][:k]
+            else:  # 시계 방향
+                arr[i] = arr[i][-k:] + arr[i][:-k]
+    return
+
+
+def pop(si, sj):
+    v = [[0] * M for _ in range(N)]
+    v[si][sj] = 1
+    num = arr[si][sj]
+    q = deque([(si, sj)])
+    is_pop = False
+
+    while q:
+        ci, cj = q.popleft()
+
+        for d in range(4):
+            ni, nj = ci + di[d], (cj + dj[d]) % M
+            if not (0 <= ni < N): continue
+            if v[ni][nj]: continue
+            if arr[ni][nj] != num: continue
+
+            v[ni][nj] = 1
+            arr[ni][nj] = 0
+            q.append((ni, nj))
+            is_pop = True
+
+    if is_pop:
+        arr[si][sj] = 0
+
+    return is_pop
+
+
+di = [0, 0, 1, -1]
+dj = [1, -1, 0, 0]
+N, M, Q = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+for _ in range(Q):
+    x, d, k = map(int, input().split())
+    turn(x, d, k, arr)
+
+    is_pop = False
+    sm = 0
+    cnt = 0
+    for i in range(N):
+        for j in range(M):
+            if not arr[i][j]: continue
+            if pop(i, j):
+                is_pop = True
+            else:
+                sm += arr[i][j]
+                cnt += 1
+
+    if not is_pop:
+        mean = sm // cnt
+
+        for i in range(N):
+            for j in range(M):
+                if arr[i][j] > mean:
+                    arr[i][j] -= 1
+                elif 0 < arr[i][j] < mean:
+                    arr[i][j] += 1
+
+print(sum([sum(a) for a in arr]))
+
+"""
 2:18 구상 완료
 2:43 구현 완료
 

@@ -207,3 +207,119 @@ for _ in range(Q):
             for data in remain_data_lst:
                 containers[nxt].append(data)
             print(b_num)
+
+"""
+head None 방식 Container
+"""
+
+
+class Container:
+    def __init__(self, status=1):
+        self.head = Node(None)
+        self.tail = Node(None, self.head)
+        self.head.next = self.tail
+        self.size = 0
+        self.status = status  # 1 정상 0 고장
+        self.id_to_package = {}
+
+    def __str__(self):
+        lst = []
+        cur = self.head.next
+
+        while cur.data:
+            lst.append((cur.data.id, cur.data.w))
+            cur = cur.next
+
+        return f'{lst}'
+
+    def is_empty(self):
+        if self.size:
+            return False
+        else:
+            return True
+
+    def put_down(self, w_max):
+        if self.is_empty() or self.is_disabled():
+            return 0
+        first = self.head.next
+        if first.data.w <= w_max:
+            w = first.data.w
+            self.popleft()
+            return w
+        else:
+            self.append(self.popleft())
+            return 0
+
+    def popleft(self):
+        if self.is_empty():
+            return
+        else:
+            first = self.head.next
+            self.head.next = first.next
+            first.next.prev = self.head
+            self.id_to_package.pop(first.data.id)
+            self.size -= 1
+            return first.data
+
+    def append(self, data: Package):
+        last = self.tail.prev
+        node = Node(data, last, self.tail)
+        last.next = node
+        self.tail.prev = node
+        self.id_to_package[data.id] = node
+        self.size += 1
+        return
+
+    def remove_by_id(self, id):
+        if self.is_empty():
+            return False
+
+        if id in self.id_to_package.keys():  # 존재
+            node = self.id_to_package[id]
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            self.size -= 1
+            self.id_to_package.pop(id)
+            return True
+        return False
+
+    def find_by_id(self, id):
+        if self.is_empty():
+            return False
+        if id in self.id_to_package.keys():  # 존재
+            node = self.id_to_package[id]
+
+            first = self.head.next
+            if first == node:
+                return True
+
+            last = self.tail.prev
+
+            node.prev.next = self.tail
+            self.tail.prev = node.prev
+
+            last.next = first
+            first.prev = last
+
+            node.prev = self.head
+            self.head.next = node
+
+            return True
+        return False
+
+    def is_disabled(self):
+        if self.status:
+            return False
+        else:
+            return True
+
+    def be_disabled_and_get_remain(self):
+        self.status = 0
+        self.size = 0
+        data_lst = []
+        cur = self.head.next
+        while cur.data:
+            data_lst.append(cur.data)
+            cur = cur.next
+
+        return data_lst

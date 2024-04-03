@@ -1,4 +1,74 @@
 """
+실행시간: 280 -> 456
+풀이시간: 62분 -> 20분
+
+인덱스 오류를 빨리 찾았다. 점수를 인덱스로 헷갈렸다.
+이전엔 모든 말이 도착했을 경우에 ans를 갱신해주었는데, 이번엔 그냥 모든 상황에서 갱신해주었다.
+또한 보드판의 상황을 나타내는 board 변수를 아예 없애고 말들의 현재 위치 인덱스 배열만을 사용했다.
+
+시간은 오래 걸리지만 코드는 짧아졌다.
+"""
+
+"""
+2:20 시작
+2:27 구상완료
+2:37 디버깅 - 인덱스 오류
+2:40 제출
+
+"""
+
+
+def move(cur, dice):
+    if cur in blue.keys():  # 파란 칸
+        cur = blue[cur]
+        dice -= 1
+    for _ in range(dice):
+        cur = nxt[cur]
+
+    if cur != 21 and cur in horses:
+        cur = -1
+    return cur
+
+
+def dfs(turn, sm):
+    global ans
+
+    ans = max(ans, sm)
+    if turn == 10:
+        return
+
+    for x in range(4):
+        cur = horses[x]
+        if cur == 21:
+            continue
+        done = False
+        nxt = move(cur, dice_lst[turn])
+        if nxt >= 0:
+            horses[x] = nxt
+            dfs(turn + 1, sm + score[nxt])
+            horses[x] = cur
+
+    return
+
+
+score = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20,
+         22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 0,
+         13, 16, 19, 25, 30, 35,
+         22, 24,
+         28, 27, 26]
+nxt = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,
+       12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 21,
+       23, 24, 25, 26, 27, 20,
+       29, 25,
+       31, 32, 25]
+blue = {5: 22, 10: 28, 15: 30}
+horses = [0] * 4
+dice_lst = list(map(int, input().split()))
+ans = 0
+dfs(0, 0)
+print(ans)
+
+"""
 
 2:45 시작
 3:38 1차 구현 완료
