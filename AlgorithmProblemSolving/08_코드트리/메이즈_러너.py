@@ -1,4 +1,109 @@
 """
+343(165) -> 168
+103분 -> 47분
+함수의 return 값을 무슨 일이 있어도 함수의 끝에 표기하자. (아무리 그럴 일 없다 해도 다른 코드가 틀릴 수도 있음)
+종료조건은 항상 그 값이 변화된 직후마다 하자!!! 맨 아래에 하면 조건에 따라 오류가 날 수도 있다.
+엄청 쉽게 짰는데 런타임 에러가 났다. 정신 똑바로 차리고 기본에 집중하자.
+
+
+머리 쓰지 않고 완탐 한 건 잘했다
+"""
+
+"""
+2:29 시작
+2:38 구상 완료
+3:01 1차 구현
+3:07 tc 검토 완료
+3:16 디버깅
+"""
+
+
+def OOB(i, j):
+    return not (0 <= i < N and 0 <= j < N)
+
+
+def find_small_square(arr, ei, ej):
+    for h in range(2, N + 1):  # 변의 길이
+
+        for si in range(N - h + 1):
+            for sj in range(N - h + 1):
+                if not (si <= ei < si + h and sj <= ej < sj + h): continue  # 출구가 범위 내에 없다
+
+                for i in range(si, si + h):
+                    for j in range(sj, sj + h):
+                        if arr[i][j] > 0:  # 사람 발견
+                            return si, sj, h
+    return -1, -1, -1
+
+
+di = [1, -1, 0, 0]
+dj = [0, 0, -1, 1]
+N, P, K = map(int, input().split())
+arr = [[0] * N for _ in range(N)]
+EXIT = -10
+for i in range(N):
+    ipt = list(map(int, input().split()))
+    for j in range(N):
+        if ipt[j] > 0:  # 벽 발견
+            arr[i][j] -= ipt[j]
+for _ in range(P):
+    r, c = map(int, input().split())
+    arr[r - 1][c - 1] += 1  # 사람 표시
+ei, ej = map(int, input().split())
+ei, ej = ei - 1, ej - 1
+arr[ei][ej] = EXIT
+ppl_cnt = P
+ans = 0
+for _ in range(K):
+    # 모든 참가자 이동
+    new_arr = [[0] * N for _ in range(N)]
+    for i in range(N):
+        for j in range(N):
+            if arr[i][j] > 0:  # 참가자 발견
+                nd = -1
+                h = abs(ei - i) + abs(ej - j)
+                for d in range(4):
+                    ni, nj = i + di[d], j + dj[d]
+                    if OOB(ni, nj): continue
+                    if -9 <= arr[ni][nj] <= -1: continue  # 벽
+                    if abs(ni - ei) + abs(nj - ej) >= h: continue  # 최단 거리 아님
+                    nd = d
+                    break
+
+                if nd < 0:  # 이동 불가
+                    new_arr[i][j] += arr[i][j]
+                    continue
+
+                ni, nj = i + di[nd], j + dj[nd]  # 이동
+                ans += arr[i][j]  # 이동 거리 표시
+                if ni == ei and nj == ej:  # 출구
+                    ppl_cnt -= arr[i][j]  # 탈출
+                else:  # 출구 아님
+                    new_arr[ni][nj] += arr[i][j]
+            elif arr[i][j] < 0:  # 출구 or 벽
+                new_arr[i][j] = arr[i][j]
+    arr = new_arr
+    if not ppl_cnt: break
+
+    # 가장 작은 정사각형 찾기
+    si, sj, sh = find_small_square(arr, ei, ej)
+    square = [a[sj:sj + sh] for a in arr[si:si + sh]]
+    c_square = list(map(list, zip(*square[::-1])))
+    for i in range(sh):
+        for j in range(sh):
+            if -9 <= c_square[i][j] <= -1:  # 벽 -> 내구도 감소
+                arr[si + i][sj + j] = c_square[i][j] + 1
+            else:
+                if c_square[i][j] == EXIT:  # 출구
+                    ei, ej = si + i, sj + j  # 갱신
+                arr[si + i][sj + j] = c_square[i][j]
+
+    # if not ppl_cnt: break
+
+print(ans)
+print(ei + 1, ej + 1)
+
+"""
 2:40 시작
 3:03 구상 완료
 3:35 1차 구현 완료, 휴식 시작

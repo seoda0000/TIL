@@ -1,4 +1,82 @@
 """
+실수1: 벽 체크 까먹음
+실수2: 복붙해서 ri, rj, bi, bj 혼동
+"""
+
+from collections import deque
+
+
+def laser(si, sj, ei, ej):
+    v = [[0] * M for _ in range(N)]
+    v[si][sj] = 1
+    q = deque([(si, sj, [(si, sj)])])
+
+    while q:
+        ci, cj, clst = q.popleft()
+        if ci == ei and cj == ej:
+            return clst
+        for d in range(4):
+            ni, nj = (ci + di[d]) % N, (cj + dj[d]) % M
+            if v[ni][nj]: continue
+            if arr[ni][nj] == 0: continue
+
+            v[ni][nj] = 1
+            q.append((ni, nj, clst + [(ni, nj)]))
+
+    return []
+
+
+di = [0, 1, 0, -1]
+dj = [1, 0, -1, 0]
+ei = [0, 0, 1, -1, 1, 1, -1, -1]
+ej = [1, -1, 0, 0, 1, -1, 1, -1]
+N, M, K = map(int, input().split())
+arr = [list(map(int, input().split())) for _ in range(N)]
+time = [[0] * M for _ in range(N)]
+for k in range(1, K + 1):
+    towers = []
+    for i in range(N):
+        for j in range(M):
+            if arr[i][j]:  # 포탑 있음
+                towers.append((arr[i][j], time[i][j], i, j))
+
+    if len(towers) == 1:
+        break
+
+    towers.sort(key=lambda x: (x[0], -x[1], -x[2] - x[3], -x[3]))
+    _, _, ai, aj = towers[0]
+    _, _, bi, bj = towers[-1]
+
+    attack_v = [[0] * M for _ in range(N)]
+    attack_v[ai][aj] = attack_v[bi][bj] = 1
+
+    arr[ai][aj] += N + M
+    time[ai][aj] = k
+
+    routes = laser(ai, aj, bi, bj)
+
+    if not routes:
+        for e in range(8):
+            ri, rj = (bi + ei[e]) % N, (bj + ej[e]) % M
+            routes.append((ri, rj))
+
+    for ri, rj in routes:
+        if attack_v[ri][rj]: continue
+        attack_v[ri][rj] = 1
+        arr[ri][rj] = max(0, arr[ri][rj] - arr[ai][aj] // 2)
+
+    arr[bi][bj] = max(0, arr[bi][bj] - arr[ai][aj])
+
+    for i in range(N):
+        for j in range(M):
+            if attack_v[i][j]: continue
+            if arr[i][j] == 0: continue
+            arr[i][j] += 1
+
+ans = max([max(a) for a in arr])
+print(ans)
+
+"""
 9:01 시작
 9:15 구상 완료
 9:46 1차 구현 완료
@@ -80,7 +158,7 @@ for k in range(1, K + 1):
 
     if len(towers) == 1:  # 종료
         break
-        
+
     towers.sort(key=lambda x: (x[0], -x[1], -(x[2] + x[3]), -x[3]))
     ap, _, ai, aj = towers[0]  # 공격자
     _, _, ti, tj = towers[-1]  # 공격 대상

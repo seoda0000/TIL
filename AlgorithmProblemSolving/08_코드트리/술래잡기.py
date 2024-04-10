@@ -1,4 +1,103 @@
 """
+실행시간: 319 -> 263
+풀이시간: 67분 -> 33분
+
+자체 tc로 디버깅 했던 것이 기억나서 이번에도 했다. 아니나 다를까 오류를 잡을 수 있었다!
+(0, N//2 중 하나면 돌도록 -> 0, 0 or N//2, N//2면 돌도록)
+특정 지점은 귀찮다고 리스트로 하지 말고 무조건 ==으로 비교하자.
+이전에는 딕셔너리로 구현했는데, 이번엔 그냥 3차원 배열로 구현했다. 로직은 완전히 동일하다.
+"""
+
+"""
+10:15 시작
+10:22 구상 완료
+10:43 1차 구현 완료
+10:48 자체 tc 디버깅 완료
+"""
+
+
+def OOB(i, j):
+    return not (0 <= i < N and 0 <= j < N)
+
+
+di = [0, 1, 0, -1]
+dj = [1, 0, -1, 0]
+N, runner_cnt, tree_cnt, K = map(int, input().split())
+arr = [[list() for _ in range(N)] for _ in range(N)]
+tree_arr = [[0] * N for _ in range(N)]
+v = [[0] * N for _ in range(N)]
+for _ in range(runner_cnt):
+    x, y, d = map(int, input().split())
+    if d == 1:
+        d = 0
+    else:
+        d = 1
+    arr[x - 1][y - 1].append(d)
+for _ in range(tree_cnt):
+    x, y = map(int, input().split())
+    tree_arr[x - 1][y - 1] = 1
+
+si, sj = N // 2, N // 2
+sd = 3
+status = 0
+v[si][sj] = 1
+ans = 0
+
+for k in range(1, K + 1):
+
+    # 도망자 이동
+    new_arr = [[list() for _ in range(N)] for _ in range(N)]
+
+    for i in range(N):
+        for j in range(N):
+            if not arr[i][j]: continue
+            if abs(i - si) + abs(j - sj) > 3:  # 이동 x
+                new_arr[i][j].extend(arr[i][j])
+                continue
+
+            for rd in arr[i][j]:
+                ni, nj = i + di[rd], j + dj[rd]
+                if OOB(ni, nj):
+                    rd = (rd + 2) % 4  # 반대로
+                    ni, nj = i + di[rd], j + dj[rd]
+
+                if ni == si and nj == sj:
+                    new_arr[i][j].append(rd)  # 이동 x
+                else:
+                    new_arr[ni][nj].append(rd)
+
+    arr = new_arr
+
+    # 술래 이동
+    si, sj = si + di[sd], sj + dj[sd]  # 일단 간다
+    if (si == 0 and sj == 0) or (si == N // 2 and sj == N // 2):  # 반환점
+        status ^= 1
+        sd = (sd + 2) % 4
+        v = [[0] * N for _ in range(N)]
+    elif not status:  # 안에서 밖으로
+        nd = (sd + 1) % 4  # 그리고 돈다
+        ni, nj = si + di[nd], sj + dj[nd]
+        if not v[ni][nj]:
+            sd = nd
+    else:  # 밖에서 안으로
+        ni, nj = si + di[sd], sj + dj[sd]
+        if OOB(ni, nj) or v[ni][nj]:
+            sd = (sd - 1) % 4
+
+    v[si][sj] = 1
+
+    # 도망자 잡기
+    ei, ej = si, sj
+    for _ in range(3):
+        if OOB(ei, ej): break
+        if not tree_arr[ei][ej] and arr[ei][ej]:  # 잡는다
+            ans += k * len(arr[ei][ej])
+            arr[ei][ej] = []
+        ei, ej = ei + di[sd], ej + dj[sd]
+
+print(ans)
+
+"""
 9:00 시작
 9:14 구상 완료
 9:51 1차 구현 완료, 휴식 시작
