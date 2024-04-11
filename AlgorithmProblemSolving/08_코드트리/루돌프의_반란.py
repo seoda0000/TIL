@@ -1,4 +1,152 @@
 """
+복수 자료구조 유의
+v배열 체크 유의
+tc 하나하나 체크
+"""
+"""
+4:43 시작
+4:52 구상 완료
+5:21 1차 구현 완료
+5:44 디버깅 후 제출
+"""
+
+
+def OOB(i, j):
+    return not (0 <= i < N and 0 <= j < N)
+
+
+def find_close_santa(ri, rj):  # 가장 가까운 산타 찾기
+    santas = []
+    for id, values in santa_dic.items():
+        si, sj, status = values
+        if status == 0: continue
+        h = (si - ri) ** 2 + (sj - rj) ** 2
+        santas.append((h, si, sj))
+    santas.sort(key=lambda x: (x[0], -x[1], -x[2]))
+    _, si, sj = santas[0]
+    return si, sj
+
+
+def find_close_dir(si, sj, ei, ej, is_s):
+    if is_s:
+        dlst = [0, 2, 4, 6]
+    else:
+        dlst = list(range(8))
+    ch = (si - ei) ** 2 + (sj - ej) ** 2
+
+    lst = []
+    for d in dlst:
+        ni, nj = si + di[d], sj + dj[d]
+        if OOB(ni, nj): continue
+        if is_s and santa_arr[ni][nj]: continue  # 산타 조건
+        nh = (ni - ei) ** 2 + (nj - ej) ** 2
+        if nh >= ch: continue
+        lst.append((nh, d))
+
+    if not lst:
+        return -1
+
+    lst.sort()
+    _, d = lst[0]
+
+    return d
+
+
+def throw_santa(id, d, k, turn):
+    si, sj, status = santa_dic[id]
+    santa_arr[si][sj] = 0
+    ni, nj = si + di[d] * k, sj + dj[d] * k
+    if OOB(ni, nj):  # 탈락
+        santa_dic[id] = -1, -1, 0
+        return
+    elif santa_arr[ni][nj]:  # 다른 산타 있음
+        push_santa(santa_arr[ni][nj], d)
+    santa_dic[id] = ni, nj, -turn
+    santa_arr[ni][nj] = id
+    return
+
+
+def push_santa(id, d):
+    si, sj, status = santa_dic[id]
+    santa_arr[si][sj] = 0
+    ni, nj = si + di[d], sj + dj[d]
+    if OOB(ni, nj):  # 탈락
+        santa_dic[id] = -1, -1, 0
+        return
+    elif santa_arr[ni][nj]:  # 다른 산타 있음
+        push_santa(santa_arr[ni][nj], d)
+    santa_dic[id] = ni, nj, status
+    santa_arr[ni][nj] = id
+    return
+
+
+di = [-1, -1, 0, 1, 1, 1, 0, -1]
+dj = [0, 1, 1, 1, 0, -1, -1, -1]
+N, T, P, C, D = map(int, input().split())
+ri, rj = map(int, input().split())
+ri, rj = ri - 1, rj - 1
+santa_dic = dict()  # id: (i, j, status: 음수-기절 시점 0-탈락 1-정상)
+santa_arr = [[0] * N for _ in range(N)]
+for _ in range(P):
+    id, si, sj = map(int, input().split())
+    si, sj = si - 1, sj - 1
+    santa_dic[id] = (si, sj, 1)
+    santa_arr[si][sj] = id
+
+scores = [0] * (P + 1)
+for turn in range(1, T + 1):
+
+    # 기절한 산타가 깨어난다
+    remain_cnt = P
+    for id in range(1, P + 1):
+        si, sj, status = santa_dic[id]
+        if status == 0:
+            remain_cnt -= 1
+            continue
+        elif status == -(turn - 2):
+            santa_dic[id] = si, sj, 1
+
+    if not remain_cnt: break
+
+    # 루돌프 이동
+    si, sj = find_close_santa(ri, rj)
+    rd = find_close_dir(ri, rj, si, sj, False)
+    ri, rj = ri + di[rd], rj + dj[rd]
+    if santa_arr[ri][rj]:  # 루 -> 산
+        id = santa_arr[ri][rj]
+        scores[id] += C
+        throw_santa(id, rd, C, turn)
+
+    # 산타 이동
+
+    for id in range(1, P + 1):
+        si, sj, status = santa_dic[id]
+        if status <= 0:  # 기절, 탈락
+            continue
+
+        sd = find_close_dir(si, sj, ri, rj, True)
+        if sd < 0: continue  # 이동 불가
+
+        santa_arr[si][sj] = 0  # 이동 가능
+        nsi, nsj = si + di[sd], sj + dj[sd]
+        santa_dic[id] = nsi, nsj, status
+
+        if nsi == ri and nsj == rj:  # 산 -> 루
+            scores[id] += D
+            throw_santa(id, (sd + 4) % 8, D, turn)
+
+        else:
+            santa_arr[nsi][nsj] = id
+
+    for id in range(1, P + 1):
+        si, sj, status = santa_dic[id]
+        if status == 0: continue
+        scores[id] += 1
+
+print(*scores[1:])
+
+
+"""
 3:00 시작
 3:12 구상 완료
 3:44 메인 로직 구현 완료

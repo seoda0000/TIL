@@ -1,4 +1,107 @@
 """
+가장자리 padding 했으면 인덱스에 유의
+문제 잘 읽기!!!!!!! 출력 조건 확인하자
+4방향으로 분기하기보다 언제나 번거롭게 구현하는 게 오히려 빠르고 실수할 일도 없다. 머리 쓰지 말자.
+"""
+"""
+3:35 시작
+3:43 구상 완료
+4:04 1차 구현 완료
+4:14 디버깅 완료
+4:17 검토 및 제출
+"""
+
+
+def mark(ki, kj, kh, kw, num):
+    cnt = 0
+
+    if num == 0:  # 지우기만 함
+        for i in range(ki, ki + kh):
+            for j in range(kj, kj + kw):
+                knight_arr[i][j] = num
+    else:  # 함정 세기도 필요
+        for i in range(ki, ki + kh):
+            for j in range(kj, kj + kw):
+                if field[i][j] == 1: cnt += 1
+                knight_arr[i][j] = num
+    return cnt
+
+
+def move(kid, is_ordered):
+    ki, kj, kh, kw, kk = knight_dic[kid]
+
+    mark(ki, kj, kh, kw, 0)  # 일단 지운다
+
+    nki, nkj = ki + di[cd], kj + dj[cd]  # 다음 위치 찾기
+    kcnt = mark(nki, nkj, kh, kw, kid)  # 표기하며 함정 세기
+
+    if not is_ordered:
+        damage[kid] += kcnt
+        kk -= kcnt
+
+        if kk <= 0:  # 사라져야 한다
+            kk = 0
+            mark(nki, nkj, kh, kw, 0)
+
+    knight_dic[kid] = nki, nkj, kh, kw, kk
+
+    return
+
+
+def check_move(id, d):
+    ki, kj, kh, kw, _ = knight_dic[id]
+    ni, nj = ki + di[d], kj + dj[d]
+
+    for i in range(ni, ni + kh):
+        for j in range(nj, nj + kw):
+            if field[i][j] == 2:
+                return False
+            elif knight_arr[i][j] == id:
+                continue  # 자기 영역
+            elif knight_arr[i][j]:  # 다른 기사 존재
+                if knight_arr[i][j] in pushed_knights: continue
+                if not check_move(knight_arr[i][j], d):
+                    return False
+    # 무사히 확인 완료
+    pushed_knights.append(id)
+    return True
+
+
+di = [-1, 0, 1, 0]
+dj = [0, 1, 0, -1]
+N, P, Q = map(int, input().split())
+N += 2
+field = [[2] * N] \
+        + [[2] + list(map(int, input().split())) + [2] for _ in range(N - 2)] \
+        + [[2] * N]  # 0 빈칸 1 함정 2 벽
+knight_dic = dict()
+knight_arr = [[0] * N for _ in range(N)]
+damage = [0] * (P + 1)
+for id in range(1, P + 1):
+    r, c, h, w, k = map(int, input().split())
+    knight_dic[id] = r, c, h, w, k
+    for i in range(r, r + h):  # 판에 표기
+        for j in range(c, c + w):
+            knight_arr[i][j] = id
+orders = [list(map(int, input().split())) for _ in range(Q)]
+for cid, cd in orders:
+    if knight_dic[cid][-1] <= 0: continue  # 사라진 기사
+
+    pushed_knights = []
+    if not check_move(cid, cd): continue  # 이동 불가
+
+    for kid in pushed_knights[:-1]:
+        move(kid, False)
+    move(cid, True)
+
+ans = 0
+
+for id, values in knight_dic.items():
+    if values[-1] <= 0: continue
+    ans += damage[id]
+print(ans)
+
+"""
 9:00 시작
 9:12 구상 완료
 9:45 구현 완료
