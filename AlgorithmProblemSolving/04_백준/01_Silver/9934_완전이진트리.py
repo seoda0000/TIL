@@ -33,3 +33,27 @@ for k in range(K-1):
     ans.append(tmp)
 for a in ans[::-1]:
     print(*a)
+
+
+"""
+1년 후 풀이
+"""
+
+from collections import defaultdict
+def check(s, e, k):
+    n = (s+e)//2
+    dic[k].append(nums[n])
+    if s >= e:
+        return
+
+    check(s, n-1, k+1)
+    check(n+1, e, k+1)
+    return
+
+K = int(input())
+nums = list(map(int, input().split()))
+dic = defaultdict(list)
+check(0, len(nums)-1, 1)
+
+for k in range(1, K+1):
+    print(*dic[k])
